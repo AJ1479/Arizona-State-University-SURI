@@ -1,0 +1,88 @@
+<html lang="en">
+
+<head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="../public/css/intro.css">
+</head>
+<body>
+
+<div class="containerIntro">
+    <div class = "float left">
+      <h1 class= "py-4">Introduction</h1>
+      <p>Welcome to our study on <strong>Stock Market Prediction.</strong> This study should take between 15 - 20 minutes to complete.</p>
+      <p>This study will ask 11 different exercises related to stock market prediction. For each question, 
+      you will be asked to determine if you believe a specified stock will increase or decrease in value after a certain period of time. 
+      From this study, we want to better understand what factors affect independent stock market predictions and how these predictions collected from multiple 
+      participants can be aggregated to produce accurate results. 
+      <h1 class= "py-2">Task</h1>
+      You will be assigned 11 exercises of 3 types:
+      <br>
+      <br>
+      <ol>
+        <li style="margin-bottom: 7px;">Color the Stock</li>
+                <div>Here, you will be given 4 companies in each question along with some relevant information in the form of historical data for each company. You will need to select 
+                a color from the palette ranging from <b style="color:#970023;  ">dark red</b > to <b style="color: #185d33;">dark green</b> to indicate whether you think the stock will go up or down. Remember, the darker the color, the more the jump/drop.</div>
+        <br>
+        <li style="margin-bottom: 7px;">Stock Projection</li>
+        <div>In these types of questions, you will be given historical data for a particular company in the form of stock prices represented in a graph with movable points. Your task will be to move the last point of the graph to make a future estimate about 
+            the price of that stock for the required time period.
+        </div>
+    <br>
+        <li style="margin-bottom: 7px;">Invest Money</li>
+        <div>You will be given 2 questions of this type, each having a set of 5 companies. You will be given $10,000 to invest in these companies for a particular time period. You need to allocate this money to the different companies and use sliders to manipulate the pie chart reflecting this distribution.
+        </div>
+      </ol>
+      </p>
+      <br>
+
+      <p> <span class="text-danger">NOTE:</span> Your compensation will not be affected by your performance. 
+      Some questions are purposely challenging, and it may be difficult to answer the questions accurately. If you are unsure about 
+      a certain question, we ask that you please answer it to the best of your ability. 
+
+      </p>
+      <div class="center">
+        <br>
+      <h1 class= "py-2" style="text-align: center ">Sample User Interface of Task</h1>
+      <img width="560" height="315">
+      <br><br>
+      <h1 class= "py-2" style="text-align: center ">Training</h1>
+      <p>A demo video is provided to show all interactions available in our user interface.</p>
+                <iframe width="560" height="315" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div><br>
+    <br>
+      <h1 class= "py-2">When Finished...</h1>
+      <p>After you have finished all the questions, there is a Demographics Questionnaire. Please complete it. 
+      When you have completed the Demographics Questionnaire, a redeem code will be spawned in the page. 
+      Please enter this redeem code in Amazon Mechanical Turk in order to get your compensation.
+      </p>
+
+    <p class="forbiddenP"><strong>Please do not use the back/forward or refresh features of your browser as 
+        they will end your session and you will not be paid.</strong></p>
+
+    <p>Please read the  <a href="/images/consent.pdf" target="_blank">Consent Form </a> before you start this user study. If you agree to participate in this user study, 
+        please input your Amazon Turk Worker ID and click “Start”.<p>
+    <div class="footer4introduce">
+        <form autocomplete="off" method="POST" id="form" action="/login">
+            <input autocomplete="off" type="text" class="form-control" placeholder="Amazon Turk Worker ID" 
+                aria-label="Amazon Turk Worker ID" aria-describedby="basic-addon2" name="userID" id="id">
+                <button type="button"  class="btn btn-success" id="startStudyBtn">Start</button>
+        </form>
+       
+    </div>
+</div>
+
+<script>
+    document.getElementById("startStudyBtn").addEventListener("click", function(event){
+  event.preventDefault()
+  id = document.getElementById("id").value
+        localStorage.setItem("UserID",id)
+        console.log("hello")
+        document.getElementById("form").submit();
+});
+
+</script>
+</body>
+</html>
