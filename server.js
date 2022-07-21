@@ -31,12 +31,21 @@ app.post('/login', async(req, res) => {
         ID: req.body.userID,
   });
   await User.create(user);
+
+  const response = new Input({
+    UserID: req.body.userID,
+    Response: [],
+
+});
+await Input.create(response);
+
     res.sendFile(__dirname+'\\views\\question.html');
 })
 
 
 app.post('/:questionNumber', (req, res) => {
     questionNumber = req.params.questionNumber;
+    let userID = req.body.userID;
     console.log(req.body);
     res.sendFile(__dirname+`\\views\\question${questionNumber}.html`);
 })

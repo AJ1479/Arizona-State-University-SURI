@@ -138,6 +138,7 @@
     </div>
    </div>
    <form method="POST" action="/1">
+    <input type="text" class="hidden" name="UserID" id="UserID">
     <input type="text" class="hidden" name="input1" id="input1">
     <input type="text" class="hidden" name="input2" id="input2">
     <input type="text" class="hidden" name="input3" id="input3">
@@ -147,6 +148,9 @@
 </div>
 
 <script>
+
+    
+    document.getElementById(`UserID`).value = localStorage.getItem("UserID");
 
     let colorArr = ["#970023", "#ce2827", "#ee5f3f", "#fba25c", "#fed785", "#fefdb9", "#d9e986", "#a2cf67", "#64b15c", "#2d8b4b", "#185d33"]
     let cards = document.getElementsByClassName("card");
