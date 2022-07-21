@@ -21,18 +21,21 @@
         <div id="chartContainer" style="height: 300px; width: 100%;"></div>
         <div id="buttons">
         </div>
-        <form method="POST" action="/2">
-            <input type="text" value="0" class="hidden" name="value1" id="value1">
-            <input type="text" value="0" class="hidden" name="value2" id="value2">
-            <input type="text" value="0" class="hidden" name="value3" id="value3">
-            <input type="text" value="0" class="hidden" name="value4" id="value4">
-            <input type="text" value="0" class="hidden" name="value5" id="value4">
-            <input type="text" value="0" class="hidden" name="value6" id="value4">
+        <form method="POST" action="/3">
+            <input type="text" class="hidden" name="UserID" id="UserID">
+            <input type="text" value="0" class="hidden" name="input1" id="value1">
+            <input type="text" value="0" class="hidden" name="input2" id="value2">
+            <input type="text" value="0" class="hidden" name="input3" id="value3">
+            <input type="text" value="0" class="hidden" name="input4" id="value4">
+            <input type="text" value="0" class="hidden" name="input5" id="value4">
+            <input type="text" value="0" class="hidden" name="input6" id="value4">
             <input type="submit" class="btn btn-outline-success" id="submitButton" value="Submit" onclick="submit()">
         </form>
     </div>
 
 <script type="text/javascript">
+    document.getElementById(`UserID`).value = localStorage.getItem("UserID");
+
         window.onload = () => {
             CanvasJS.addColorSet("pieChartTheme", [
                 "#EC5657",

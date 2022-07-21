@@ -5,7 +5,6 @@ questionNumber:{
         type: Number,
         required: true,
         trim: true,
-        unique: true
 },
 input1:{
     type: Number,

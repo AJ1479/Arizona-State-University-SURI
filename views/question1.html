@@ -57,6 +57,7 @@
             <input type="submit" class="btn btn-outline-success" id="submitButton" value="Submit" onclick="submit()">
 
             <form method="POST" action="/2">
+                <input type="text" class="hidden" name="UserID" id="UserID">
                 <input type="text" class="hidden" name="input1" id="input1">
                 <button type="submit" class="hidden" id="submit"></button>
             </form>
@@ -68,6 +69,8 @@
     <script src="https://www.rgraph.net/libraries/RGraph.common.dynamic.js"></script>
 
     <script>
+        document.getElementById(`UserID`).value = localStorage.getItem("UserID");
+        
         let value;
         line = new RGraph.Line({
             id: 'cvs',

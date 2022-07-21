@@ -7,7 +7,7 @@ const bodyParser = require('body-parser')
 require('./models/db');
 
 
-const Question = require('./models/questionSchema');
+const {Question} = require('./models/questionSchema');
 const User = require('./models/userSchema');
 const Input = require('./models/responsesSchema');
 
@@ -43,10 +43,26 @@ await Input.create(response);
 })
 
 
-app.post('/:questionNumber', (req, res) => {
+app.post('/:questionNumber', async (req, res) => {
     questionNumber = req.params.questionNumber;
-    let userID = req.body.userID;
-    console.log(req.body);
+    let userID = req.body.UserID;
+    delete req.body.UserID;
+    var userResponses = await Input.findOne({ UserID: userID });
+    
+    const questionResponse = new Question({
+        questionNumber: questionNumber,
+        ...req.body
+    
+    });
+
+    let a = userResponses.Response;
+    a.push(questionResponse);
+
+    await userResponses.update({Response: a})
+
+    //await Input.create(response);
+    console.log(userResponses)
+    
     res.sendFile(__dirname+`\\views\\question${questionNumber}.html`);
 })
 
