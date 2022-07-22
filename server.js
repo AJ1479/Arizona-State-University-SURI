@@ -22,7 +22,7 @@ app.use("/public", express.static("public"));
 app.use("/react_deploy", express.static("react_deploy"));
 
 app.get("/", (req, res) => {
-  res.sendFile(__dirname + "\\views\\login.html");
+  res.sendFile(__dirname + "/views/login.html");
 });
 
 app.post("/login", async (req, res) => {
