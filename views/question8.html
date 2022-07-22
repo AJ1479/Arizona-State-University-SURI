@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>Example</title>
+    <title>ASU SURI</title>
 
     <script
       type="text/javascript"
@@ -44,7 +44,7 @@
       </div>
 
       <div id="buttons"></div>
-      <form method="POST" id="form" action="/3">
+      <form method="POST" id="form" action="/9">
         <input type="text" class="hidden" name="UserID" id="UserID" />
         <input type="text" value="0" class="hidden" name="input1" id="value1" />
         <input type="text" value="0" class="hidden" name="input2" id="value2" />
@@ -65,7 +65,9 @@
         class="btn btn-outline-success"
         id="submitButton1"
         value="Submit"
-      >Submit</button>
+      >
+        Submit
+      </button>
     </div>
 
     <script type="text/javascript">
@@ -74,7 +76,6 @@
       window.onload = () => {
         function drawTips() {
           var canvas = document.querySelector("canvas");
-          console.log(canvas);
 
           let ctx = canvas.getContext("2d");
           ctx.font = "20px";
@@ -85,15 +86,35 @@
             20
           );
           ctx.fillText("PayPal stock price: $82.75   ", 50, 40);
-          ctx.fillText("The ML model predicts PayPal stock to grow by x%", 50, 55);
+          ctx.fillText(
+            "The ML model predicts PayPal stock to grow by x%",
+            50,
+            55
+          );
           ctx.fillText("Pfizer stock price: $51.12 ", 50, 75);
-          ctx.fillText("The ML model predicts Pfizer stock to grow by x%", 50, 90);
+          ctx.fillText(
+            "The ML model predicts Pfizer stock to grow by x%",
+            50,
+            90
+          );
           ctx.fillText("Bank of America stock price: $33.65   ", 50, 110);
-          ctx.fillText("The ML model predicts PayPal stock to grow by x%", 50, 125);
+          ctx.fillText(
+            "The ML model predicts PayPal stock to grow by x%",
+            50,
+            125
+          );
           ctx.fillText("ExxonMobil stock price: $87.75", 50, 145);
-          ctx.fillText("The ML model predicts PayPal stock to grow by x%", 50, 160);
+          ctx.fillText(
+            "The ML model predicts PayPal stock to grow by x%",
+            50,
+            160
+          );
           ctx.fillText("Google stock price: $114.34   ", 50, 180);
-          ctx.fillText("The ML model predicts PayPal stock to grow by x%", 50, 195);
+          ctx.fillText(
+            "The ML model predicts PayPal stock to grow by x%",
+            50,
+            195
+          );
         }
 
         CanvasJS.addColorSet("pieChartTheme", [
@@ -125,8 +146,6 @@
         addData(0, "Don't Invest");
 
         function getSum() {
-          // console.log(data)
-
           let sum = 0;
           for (let i = 0; i < addDataCount; i++) {
             sum += data[i].y;
@@ -136,7 +155,6 @@
 
         function renderChart() {
           let sum = getSum();
-          console.log(`sum: ${sum}`);
           let additionalData = false;
 
           if (sum < 100) {
@@ -196,7 +214,6 @@
           inputBox.oninput = function (event) {
             let sum = getSum();
             let newValue = parseInt(event.target.value);
-            console.log(newValue);
             if (sum >= 100) {
               if (newValue < oldData[index]) {
                 oldData[index] = data[index].y;

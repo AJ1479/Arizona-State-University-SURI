@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>Example</title>
+    <title>ASU SURI</title>
     <script src="https://www.rgraph.net/libraries/RGraph.common.key.js"></script>
     <link
       rel="canonical"
@@ -69,11 +69,12 @@
         You have been given historical data from the past 1 year from
         <b>August 2022</b> to <b>July 2023</b> of the stock prices of
         <b>Netflix</b> and <b>Disney</b>. Can you predict the stock price for
-        <b>August 2023</b> for <b>both the companies</b> by dragging the points on the graph along
-        the Y-axis?
+        <b>August 2023</b> for <b>both the companies</b> by dragging the points
+        on the graph along the Y-axis?
       </p>
       <p>
-        <b>NOTE:</b> The values for <b>X</b> are by default set to those predicted by the ML model. Please move them above or below as per your
+        <b>NOTE:</b> The values for <b>X</b> are by default set to those
+        predicted by the ML model. Please move them above or below as per your
         future estimate.
       </p>
       <div id="main-body-container">
@@ -93,8 +94,20 @@
 
         <form method="POST" action="/7">
           <input type="text" class="hidden" name="UserID" id="UserID" />
-          <input type="text" class="hidden" name="input1" value="176.559998" id="input1" />
-          <input type="text" class="hidden" name="input2" value="103.349998" id="input2" />
+          <input
+            type="text"
+            class="hidden"
+            name="input1"
+            value="176.559998"
+            id="input1"
+          />
+          <input
+            type="text"
+            class="hidden"
+            name="input2"
+            value="103.349998"
+            id="input2"
+          />
           <button type="submit" class="hidden" id="submit"></button>
         </form>
       </div>
@@ -119,11 +132,13 @@
           [
             569.190002, 610.340027, 690.309998, 641.900024, 602.440002,
             427.140015, 394.519989, 374.589996, 190.360001, 197.440002,
-            174.869995, 176.559998, 176.559998
+            174.869995, 176.559998, 176.559998,
           ],
-          [181.300003,169.169998,169.070007,144.899994,154.889999,142.970001,148.460007,137.160004,111.629997,110.44000,
-94.400002,103.349998,103.349998]
-
+          [
+            181.300003, 169.169998, 169.070007, 144.899994, 154.889999,
+            142.970001, 148.460007, 137.160004, 111.629997, 110.44, 94.400002,
+            103.349998, 103.349998,
+          ],
         ],
         options: {
           textAccessible: false,
@@ -155,7 +170,7 @@
           titleBold: true,
           titleSize: 14,
           key: ["Netflix", "Disney"],
-          colors: ["red", "blue"]
+          colors: ["red", "blue"],
         },
       }).draw();
 
@@ -165,7 +180,6 @@
       });
 
       line.on("adjust", function (e) {
-        // console.log(e)
         let index = e.__mouseover_shape__.index;
         let dataset = e.__mouseover_shape__.dataset;
         let newValue = e.data[dataset][0];

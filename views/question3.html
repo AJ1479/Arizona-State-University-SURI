@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>Example</title>
+    <title>ASU SURI</title>
 
     <link
       rel="canonical"
@@ -111,11 +111,15 @@
       ctx.fillText("X", 660, 332);
       document.getElementById(`UserID`).value = localStorage.getItem("UserID");
 
-      let value= 75.269997;
+      let value = 75.269997;
       line = new RGraph.Line({
         id: "cvs",
         data: [
-        [259,227.479996,319.420013,315,252.369995,190.149994,190.770004,189.860001,112.709999,78.099998,47.02,75.269997, 75.269997],
+          [
+            259, 227.479996, 319.420013, 315, 252.369995, 190.149994,
+            190.770004, 189.860001, 112.709999, 78.099998, 47.02, 75.269997,
+            75.269997,
+          ],
         ],
         options: {
           textAccessible: false,
@@ -155,7 +159,6 @@
       });
 
       line.on("adjust", function (e) {
-        // console.log(e)
         let index = e.__mouseover_shape__.index;
         let dataset = e.__mouseover_shape__.dataset;
         let newValue = e.data[dataset][index];

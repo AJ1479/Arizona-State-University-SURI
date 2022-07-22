@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>Example</title>
+    <title>ASU SURI</title>
 
     <script
       type="text/javascript"
@@ -65,7 +65,9 @@
         class="btn btn-outline-success"
         id="submitButton1"
         value="Submit"
-      >Submit</button>
+      >
+        Submit
+      </button>
     </div>
 
     <script type="text/javascript">
@@ -74,7 +76,6 @@
       window.onload = () => {
         function drawTips() {
           var canvas = document.querySelector("canvas");
-          console.log(canvas);
 
           let ctx = canvas.getContext("2d");
           ctx.font = "20px";
@@ -120,8 +121,6 @@
         addData(0, "Don't Invest");
 
         function getSum() {
-          // console.log(data)
-
           let sum = 0;
           for (let i = 0; i < addDataCount; i++) {
             sum += data[i].y;
@@ -131,7 +130,6 @@
 
         function renderChart() {
           let sum = getSum();
-          console.log(`sum: ${sum}`);
           let additionalData = false;
 
           if (sum < 100) {
@@ -191,7 +189,6 @@
           inputBox.oninput = function (event) {
             let sum = getSum();
             let newValue = parseInt(event.target.value);
-            console.log(newValue);
             if (sum >= 100) {
               if (newValue < oldData[index]) {
                 oldData[index] = data[index].y;

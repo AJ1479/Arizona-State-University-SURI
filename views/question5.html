@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>Example</title>
+    <title>ASU SURI</title>
 
     <link
       rel="canonical"
@@ -73,7 +73,8 @@
         the Y-axis?
       </p>
       <p>
-        <b>NOTE:</b> The value for point <b>X</b> is by default set to the value predicted by the ML model. Please move it above or below as per your
+        <b>NOTE:</b> The value for point <b>X</b> is by default set to the value
+        predicted by the ML model. Please move it above or below as per your
         future estimate.
       </p>
       <div id="main-body-container">
@@ -93,7 +94,13 @@
 
         <form method="POST" action="/6">
           <input type="text" class="hidden" name="UserID" id="UserID" />
-          <input type="text" class="hidden" name="input1" value="1.57" id="input1" />
+          <input
+            type="text"
+            class="hidden"
+            name="input1"
+            value="1.57"
+            id="input1"
+          />
           <button type="submit" class="hidden" id="submit"></button>
         </form>
       </div>
@@ -114,7 +121,10 @@
       line = new RGraph.Line({
         id: "cvs",
         data: [
-        [2.83, 2.47, 2.64, 2.14, 2.18, 2.21, 2.25, 2.36, 2.11, 1.7, 1.49, 1.57, 1.57],
+          [
+            2.83, 2.47, 2.64, 2.14, 2.18, 2.21, 2.25, 2.36, 2.11, 1.7, 1.49,
+            1.57, 1.57,
+          ],
         ],
         options: {
           textAccessible: false,
@@ -154,7 +164,6 @@
       });
 
       line.on("adjust", function (e) {
-        // console.log(e)
         let index = e.__mouseover_shape__.index;
         let dataset = e.__mouseover_shape__.dataset;
         let newValue = e.data[dataset][index];

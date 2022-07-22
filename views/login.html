@@ -77,7 +77,6 @@
 <script>
    function validateForm() {
     var a = document.forms["form"]["userID"].value;
-    console.log(a)
     if (a == '') {
       alert("Please fill all the required fields.");
       return false;
@@ -91,7 +90,6 @@
         event.preventDefault()
         id = document.getElementById("id").value
         localStorage.setItem("UserID",id)
-        console.log("hello")
         document.getElementById("form").submit();}
 });
 

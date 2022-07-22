@@ -68,9 +68,8 @@
       <p>
         You have been given historical data from the past 1 year from
         <b>August 2022</b> to <b>July 2023</b> of the stock prices of
-        <b>VISA</b>. Can you predict the stock price for
-        <b>August 2023</b> by dragging that point <b>X</b> on the graph along
-        the Y-axis?
+        <b>VISA</b>. Can you predict the stock price for <b>August 2023</b> by
+        dragging that point <b>X</b> on the graph along the Y-axis?
       </p>
       <p>
         <b>NOTE:</b> The value for point <b>X</b> is by default set to same
@@ -115,7 +114,11 @@
       line = new RGraph.Line({
         id: "cvs",
         data: [
-        [229.100006 ,222.75 ,211.770004 ,193.770004 ,216.710007 ,226.169998 ,216.119995 ,221.770004 ,213.130005 ,212.169998 ,196.889999 ,213.369995,213.369995],
+          [
+            229.100006, 222.75, 211.770004, 193.770004, 216.710007, 226.169998,
+            216.119995, 221.770004, 213.130005, 212.169998, 196.889999,
+            213.369995, 213.369995,
+          ],
         ],
         options: {
           textAccessible: false,
@@ -155,7 +158,6 @@
       });
 
       line.on("adjust", function (e) {
-        // console.log(e)
         let index = e.__mouseover_shape__.index;
         let dataset = e.__mouseover_shape__.dataset;
         let newValue = e.data[dataset][index];
