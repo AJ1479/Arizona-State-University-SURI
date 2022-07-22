@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const path = require("path");
 const express = require("express");
 const bodyParser = require("body-parser");
+const { spawn } = require("child_process");
 
 require("./models/db");
 
@@ -95,4 +96,22 @@ app.post("/:questionNumber", async (req, res) => {
   }
 });
 
-app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));
+async function buildNodeApp() {
+  const child = spawn(
+    "cd react_app && npm i && npm run build && cd .. && node extras.js",
+    { shell: true }
+  );
+
+  child.stdout.on("data", function (data) {
+    console.log(data.toString());
+  });
+
+  child.on("exit", function (code, signam) {
+    console.log("react app build complete");
+  });
+}
+
+app.listen(PORT, () => {
+  console.log(`Server listening on port ${PORT}`);
+  buildNodeApp();
+});

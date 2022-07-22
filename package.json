@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node extras.js && node server.js",
-    "dev": "node extras.js && nodemon server.js",
+    "start": "node server.js",
+    "dev": "nodemon server.js",
     "start-ui": "cd react_app && npm run start",
     "build-ui": "cd react_app && npm run build"
   },
