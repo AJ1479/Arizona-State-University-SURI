@@ -65,7 +65,7 @@
     <p>Please read the  <a href="/images/consent.pdf" target="_blank">Consent Form </a> before you start this user study. If you agree to participate in this user study, 
         please input your Amazon Turk Worker ID and click “Start”.<p>
     <div class="footer4introduce">
-        <form autocomplete="off" method="POST" id="form" action="/login">
+        <form autocomplete="off" name="form" method="POST" id="form" action="/login">
             <input autocomplete="off" type="text" class="form-control" placeholder="Amazon Turk Worker ID" 
                 aria-label="Amazon Turk Worker ID" aria-describedby="basic-addon2" name="userID" id="id">
                 <button type="button"  class="btn btn-success" id="startStudyBtn">Start</button>
@@ -75,12 +75,24 @@
 </div>
 
 <script>
+   function validateForm() {
+    var a = document.forms["form"]["userID"].value;
+    console.log(a)
+    if (a == '') {
+      alert("Please fill all the required fields.");
+      return false;
+    }
+    return true;
+  }
+  
     document.getElementById("startStudyBtn").addEventListener("click", function(event){
-  event.preventDefault()
-  id = document.getElementById("id").value
+      let formFilled = validateForm()
+      if(formFilled){
+        event.preventDefault()
+        id = document.getElementById("id").value
         localStorage.setItem("UserID",id)
         console.log("hello")
-        document.getElementById("form").submit();
+        document.getElementById("form").submit();}
 });
 
 </script>

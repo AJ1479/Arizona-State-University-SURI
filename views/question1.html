@@ -1,112 +1,262 @@
 <!DOCTYPE html>
-<html>
+<html class="html" style="height: 140%">
 
 <head>
     <meta charset="utf-8">
     <title>Example</title>
 
-    <link rel="canonical" href="https://www.rgraph.net/canvas/adjusting-line.html">
-    <!-- <base href="https://www.rgraph.net/canvas" target="_blank"> -->
-    <meta name="description"
-        content="Information about adjusting the Line chart interactively. They can be useful if you're doing a presentation and need to illustrate changes.">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="google-site-verification" content="s8bvfR_0aMUePehdfWjaLDopT4oyoRO-XaOTfcjJhgY">
-    <link rel="stylesheet" href="/css/styles.css" type="text/css">
-    <link rel="icon" type="image/png" href="https://www.rgraph.net/images/favicon.png">
-
-    <meta property="og:image" content="https://www.rgraph.net/images/logo-250x250.png">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.rgraph.net/canvas/adjusting-line.html">
-
-    <script src="https://www.rgraph.net/libraries/RGraph.common.core.js"></script><!-- DO NOT DEFER -->
-    <script src="https://www.rgraph.net/js/jquery.min.351.js"></script>
-    <script src="https://www.rgraph.net/js/combined.html/menuhints.js"></script>
-
-
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+            integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css?family=Lora:400,400italic" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="./public/css/index1.css">
+    <link rel="stylesheet" href="../public/css/index.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     
 </head>
-<style>
-    .overlay {
-        z-index: 99999999999999999;
-        position: absolute;
-        width: 530px;
-        height: 250px;
-        /* background-color: red; */
+
+<body style="height: 140%" class="html">
+    <h1 class="heading"> Exercise 2</h1>
+    <div class="main-body" style="height: 82%">
+        <p>You have been given 4 boxes, each denoting a company. Each box will contain some information about the company. Can you predict by how much the stock price of the company will grow or fall in the  <b>next 1 year</b>? 
+   Choose the appropriate color from the chart.</p>
+   <p><b>NOTE:</b> <span style="color: #ff0000">Red</span> indicates a fall<span style="color: #ff0000">↓</span> and <span style="color: #008000">Green</span> indicates a rise<span style="color: #008000">↑</span>. The darker the color, the higher the jump/drop.</p>
+   <br>
+   <div class="flex1" style="height: 432px">
+    <div class="card">
+        <div class="text">Apple Inc.</div>
+        <img class="graph" src="../public/img/APPLE.png" alt="alternatetext">
+        <div class="flex2">
+            <div class="color percentage card-start">
+                &lt;25%&nbsp;&nbsp; </div>
+            <div class="color card1">
+            </div>
+            <div class="color card2">
+            </div>
+            <div class="color card3">
+            </div>
+            <div class="color card4">
+            </div>
+            <div class="color card5">
+            </div>
+            <div class="color card6">
+            </div>
+            <div class="color card7">
+            </div>
+            <div class="color card8">
+            </div>
+            <div class="color card9">
+            </div>
+            <div class="color card10">
+            </div>
+            <div class="color card11">
+            </div>
+            <div class="color percentage card-end">
+                &nbsp;&nbsp;>25%</div>
+        </div>
+        <div  style="margin-left: 13%;margin-top: 1%; font-size: smaller;">The ML model predicts a growth percentage of <b>x%</b> with some accuracy.</div>
+    </div>
+    <div class="card">
+        <div class="text">Company X</div>
+        <div class="info">
+            This company was founded in <b>1993</b>.<br>
+            52 week High / Low prices: <b>$346.47 / $140.55</b>
+            <br>
+            Sector(s): <b>Technology</b><br>
+            Industry: <b>Semiconductors</b><br>
+            Stock Price: <b>$180.50</b><br>
+        </div>
+        <div class="flex2">
+            <div class="color percentage card-start">
+                &lt;25%&nbsp;&nbsp; </div>
+            <div class="color card1">
+            </div>
+            <div class="color card2">
+            </div>
+            <div class="color card3">
+            </div>
+            <div class="color card4">
+            </div>
+            <div class="color card5">
+            </div>
+            <div class="color card6">
+            </div>
+            <div class="color card7">
+            </div>
+            <div class="color card8">
+            </div>
+            <div class="color card9">
+            </div>
+            <div class="color card10">
+            </div>
+            <div class="color card11">
+            </div>
+            <div class="color percentage card-end">
+                &nbsp;&nbsp;>25%</div>
+        </div>
+        <div  style="margin-left: 13%;margin-top: 1%; font-size: smaller;">The ML model predicts a growth percentage of <b>x%</b> with some accuracy.</div>
+    </div>
+   </div>
+   <br>
+   <br>
+   <div class="flex1" style="height: 432px">
+    <div class="card">
+        <div class="text">Company Y</div>
+        <div class="info">
+            This company was founded in <b>1901</b>.<br>
+            52 week High / Low prices: <b>$39.25 / $16.41</b>
+            <br>
+            Sector(s): <b>Basic Materials</b><br>
+            Industry: <b>Steel</b><br>
+            Stock Price: <b>$20.36</b><br>
+        </div>
+        <div class="flex2">
+            <div class="color percentage card-start">
+                &lt;25%&nbsp;&nbsp; </div>
+            <div class="color card1">
+            </div>
+            <div class="color card2">
+            </div>
+            <div class="color card3">
+            </div>
+            <div class="color card4">
+            </div>
+            <div class="color card5">
+            </div>
+            <div class="color card6">
+            </div>
+            <div class="color card7">
+            </div>
+            <div class="color card8">
+            </div>
+            <div class="color card9">
+            </div>
+            <div class="color card10">
+            </div>
+            <div class="color card11">
+            </div>
+            <div class="color percentage card-end">
+                &nbsp;&nbsp;>25%</div>
+        </div>
+        <div  style="margin-left: 13%;margin-top: 1%; font-size: smaller;">The ML model predicts a growth percentage of <b>x%</b> with some accuracy.</div>
+    </div>
+    <div class="card">
+        <div class="text">VISA</div>
+        <img class="graph" src="../public/img/VISA.png" alt="alternatetext">
+        <div class="flex2">
+            <div class="color percentage card-start">
+                &lt;25%&nbsp;&nbsp; </div>
+            <div class="color card1">
+            </div>
+            <div class="color card2">
+            </div>
+            <div class="color card3">
+            </div>
+            <div class="color card4">
+            </div>
+            <div class="color card5">
+            </div>
+            <div class="color card6">
+            </div>
+            <div class="color card7">
+            </div>
+            <div class="color card8">
+            </div>
+            <div class="color card9">
+            </div>
+            <div class="color card10">
+            </div>
+            <div class="color card11">
+            </div>
+            <div class="color percentage card-end">
+                &nbsp;&nbsp;>25%</div>
+        </div>
+        <div  style="margin-left: 13%;margin-top: 1%; font-size: smaller;">The ML model predicts a growth percentage of <b>x%</b> with some accuracy.</div>
+    </div>
+   </div>
+   <form method="POST" id="form" action="/2">
+    <input type="text" class="hidden" name="UserID" id="UserID">
+    <input type="text" class="hidden" name="input1" id="input1">
+    <input type="text" class="hidden" name="input2" id="input2">
+    <input type="text" class="hidden" name="input3" id="input3">
+    <input type="text" class="hidden" name="input4" id="input4">
+    <input type="text" class="hidden" name="input5" id="input5">
+    <input type="text" class="hidden" name="input6" id="input6">
+    <input type="text" class="hidden" name="input7" id="input7">
+    <input type="text" class="hidden" name="input8" id="input8">
+    <button type="submit" class="hidden" id="submit1"></button>
+</form>
+<input
+          type="submit"
+          class="btn btn-outline-success"
+          id="submitButton"
+          value="Submit"
+          onclick="submit()"
+        />
+</div>
+
+<script>
+
+    stage1 = false;
+
+
+    function submit(){
+        if(stage1 == false){
+            for(let i=0; i<4; i++){
+                if(document.getElementById(`input${i+1}`).value == ''){
+                    alert("Please select all the required options.")
+                    return
+                }
+            }
+
+            alert("You can have a look at the company names before pressing continue.")
+            let companies = document.getElementsByClassName("text");
+                companies[1].innerHTML = "NVIDIA"
+                companies[2].innerHTML = "United States Steel Corp."
+            
+            document.getElementById("submitButton").innerHTML = "Continue"
+
+            stage1 = true;}else{
+        
+            document.getElementById('form').submit();}
+        
     }
 
-</style>
-<body>
-    <h1 class="heading"> Exercise 2</h1>
-    <div class="main-body">
-        <p>You have been given historical data from the past 1 year from <b>August 2022</b> to <b>July 2023</b> of the stock prices of <b>Netflix</b>. Can you predict the stock price for <b>August 2023</b> by dragging that particular point on the graph along the Y-axis? </p>
-       
-        <div id="main-body-container">
-            <div class="graph" style="width: 753px; padding: 3%">
-                <div class="overlay"></div>
-                <canvas id="cvs" width="700" height="300">[No canvas support]</canvas>
-            </div>
     
-    
-            
-            <br><br>
-            <input type="submit" class="btn btn-outline-success" id="submitButton" value="Submit" onclick="submit()">
+    document.getElementById(`UserID`).value = localStorage.getItem("UserID");
 
-            <form method="POST" action="/2">
-                <input type="text" class="hidden" name="UserID" id="UserID">
-                <input type="text" class="hidden" name="input1" id="input1">
-                <button type="submit" class="hidden" id="submit"></button>
-            </form>
-    
-        </div> <!-- End #main-body-container that was started in the header -->
-    </div>
-
-    <script src="https://www.rgraph.net/libraries/RGraph.line.js"></script>
-    <script src="https://www.rgraph.net/libraries/RGraph.common.dynamic.js"></script>
-
-    <script>
-        document.getElementById(`UserID`).value = localStorage.getItem("UserID");
-        
-        let value;
-        line = new RGraph.Line({
-            id: 'cvs',
-            data: [
-                [569.190002, 610.340027, 690.309998, 641.900024, 602.440002, 427.140015, 394.519989, 374.589996, 190.360001, 197.440002, 174.869995, 176.559998, 176.559998]
-            ],
-            options: {
-                textAccessible: false,
-                xaxisLabels: ['Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', "x"],
-                marginBottom: 35,
-                linewidth: 2,
-                shadow: true,
-                adjustable: true,
-                title: 'Netflix',
-                titleVpos: 0.4,
-                tickmarksStyle: 'circle',
-                tickmarksSize: 5,
-                yaxisScaleMax: 860,
-                yaxisScaleRound	: false
+    let colorArr = ["#970023", "#ce2827", "#ee5f3f", "#fba25c", "#fed785", "#fefdb9", "#d9e986", "#a2cf67", "#64b15c", "#2d8b4b", "#185d33"]
+    let cards = document.getElementsByClassName("card");
+    for(let i=0; i<4; i++){
+        let companyName = cards[i].querySelector(".text").innerHTML
+        let colorButtons = cards[i].querySelector(".flex2")
+        for(let j = 1; j<12; j++){
+            let colors = colorButtons.querySelector(`.card${j}`)
+           colors.onclick = function color(){
+            cards[i].style.borderColor = colorArr[j-1]
+            cards[i].style.borderWidth = 'medium';
+            for(let k = 1; k<12 ; k++){
+                let colorButtons2 = cards[i].querySelector(".flex2")
+                colorButtons2.querySelector(`.card${k}`).classList.remove("focus")
             }
-        }).draw();
-
-        line.on('adjust', function (e) {
-                // console.log(e)
-                let index = e.__mouseover_shape__.index
-            let dataset = e.__mouseover_shape__.dataset;
-            let newValue = e.data[dataset][index];
-            value = newValue
-
-            })
-
-            function submit(){
-                document.getElementById("input1").value = value;
-                document.getElementById("submit").click();
+            colors.classList.add("focus");
+            document.getElementById(`input${i+1}`).value = j;
+           }; 
+        }
             }
-    </script>
+
+           
+
+</script>
+
+
 </body>
 
 </html>
