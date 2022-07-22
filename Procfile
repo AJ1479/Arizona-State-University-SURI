@@ -1,1 +1,2 @@
-worker: cd react_app && npm i && npm run build && cd .. && npm start
+worker: cd react_app && npm i && npm run build && cd ..
+web: npm start
