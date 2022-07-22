@@ -38,10 +38,10 @@ app.post("/login", async (req, res) => {
       let responses = userResponses.Response;
       let currentQuestion = responses[responses.length - 1].questionNumber;
       if (currentQuestion == 8) {
-        res.sendFile(__dirname + "\\views\\thank_you.html");
+        res.sendFile(__dirname + "/views/thank_you.html");
       } else {
         res.sendFile(
-          __dirname + `\\views\\question${currentQuestion + 1}.html`
+          __dirname + `/views/question${currentQuestion + 1}.html`
         );
       }
     } else {
@@ -57,7 +57,7 @@ app.post("/login", async (req, res) => {
       });
       await Input.create(response);
 
-      res.sendFile(__dirname + "\\views\\question0.html");
+      res.sendFile(__dirname + "/views/question0.html");
     }
   } catch (e) {
     return res.status(422).send("A error occurred");
@@ -87,9 +87,9 @@ app.post("/:questionNumber", async (req, res) => {
     await userResponses.update({ Response: a });
 
     if (nextQuestionNumber === 9) {
-      res.sendFile(__dirname + `\\views\\thank_you.html`);
+      res.sendFile(__dirname + `/views/thank_you.html`);
     } else {
-      res.sendFile(__dirname + `\\views\\question${nextQuestionNumber}.html`);
+      res.sendFile(__dirname + `/views/question${nextQuestionNumber}.html`);
     }
   } catch (e) {
     return res.status(422).send("Error in request");
