@@ -1,0 +1,1 @@
+web: cd react_app && npm i && npm run build && cd .. && npm start
