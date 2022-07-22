@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>ASU SURI</title>
+    <script src="https://www.rgraph.net/libraries/RGraph.common.key.js"></script>
+    <link
+      rel="canonical"
+      href="https://www.rgraph.net/canvas/adjusting-line.html"
+    />
+    <!-- <base href="https://www.rgraph.net/canvas" target="_blank"> -->
+    <meta
+      name="description"
+      content="Information about adjusting the Line chart interactively. They can be useful if you're doing a presentation and need to illustrate changes."
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="google-site-verification"
+      content="s8bvfR_0aMUePehdfWjaLDopT4oyoRO-XaOTfcjJhgY"
+    />
+    <link rel="stylesheet" href="/css/styles.css" type="text/css" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="https://www.rgraph.net/images/favicon.png"
+    />
+
+    <meta
+      property="og:image"
+      content="https://www.rgraph.net/images/logo-250x250.png"
+    />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content="https://www.rgraph.net/canvas/adjusting-line.html"
+    />
+
+    <script src="https://www.rgraph.net/libraries/RGraph.common.core.js"></script>
+    <!-- DO NOT DEFER -->
+    <script src="https://www.rgraph.net/js/jquery.min.351.js"></script>
+    <script src="https://www.rgraph.net/js/combined.html/menuhints.js"></script>
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Lora:400,400italic"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="./public/css/index1.css" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+  </head>
+  <style>
+    .overlay {
+      z-index: 99999999999999999;
+      position: absolute;
+      width: 625px;
+      height: 300px;
+      /* background-color: red; */
+    }
+  </style>
+  <body>
+    <h1 class="heading">Exercise 7</h1>
+    <div class="main-body">
+      <p>
+        You have been given historical data from the past 1 year from
+        <b>August 2022</b> to <b>July 2023</b> of the stock prices of
+        <b>Netflix</b> and <b>Disney</b>. Can you predict the stock price for
+        <b>August 2023</b> for <b>both the companies</b> by dragging the points
+        on the graph along the Y-axis?
+      </p>
+      <p>
+        <b>NOTE:</b> The values for <b>X</b> are by default set to those
+        predicted by the ML model. Please move them above or below as per your
+        future estimate.
+      </p>
+      <div id="main-body-container">
+        <div class="graph" style="width: 753px; padding: 3%">
+          <div class="overlay"></div>
+          <canvas id="cvs" width="700" height="350">[No canvas support]</canvas>
+        </div>
+
+        <br />
+        <input
+          type="submit"
+          class="btn btn-outline-success"
+          id="submitButton"
+          value="Submit"
+          onclick="submit()"
+        />
+
+        <form method="POST" action="/7">
+          <input type="text" class="hidden" name="UserID" id="UserID" />
+          <input
+            type="text"
+            class="hidden"
+            name="input1"
+            value="176.559998"
+            id="input1"
+          />
+          <input
+            type="text"
+            class="hidden"
+            name="input2"
+            value="103.349998"
+            id="input2"
+          />
+          <button type="submit" class="hidden" id="submit"></button>
+        </form>
+      </div>
+      <!-- End #main-body-container that was started in the header -->
+    </div>
+
+    <script src="https://www.rgraph.net/libraries/RGraph.line.js"></script>
+    <script src="https://www.rgraph.net/libraries/RGraph.common.dynamic.js"></script>
+
+    <script>
+      let myCanvas = document.getElementById("cvs");
+      let ctx = myCanvas.getContext("2d");
+      ctx.font = "bold 15px Arial";
+      ctx.fillText("X", 660, 332);
+      document.getElementById(`UserID`).value = localStorage.getItem("UserID");
+
+      let value = 176.559998;
+      let value1 = 103.349998;
+      line = new RGraph.Line({
+        id: "cvs",
+        data: [
+          [
+            569.190002, 610.340027, 690.309998, 641.900024, 602.440002,
+            427.140015, 394.519989, 374.589996, 190.360001, 197.440002,
+            174.869995, 176.559998, 176.559998,
+          ],
+          [
+            181.300003, 169.169998, 169.070007, 144.899994, 154.889999,
+            142.970001, 148.460007, 137.160004, 111.629997, 110.44, 94.400002,
+            103.349998, 103.349998,
+          ],
+        ],
+        options: {
+          textAccessible: false,
+          xaxisLabels: [
+            "Aug",
+            "Sep",
+            "Oct",
+            "Nov",
+            "Dec",
+            "Jan",
+            "Feb",
+            "Mar",
+            "Apr",
+            "May",
+            "Jun",
+            "Jul",
+            " ",
+          ],
+          marginBottom: 35,
+          linewidth: 2,
+          shadow: true,
+          adjustable: true,
+          title: "Netflix vs Disney",
+          titleVpos: 0.4,
+          tickmarksStyle: "circle",
+          tickmarksSize: 5,
+          yaxisScaleMax: 860,
+          yaxisScaleRound: false,
+          titleBold: true,
+          titleSize: 14,
+          key: ["Netflix", "Disney"],
+          colors: ["red", "blue"],
+        },
+      }).draw();
+
+      line.on("draw", function (e) {
+        ctx.font = "bold 15px Arial";
+        ctx.fillText("X", 660, 332);
+      });
+
+      line.on("adjust", function (e) {
+        let index = e.__mouseover_shape__.index;
+        let dataset = e.__mouseover_shape__.dataset;
+        let newValue = e.data[dataset][0];
+        let newValue1 = e.data[dataset][1];
+        value = newValue;
+        value1 = newValue1;
+      });
+
+      function submit() {
+        document.getElementById("input1").value = value;
+        document.getElementById("input2").value = value1;
+        document.getElementById("submit").click();
+      }
+    </script>
+  </body>
+</html>

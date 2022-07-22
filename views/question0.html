@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html class="html">
+  <head>
+    <meta charset="utf-8" />
+    <title>ASU SURI</title>
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.js"
+      integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      href="https://fonts.googleapis.com/css?family=Lora:400,400italic"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="../public/css/index.css" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <body class="html">
+    <h1 class="heading">Exercise 1</h1>
+    <div class="main-body">
+      <p>
+        You have been given 4 boxes, each denoting a company. Each box will
+        contain some information about the company. Can you predict by how much
+        the stock price of the company will grow or fall in the
+        <b>next 1 year</b>? Choose the appropriate color from the chart.
+      </p>
+      <p>
+        <b>NOTE:</b> <span style="color: #ff0000">Red</span> indicates a
+        fall<span style="color: #ff0000">↓</span> and
+        <span style="color: #008000">Green</span> indicates a rise<span
+          style="color: #008000"
+          >↑</span
+        >. The darker the color, the higher the jump/drop.
+      </p>
+      <br />
+      <div class="flex1">
+        <div class="card">
+          <div class="text">Meta</div>
+          <img
+            class="graph"
+            src="../public/img/META1.png"
+            alt="alternatetext"
+          />
+          <div class="flex2">
+            <div class="color percentage card-start">&lt;25%&nbsp;&nbsp;</div>
+            <div class="color card1"></div>
+            <div class="color card2"></div>
+            <div class="color card3"></div>
+            <div class="color card4"></div>
+            <div class="color card5"></div>
+            <div class="color card6"></div>
+            <div class="color card7"></div>
+            <div class="color card8"></div>
+            <div class="color card9"></div>
+            <div class="color card10"></div>
+            <div class="color card11"></div>
+            <div class="color percentage card-end">&nbsp;&nbsp;>25%</div>
+          </div>
+          <div style="margin-left: 5%; margin-top: 3%" class="manage hidden">
+            <div>
+              Would your answer change significantly considering there was a
+              different management?
+            </div>
+            <div
+              style="margin-left: 32%"
+              class="btn-group btn-group-toggle"
+              data-toggle="buttons"
+            >
+              <label class="btn btn-secondary" id="option1">
+                <input
+                  type="radio"
+                  name="option5"
+                  value="1"
+                  autocomplete="off"
+                />
+                Yes
+              </label>
+              <label class="btn btn-secondary" id="option2">
+                <input
+                  type="radio"
+                  name="option5"
+                  value="0"
+                  autocomplete="off"
+                />
+                No
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="text">Tesla</div>
+          <img
+            class="graph"
+            src="../public/img/TESLA1.png"
+            alt="alternatetext"
+          />
+          <div class="flex2">
+            <div class="color percentage card-start">&lt;25%&nbsp;&nbsp;</div>
+            <div class="color card1"></div>
+            <div class="color card2"></div>
+            <div class="color card3"></div>
+            <div class="color card4"></div>
+            <div class="color card5"></div>
+            <div class="color card6"></div>
+            <div class="color card7"></div>
+            <div class="color card8"></div>
+            <div class="color card9"></div>
+            <div class="color card10"></div>
+            <div class="color card11"></div>
+            <div class="color percentage card-end">&nbsp;&nbsp;>25%</div>
+          </div>
+          <div style="margin-left: 5%; margin-top: 3%" class="manage hidden">
+            <div>
+              Would your answer change significantly considering there was a
+              different management?
+            </div>
+            <div
+              style="margin-left: 32%"
+              class="btn-group btn-group-toggle"
+              data-toggle="buttons"
+            >
+              <label class="btn btn-secondary" id="option3">
+                <input
+                  type="radio"
+                  name="option"
+                  value="1"
+                  autocomplete="off"
+                />
+                Yes
+              </label>
+              <label class="btn btn-secondary" id="option4">
+                <input
+                  type="radio"
+                  name="option6"
+                  value="0"
+                  autocomplete="off"
+                />
+                No
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br />
+      <br />
+      <div class="flex1">
+        <div class="card">
+          <div class="text">United States Steel Corp.</div>
+          <img class="graph" src="../public/img/US.png" alt="alternatetext" />
+          <div class="flex2">
+            <div class="color percentage card-start">&lt;25%&nbsp;&nbsp;</div>
+            <div class="color card1"></div>
+            <div class="color card2"></div>
+            <div class="color card3"></div>
+            <div class="color card4"></div>
+            <div class="color card5"></div>
+            <div class="color card6"></div>
+            <div class="color card7"></div>
+            <div class="color card8"></div>
+            <div class="color card9"></div>
+            <div class="color card10"></div>
+            <div class="color card11"></div>
+            <div class="color percentage card-end">&nbsp;&nbsp;>25%</div>
+          </div>
+          <div style="margin-left: 5%; margin-top: 3%" class="manage hidden">
+            <div>
+              Would your answer change significantly considering there was a
+              different management?
+            </div>
+            <div
+              style="margin-left: 32%"
+              class="btn-group btn-group-toggle"
+              data-toggle="buttons"
+            >
+              <label class="btn btn-secondary" id="option5">
+                <input
+                  type="radio"
+                  name="option7"
+                  value="1"
+                  autocomplete="off"
+                />
+                Yes
+              </label>
+              <label class="btn btn-secondary" id="option6">
+                <input
+                  type="radio"
+                  name="option7"
+                  value="0"
+                  autocomplete="off"
+                />
+                No
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="text">Sarepta Therapeutics Inc.</div>
+          <img class="graph" src="../public/img/SRTP.png" alt="alternatetext" />
+          <div class="flex2">
+            <div class="color percentage card-start">&lt;25%&nbsp;&nbsp;</div>
+            <div class="color card1"></div>
+            <div class="color card2"></div>
+            <div class="color card3"></div>
+            <div class="color card4"></div>
+            <div class="color card5"></div>
+            <div class="color card6"></div>
+            <div class="color card7"></div>
+            <div class="color card8"></div>
+            <div class="color card9"></div>
+            <div class="color card10"></div>
+            <div class="color card11"></div>
+            <div class="color percentage card-end">&nbsp;&nbsp;>25%</div>
+          </div>
+          <div style="margin-left: 5%; margin-top: 3%" class="manage hidden">
+            <div>
+              Would your answer change significantly considering there was a
+              different management?
+            </div>
+            <div
+              style="margin-left: 32%"
+              class="btn-group btn-group-toggle"
+              data-toggle="buttons"
+            >
+              <label class="btn btn-secondary" id="option7">
+                <input
+                  type="radio"
+                  name="option8"
+                  value="1"
+                  autocomplete="off"
+                />
+                Yes
+              </label>
+              <label class="btn btn-secondary" id="option8">
+                <input
+                  type="radio"
+                  name="option8"
+                  value="0"
+                  autocomplete="off"
+                />
+                No
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <form method="POST" id="form" action="/1">
+        <input type="text" class="hidden" name="UserID" id="UserID" />
+        <input type="text" class="hidden" name="input1" id="input1" />
+        <input type="text" class="hidden" name="input2" id="input2" />
+        <input type="text" class="hidden" name="input3" id="input3" />
+        <input type="text" class="hidden" name="input4" id="input4" />
+        <input type="text" class="hidden" name="input5" id="input5" />
+        <input type="text" class="hidden" name="input6" id="input6" />
+        <input type="text" class="hidden" name="input7" id="input7" />
+        <input type="text" class="hidden" name="input8" id="input8" />
+        <button type="submit" class="hidden" id="submit1"></button>
+      </form>
+      <input
+        type="submit"
+        class="btn btn-outline-success"
+        id="submitButton"
+        value="Submit"
+        onclick="submit()"
+      />
+    </div>
+
+    <script>
+      var stage1 = true;
+
+      function submit() {
+        if (stage1 == true) {
+          for (let i = 0; i < 4; i++) {
+            if (document.getElementById(`input${i + 1}`).value == "") {
+              alert("Please select all the required options.");
+              return;
+            }
+          }
+          stage1 = false;
+          let manage = document.getElementsByClassName("manage");
+          for (let i = 0; i < manage.length; i++) {
+            manage[i].classList.remove("hidden");
+          }
+          document.getElementsByClassName("main-body")[0].style.height = "91%";
+          document.getElementsByClassName("html")[0].style.height = "143%";
+          document.getElementsByClassName("html")[1].style.height = "140%";
+          let flexContainer = document.getElementsByClassName("flex1");
+          for (let i = 0; i < flexContainer.length; i++) {
+            flexContainer[i].style.height = "515px";
+          }
+        } else {
+          let offset = 5;
+          for (let i = 1; i < 9; i++) {
+            if ($(`#option${i}`).hasClass("active")) {
+              if (i % 2 == 0) {
+                document.getElementById(`input${offset}`).value = 0;
+                offset++;
+              } else {
+                document.getElementById(`input${offset}`).value = 1;
+                offset++;
+              }
+            }
+          }
+          for (let i = 5; i < 9; i++) {
+            if (document.getElementById(`input${i}`).value == "") {
+              alert("Please select all the required options.");
+              return;
+            }
+          }
+
+          document.getElementById("form").submit();
+        }
+      }
+
+      document.getElementById(`UserID`).value = localStorage.getItem("UserID");
+
+      let colorArr = [
+        "#970023",
+        "#ce2827",
+        "#ee5f3f",
+        "#fba25c",
+        "#fed785",
+        "#fefdb9",
+        "#d9e986",
+        "#a2cf67",
+        "#64b15c",
+        "#2d8b4b",
+        "#185d33",
+      ];
+      let cards = document.getElementsByClassName("card");
+      for (let i = 0; i < 4; i++) {
+        let companyName = cards[i].querySelector(".text").innerHTML;
+        let colorButtons = cards[i].querySelector(".flex2");
+        for (let j = 1; j < 12; j++) {
+          let colors = colorButtons.querySelector(`.card${j}`);
+          colors.onclick = function color() {
+            if (stage1 == false) {
+              return;
+            }
+            cards[i].style.borderColor = colorArr[j - 1];
+            cards[i].style.borderWidth = "medium";
+            for (let k = 1; k < 12; k++) {
+              let colorButtons2 = cards[i].querySelector(".flex2");
+              colorButtons2
+                .querySelector(`.card${k}`)
+                .classList.remove("focus");
+            }
+            colors.classList.add("focus");
+            document.getElementById(`input${i + 1}`).value = j;
+          };
+        }
+      }
+    </script>
+  </body>
+</html>
