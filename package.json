@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node extras.js && node server.js",
+    "start": "cd react_app && npm i && npm run build && cd .. && node extras.js && node server.js",
     "dev": "node extras.js && nodemon server.js",
     "start-ui": "cd react_app && npm run start",
     "build-ui": "cd react_app && npm run build"
