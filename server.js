@@ -86,7 +86,7 @@ app.post("/:questionNumber", async (req, res) => {
 
     await userResponses.update({ Response: a });
 
-    if (nextQuestionNumber === 9) {
+    if (nextQuestionNumber == 9) {
       res.sendFile(__dirname + `/views/thank_you.html`);
     } else {
       res.sendFile(__dirname + `/views/question${nextQuestionNumber}.html`);
