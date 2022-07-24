@@ -61,7 +61,7 @@
         <div class="card">
           <div class="text">Apple Inc.</div>
           <img
-            class="graph"
+            class="graph" id="apple"
             src="../public/img/APPLE.png"
             alt="alternatetext"
           />
@@ -87,7 +87,7 @@
         </div>
         <div class="card">
           <div class="text">Company X</div>
-          <div class="info">
+          <div class="info"  id="companyx">
             This company was founded in <b>1993</b>.<br />
             52 week High / Low prices: <b>$346.47 / $140.55</b>
             <br />
@@ -121,7 +121,7 @@
       <div class="flex1" style="height: 432px">
         <div class="card">
           <div class="text">Company Y</div>
-          <div class="info">
+          <div class="info"  id="companyy">
             This company was founded in <b>1901</b>.<br />
             52 week High / Low prices: <b>$39.25 / $16.41</b>
             <br />
@@ -151,7 +151,7 @@
         </div>
         <div class="card">
           <div class="text">VISA</div>
-          <img class="graph" src="../public/img/VISA.png" alt="alternatetext" />
+          <img class="graph" id="VISA" src="../public/img/VISA.png" alt="alternatetext" />
           <div class="flex2">
             <div class="color percentage card-start">&lt;25%&nbsp;&nbsp;</div>
             <div class="color card1"></div>
@@ -195,6 +195,9 @@
     </div>
 
     <script>
+      document.getElementById("companyx").style.height = document.getElementById("apple").style.height
+      document.getElementById("companyy").style.height = document.getElementById("VISA").style.height
+
       stage1 = false;
 
       function submit() {
