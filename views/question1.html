@@ -57,11 +57,12 @@
         >. The darker the color, the higher the jump/drop.
       </p>
       <br />
-      <div class="flex1" style="height: 432px">
+      <div class="flex1">
         <div class="card">
           <div class="text">Apple Inc.</div>
           <img
-            class="graph" id="apple"
+            class="graph"
+            id="apple"
             src="../public/img/APPLE.png"
             alt="alternatetext"
           />
@@ -87,7 +88,7 @@
         </div>
         <div class="card">
           <div class="text">Company X</div>
-          <div class="info"  id="companyx">
+          <div class="info" id="companyx">
             This company was founded in <b>1993</b>.<br />
             52 week High / Low prices: <b>$346.47 / $140.55</b>
             <br />
@@ -118,10 +119,10 @@
       </div>
       <br />
       <br />
-      <div class="flex1" style="height: 432px">
+      <div class="flex1">
         <div class="card">
           <div class="text">Company Y</div>
-          <div class="info"  id="companyy">
+          <div class="info" id="companyy">
             This company was founded in <b>1901</b>.<br />
             52 week High / Low prices: <b>$39.25 / $16.41</b>
             <br />
@@ -151,7 +152,12 @@
         </div>
         <div class="card">
           <div class="text">VISA</div>
-          <img class="graph" id="VISA" src="../public/img/VISA.png" alt="alternatetext" />
+          <img
+            class="graph"
+            id="VISA"
+            src="../public/img/VISA.png"
+            alt="alternatetext"
+          />
           <div class="flex2">
             <div class="color percentage card-start">&lt;25%&nbsp;&nbsp;</div>
             <div class="color card1"></div>
@@ -191,11 +197,12 @@
         id="submitButton"
         value="Submit"
         onclick="submit()"
-      >Submit</button>
+      >
+        Submit
+      </button>
     </div>
 
     <script>
-   
       stage1 = false;
 
       function submit() {
@@ -257,11 +264,35 @@
           };
         }
       }
+
+      window.onload = function () {
+        document.getElementById("companyx").style.height = `${
+          document.getElementById("apple").offsetHeight
+        }px`;
+        document.getElementById("companyy").style.height = `${
+          document.getElementById("VISA").offsetHeight
+        }px`;
+      };
+
+      var $element = $("#apple");
+      var lastHeight = $("#apple").css("height");
+      function checkForChanges() {
+        if ($element.css("height") != lastHeight) {
+          console.log("hi")
+          lastHeight = $element.css("height");
+          document.getElementById("companyx").style.height = `${
+          document.getElementById("apple").offsetHeight
+        }px`;
+        document.getElementById("companyy").style.height = `${
+          document.getElementById("VISA").offsetHeight
+        }px`;
+        }
+        
+        setTimeout(checkForChanges, 100);
+      }
+
       
-      document.getElementById("companyx").style.minHeight = document.getElementById("apple").style.height
-      document.getElementById("companyy").style.minHeight = document.getElementById("VISA").style.height
-
-
+      setTimeout(checkForChanges, 100);
     </script>
   </body>
 </html>

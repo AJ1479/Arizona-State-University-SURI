@@ -140,3 +140,10 @@ body {
   padding-bottom: 1%;
   padding-top: 3%;
 }
+
+#apple {
+  min-height: 260px;
+}
+#VISA {
+  min-height: 260px;
+}
