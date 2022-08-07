@@ -93,9 +93,14 @@
       given below based on how much of this money you would invest in
       each company.
     </p>
+    <p>
+      <b>NOTE:</b> You can enable the textboxes for each company by clicking once on the corresponding amount.
+    </p>
+    <br>
     <div id="chartContainer" class="chartContainer"></div>
     <div class="blank"></div>
     <br />
+    <br>
     <div class="c1">
       <div class="r1" style="display: flex">
         <div id="col1" class="col-sm"></div>
@@ -270,7 +275,9 @@
         percentageInput.style.maxWidth = '60px';
         percentageInput.style.display = 'none'
         percentageInput.style.marginLeft = '20px'
-        percentageInput.style.maxWidth = '50px'
+        percentageInput.style.maxWidth = '75px'
+        percentageInput.type = "number"
+        percentageInput.min = "0"
 
         percentage.addEventListener('click', function (e) {
           percentage.style.display = 'none';
@@ -317,7 +324,7 @@
         percentage.innerHTML = "$0";
 
 
-        mySpan.style.width = "480px";
+        mySpan.style.width = "500px";
 
         inputBox.oninput = function (event) {
           let sum = getSum();

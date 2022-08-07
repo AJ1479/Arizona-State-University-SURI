@@ -198,10 +198,10 @@ $(function () {
 $('.card1').tooltip({placement: 'bottom', trigger: 'manual'}).tooltip('hide');
 $('.card6').tooltip({placement: 'bottom', trigger: 'manual'}).tooltip('hide');
 $('.card11').tooltip({placement: 'bottom', trigger: 'manual'}).tooltip('hide');
-      stage1 = false;
+      stage1 = true;
 
       function submit() {
-        if (stage1 == false) {
+        if (stage1 == true) {
           for (let i = 0; i < 4; i++) {
             if (document.getElementById(`input${i + 1}`).value == "") {
               alert("Please select all the required options.");
@@ -220,7 +220,7 @@ $('.card11').tooltip({placement: 'bottom', trigger: 'manual'}).tooltip('hide');
 
           document.getElementById("submitButton").innerHTML = "Continue";
 
-          stage1 = true;
+          stage1 = false;
         } else {
           document.getElementById("form").submit();
         }
@@ -257,6 +257,9 @@ $('.card11').tooltip({placement: 'bottom', trigger: 'manual'}).tooltip('hide');
             $(colorButtons).find(".card11").tooltip({placement: 'bottom'}).tooltip('hide');  
     });  
           colors.onclick = function color() {
+            if (stage1 == false) {
+              return;
+            }
             cards[i].style.borderColor = colorArr[j - 1];
             cards[i].style.borderWidth = "medium";
             for (let k = 1; k < 12; k++) {

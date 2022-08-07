@@ -69,7 +69,7 @@ app.post("/login", async (req, res) => {
       let responses = userResponses.Response;
       if(responses.length != 0){
         currentQuestion = responses[responses.length - 1].questionNumber
-      if (currentQuestion == 8) {
+      if (currentQuestion == 9) {
         res.sendFile(__dirname + "/views/thank_you.html");
       } else {
         res.sendFile(
