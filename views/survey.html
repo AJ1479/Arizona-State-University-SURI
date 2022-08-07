@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>ASU SURI</title>
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Lora:400,400italic"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://cdn.rawgit.com/nnattawat/flip/master/dist/jquery.flip.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+    <script>
+        function generateRandom(min = 0, max = 100) {
+            let difference = max - min;
+            let rand = Math.random();
+            rand = Math.floor(rand * difference);
+            rand = rand + min;
+            return rand;
+        }
+    </script>
+
+    <link rel="stylesheet" href="../public/css/survey.css" />
+  </head>
+
+  <body>
+    <h1 class="heading">Post Study Demographic Survery</h1>
+    <p class="para" style="text-align: center; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,'Noto Sans',sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol','Noto Color Emoji'; margin-bottom: 3% ;">
+        Please answer the following to the best of your ability.  
+                    All answers will be kept confidential and will only be reported 
+                    statistically (grouped with others’ responses).  
+    </p>
+    <div class="main-body">
+        <div class="wrapper" id="app">
+            <div class="card-form">
+                <div class="card-list">
+                    <div class="card-item" id="mainCard">
+                        <div class="glow"></div>
+                        <div class="card-item__side -front">
+                            <div class="card-item__focus"></div>
+                            <div class="card-item__cover">
+                                <img class="card-item__bg" id="cardBg">
+                            </div>
+    
+                            <div class="card-item__wrapper whiteText" style="font-size: 20px;">
+                                <div style="text-align: center; margin-top: 10%;">You're one step away!</div>
+                                <br>
+                                <div style="float: bottom; margin: 0 7%;">Please complete the demographic form to get your redeem code. </div> 
+                            </div>
+                        </div>
+                        <div class="card-item__side -back">
+                            <div class="card-item__cover">
+                                <img class="card-item__bg" id="cardBg1">
+                            </div>
+
+                            <div class="card-item__cvv">
+                                <div style="font-size: 18px;margin: 1% 3%;" class="card-item__cvvTitle">Here is your redeem code. You can click anywhere in the box to copy it.</div>
+                                <div class="card-item__cvvBand" onclick="copy()">
+                                    <span id="code" style="margin: 0 auto;
+                                    margin-left: 150px;">
+                                        VXwri
+                                    </span>
+                                    <div style="float: right; font-size: 25px; margin-left: auto; text-shadow: none;"><i class="fa-regular fa-clipboard before-click"></i></div>
+                                    
+    
+                                </div>
+                                <div class="card-item__type">
+                                    <img class="card-item__typeImg">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <form method="POST" id="form" action="/demo">
+                <div class="card-form__inner" id="cardBody">
+                    <!-- <div class="card-input">
+                        <label for="cardNumber" class="card-input__label">Card Number</label>
+                        <input type="text" id="cardNumber" class="card-input__input" data-ref="cardNumber"
+                            autocomplete="off">
+                    </div> -->
+                    <div class="card-form__row">
+                        <div class="card-form__col">
+                            <div class="card-form__group">
+                                <label for="cardMonth" class="card-input__label">Age<span style="color: red">*</span></label>
+                                <select required class="card-input__input -select" id="ageDropDown" data-ref="cardDate">
+                                    <option value="" disabled selected>Year</option>
+                                </select>
+    
+                            </div>
+                        </div>
+                        <div class="card-form__col -cvv">
+                            <div class="card-input">
+                                <label for="cardMonth" class="card-input__label">Gender<span style="color: red">*</span></label>
+                                <select required class="card-input__input -select" id="genderDropDown" data-ref="cardDate">
+                                    <option value="" disabled selected>Gender</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Other">Other</option>
+                                    <option value="Prefer not to say">Prefer not to say</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-input">
+                        <div class="card-form__col">
+                            <div class="card-form__group">
+    
+                                <label for="countryDropDown" class="card-input__label">Residence<span style="color: red">*</span></label>
+                                <select required class="card-input__input -select residence" id="countryDropDown" data-ref="cardDate">
+                                    <option value="" disabled selected>Country</option>
+                                </select>
+                                <select required class="card-input__input -select residence" id="stateDropDown" data-ref="cardDate">
+                                    <option value="" disabled selected>State</option>
+                                </select>
+    
+                                <select required class="card-input__input -select residence-last" id="cityDropDown" data-ref="cardDate">
+                                    <option value="" disabled selected>City</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="card-input">
+                        <label for="educationDropDown" class="card-input__label">Education<span style="color: red">*</span></label>
+                        <select required class="card-input__input -select" id="educationDropDown" data-ref="cardDate">
+                            <option value="" disabled selected>Education</option>
+                            <option value="No formal education">No formal education</option>
+                            <option value="Primary education">Primary education</option>
+                            <option value="Secondary education">Secondary education or high school</option>
+                            <option value="GED">GED</option>
+                            <option value="Vocational qualification">Vocational qualification</option>
+                            <option value="Bachelor's degree">Bachelor's degree</option>
+                            <option value="Master's degree">Master's degree</option>
+                            <option value="Doctorate or higher">Doctorate or higher</option>
+                        </select>
+                    </div>
+    
+                    <div class="card-input">
+                        <label for="educationDropDown" class="card-input__label">Occupation<span style="color: red">*</span></label>
+                        <select required class="card-input__input -select" id="occupationDropDown" data-ref="cardDate">
+                            <option value="" disabled selected>Occupation</option>
+                            <optgroup label="Healthcare Practitioners and Technical Occupations:">
+                                <option value="1">-  Chiropractor</option>
+                                <option value="2">-  Dentist</option>
+                                <option value="3">-  Dietitian or Nutritionist</option>
+                                <option value="4">-  Optometrist</option>
+                                <option value="5">-  Pharmacist</option>
+                                <option value="6">-  Physician</option>
+                                <option value="7">-  Physician Assistant</option>
+                                <option value="8">-  Podiatrist</option>
+                                <option value="9">-  Registered Nurse</option>
+                                <option value="10">-  Therapist</option>
+                                <option value="11">-  Veterinarian</option>
+                                <option value="12">-  Health Technologist or Technician</option>
+                                <option value="13">-  Other Healthcare Practitioners and Technical Occupation</option>
+                              </optgroup>
+                              <optgroup label="Healthcare Support Occupations:">
+                                <option value="14">-  Nursing, Psychiatric, or Home Health Aide</option>
+                                <option value="15">-  Occupational and Physical Therapist Assistant or Aide</option>
+                                <option value="16">-  Other Healthcare Support Occupation</option>
+                              </optgroup>
+                              <optgroup label="Business, Executive, Management, and Financial Occupations:">
+                                <option value="17">-  Chief Executive</option>
+                                <option value="18">-  General and Operations Manager</option>
+                                <option value="19">-  Advertising, Marketing, Promotions, Public Relations, and Sales Manager</option>
+                                <option value="20">-  Operations Specialties Manager (e.g., IT or HR Manager)</option>
+                                <option value="21">-  Construction Manager</option>
+                                <option value="22">-  Engineering Manager</option>
+                                <option value="23">-  Accountant, Auditor</option>
+                                <option value="24">-  Business Operations or Financial Specialist</option>
+                                <option value="25">-  Business Owner</option>
+                                <option value="26">-  Other Business, Executive, Management, Financial Occupation</option>
+                              </optgroup>
+                              <optgroup label="Architecture and Engineering Occupations:">
+                                <option value="27">-  Architect, Surveyor, or Cartographer</option>
+                                <option value="28">-  Engineer</option>
+                                <option value="29">-  Other Architecture and Engineering Occupation</option>
+                              </optgroup>
+                              <optgroup label="Education, Training, and Library Occupations:">
+                                <option value="30">-  Postsecondary Teacher (e.g., College Professor)</option>
+                                <option value="31">-  Primary, Secondary, or Special Education School Teacher</option>
+                                <option value="32">-  Other Teacher or Instructor</option>
+                                <option value="33">-  Other Education, Training, and Library Occupation</option>
+                              </optgroup>
+                              <optgroup label="Other Professional Occupations:">
+                                <option value="34">-  Arts, Design, Entertainment, Sports, and Media Occupations</option>
+                                <option value="35">-  Computer Specialist, Mathematical Science</option>
+                                <option value="36">-  Counselor, Social Worker, or Other Community and Social Service Specialist</option>
+                                <option value="37">-  Lawyer, Judge</option>
+                                <option value="38">-  Life Scientist (e.g., Animal, Food, Soil, or Biological Scientist, Zoologist)</option>
+                                <option value="39">-  Physical Scientist (e.g., Astronomer, Physicist, Chemist, Hydrologist)</option>
+                                <option value="40">-  Religious Worker (e.g., Clergy, Director of Religious Activities or Education)</option>
+                                <option value="41">-  Social Scientist and Related Worker</option>
+                                <option value="42">-  Other Professional Occupation</option>
+                              </optgroup>
+                              <optgroup label="Office and Administrative Support Occupations:">
+                                <option value="43">-  Supervisor of Administrative Support Workers</option>
+                                <option value="44">-  Financial Clerk</option>
+                                <option value="45">-  Secretary or Administrative Assistant</option>
+                                <option value="46">-  Material Recording, Scheduling, and Dispatching Worker</option>
+                                <option value="47">-  Other Office and Administrative Support Occupation</option>
+                              </optgroup>
+                              <optgroup label="Services Occupations:">
+                                <option value="48">-  Protective Service (e.g., Fire Fighting, Police Officer, Correctional Officer)</option>
+                                <option value="49">-  Chef or Head Cook</option>
+                                <option value="50">-  Cook or Food Preparation Worker</option>
+                                <option value="51">-  Food and Beverage Serving Worker (e.g., Bartender, Waiter, Waitress)</option>
+                                <option value="52">-  Building and Grounds Cleaning and Maintenance</option>
+                                <option value="53">-  Personal Care and Service (e.g., Hairdresser, Flight Attendant, Concierge)</option>
+                                <option value="54">-  Sales Supervisor, Retail Sales</option>
+                                <option value="55">-  Retail Sales Worker</option>
+                                <option value="56">-  Insurance Sales Agent</option>
+                                <option value="57">-  Sales Representative</option>
+                                <option value="58">-  Real Estate Sales Agent</option>
+                                <option value="59">-  Other Services Occupation</option>
+                              </optgroup>
+                              <optgroup label="Agriculture, Maintenance, Repair, and Skilled Crafts Occupations:">
+                                <option value="60">-  Construction and Extraction (e.g., Construction Laborer, Electrician)</option>
+                                <option value="61">-  Farming, Fishing, and Forestry</option>
+                                <option value="62">-  Installation, Maintenance, and Repair</option>
+                                <option value="63">-  Production Occupations</option>
+                                <option value="64">-  Other Agriculture, Maintenance, Repair, and Skilled Crafts Occupation</option>
+                              </optgroup>
+                              <optgroup label="Transportation Occupations:">
+                                <option value="65">-  Aircraft Pilot or Flight Engineer</option>
+                                <option value="66">-  Motor Vehicle Operator (e.g., Ambulance, Bus, Taxi, or Truck Driver)</option>
+                                <option value="67">-  Other Transportation Occupation</option>
+                              </optgroup>
+                              <optgroup label="Other Occupations:">
+                                <option value="68">-  Military</option>
+                                <option value="69">-  Homemaker</option>
+                                <option value="70">-  Other Occupation</option>
+                                <option value="71">-  Don't Know</option>
+                                <option value="72">-  Not Applicable</option>
+                              </optgroup>
+                        </select>
+                    </div>
+
+    
+                    <div class="card-input">
+                        <label for="investFreq" class="card-input__label">How much knowledge do you have about the stock market?<span style="color: red">*</span></label>
+    
+                        <div class="card-form__col">
+                            <div class="fit-review-container">
+                                <div class="fit-review-radio-buttons-container">
+                                    <div class="radio-button-line"></div>
+                                    <div class="fit-review-radio-buttons">
+                                        <label class="custom-radio-button-container">
+                                            <input value="Beginner" type="radio" checked name="radio">
+                                            <span class="custom-radio-button"></span>
+                                        </label>
+                                        <label class="custom-radio-button-container">
+                                            <input value="Novice" type="radio"  name="radio">
+                                            <span class="custom-radio-button"></span>
+                                        </label>
+                                        <label class="custom-radio-button-container">
+                                            <input value="Intermediate" type="radio"  name="radio">
+                                            <span class="custom-radio-button"></span>
+                                        </label>
+                                        <label class="custom-radio-button-container">
+                                            <input value="Advanced" type="radio" name="radio">
+                                            <span class="custom-radio-button"></span>
+                                        </label>
+                                        <label class="custom-radio-button-container">
+                                            <input value="Expert" type="radio" name="radio">
+                                            <span class="custom-radio-button"></span>
+                                        </label>
+                                    </div>
+                                    <div class="item-fit-container" style="width: 125%; margin-left:-12.5%">
+                                        <div style="width: 25%; text-align:center" class="item-fit">Beginner</div>
+                                        <div style="width: 25%; text-align:center" class="item-fit">Novice</div>
+                                        <div style="width: 25%; text-align:center" class="item-fit">Intermediate</div>
+                                        <div style="width: 25%; text-align:center" class="item-fit">Advanced</div>
+                                        <div style="width: 25%; text-align:center" class="item-fit">Expert</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-input">
+                        <label for="investFreq" class="card-input__label">How often do you invest in stocks?<span style="color: red">*</span></label>
+
+                        <div class="fit-review-container">
+                            <div class="fit-review-radio-buttons-container">
+                                <div class="radio-button-line"></div>
+                                <div class="fit-review-radio-buttons">
+                                    <label class="custom-radio-button-container">
+                                        <input value="Never" type="radio" checked  name="radio1">
+                                        <span class="custom-radio-button"></span>
+                                    </label>
+                                    <label class="custom-radio-button-container">
+                                        <input value="Daily" type="radio"  name="radio1">
+                                        <span class="custom-radio-button"></span>
+                                    </label>
+                                    <label class="custom-radio-button-container">
+                                        <input value="Weekly" type="radio"  name="radio1">
+                                        <span class="custom-radio-button"></span>
+                                    </label>
+                                    <label class="custom-radio-button-container">
+                                        <input value="Monthly" value="Advanced" type="radio" name="radio1">
+                                        <span class="custom-radio-button"></span>
+                                    </label>
+                                    <label class="custom-radio-button-container">
+                                        <input value="Half-yearly" type="radio" name="radio1">
+                                        <span class="custom-radio-button"></span>
+                                    </label>
+                                    <label class="custom-radio-button-container">
+                                        <input value="Yearly" type="radio" name="radio1">
+                                        <span class="custom-radio-button"></span>
+                                    </label>
+                                </div>
+                                <div class="item-fit-container" style="width: 120%; margin-left:-10%">
+                                    <div style="width: 20%; text-align:center" class="item-fit">Never</div>
+                                    <div style="width: 20%; text-align:center" class="item-fit">Daily</div>
+                                    <div style="width: 20%; text-align:center" class="item-fit">Weekly</div>
+                                    <div style="width: 20%; text-align:center" class="item-fit">Monthly</div>
+                                    <div style="width: 20%; text-align:center" class="item-fit">Half-yearly</div>
+                                    <div style="width: 20%; text-align:center" class="item-fit">Yearly</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-input">
+                        <label for="cardNumber" class="card-input__label">Feedback</label>
+                        <input type="text" id="feedbackText" class="card-input__input" data-ref="cardNumber"
+                            autocomplete="off">
+                    </div>
+                    <button class="card-form__button" id="submitButton">
+                        Finish
+                    </button>
+                    <i style="float: right" class="bi bi-clipboard2"></i>
+                </div>
+                </form>
+    
+
+    
+                
+            </div>
+        </div>
+        </div>
+    </div>
+
+  </body>
+
+  <script>
+     jQuery("form").submit(function(e){
+  e.preventDefault();  
+});
+
+
+function checkInput(){
+    check = document.getElementById("form").checkValidity();
+    return check;
+}
+
+
+
+    function copy(){
+        navigator.clipboard.writeText('xyz');
+        let element = document.getElementsByClassName("before-click")[0];
+        element.classList.remove("fa-clipboard");
+        element.classList.remove("fa-regular");
+        element.classList.add("fa-solid");
+        element.classList.add("fa-check");
+    }
+
+    const startYear = 1900;
+        const endYear = 2022;
+
+        function generateRandom(min = 0, max = 100) {
+            let difference = max - min;
+            let rand = Math.random();
+            rand = Math.floor(rand * difference);
+            rand = rand + min;
+            return rand;
+        }
+
+        let geoInfo;
+
+        window.onload = function () {
+
+
+            function generateYear() {
+                for (let i = endYear; i >= startYear; i--) {
+                    $('#ageDropDown').append($(`<option>${i}</option>`))
+                }
+            }
+
+            function loadCardBackground() {
+                // document.getElementById('cardbg').src = `https://raw.githubusercontent.com/muhammederdem/credit-card-form/master/src/assets/images/${generateRandom(1,25)}.jpeg`
+                let src = `https://raw.githubusercontent.com/muhammederdem/credit-card-form/master/src/assets/images/${generateRandom(1, 25)}.jpeg`
+                $('#cardBg').attr('src', src);
+                $('#cardBg1').attr('src', src);
+            }
+
+            async function populateCountryDropDown() {
+                const data = await fetch('https://countriesnow.space/api/v0.1/countries/states');
+                geoInfo = (await data.json()).data;
+                geoInfo.forEach(country => {
+                    // console.log(country.name)
+                    $('#countryDropDown').append(`<option>${country.name}</option>`);
+                })
+
+
+                $('#countryDropDown').on('change', function (e) {
+                    let currentCountry = $('#countryDropDown').val();
+
+                    for (let i = 0; i < geoInfo.length; i++) {
+                        if (geoInfo[i].name === currentCountry) {
+                            $('#stateDropDown').find('option').remove().end()
+
+                            geoInfo[i].states.forEach(state => {
+                                $('#stateDropDown').append(`<option>${state.name}</option>`);
+                            })
+                        }
+                    }
+
+                    // getInfo[currentCountry].states.forEach(state => {
+                    //     console.log(state)
+                    //     $('#stateDropDown').append(`<option>${state.name}</option>`);
+                    // })
+                })
+
+                var myHeaders = new Headers();
+                myHeaders.append("Content-Type", "application/json");
+
+                $('#stateDropDown').on('change', function (e) {
+                    let currentCountry = $('#countryDropDown').val();
+                    let currentState = $('#stateDropDown').val();
+
+                    var raw = JSON.stringify({
+                        "country": currentCountry,
+                        "state": currentState
+                    });
+
+                    var requestOptions = {
+                        method: 'POST',
+                        headers: myHeaders,
+                        body: raw,
+                        redirect: 'follow'
+                    };
+
+                    fetch("https://countriesnow.space/api/v0.1/countries/state/cities", requestOptions)
+                        .then(response => response.json())
+                        .then(result => {
+                            result.data.forEach(city => {
+                                $('#cityDropDown').append(`<option>${city}</option>`)
+                            })
+                        })
+                        .catch(error => console.log('error', error));
+
+                })
+            }
+
+            function makeRequest() {
+                let cardContent;
+
+                let ageDropDown = $('#ageDropDown').val();
+                let genderDropDown = $('#genderDropDown').val()
+                let countryDropDown = $('#countryDropDown').val()
+                let stateDropDown = $('#stateDropDown').val()
+                let cityDropDown = $('#cityDropDown').val()
+                let educationDropDown = $('#educationDropDown').val()
+                let occupationDropDown = $('#occupationDropDown').val()
+                let knowledge = document.querySelector('input[name="radio"]:checked').value;
+                let experience = document.querySelector('input[name="radio1"]:checked').value;
+                let feedbackText = $('#feedbackText').val()
+                let user = localStorage.getItem("UserID");
+
+
+                // console.log(ageDropDown)
+
+                // send post request here
+                $.ajax({
+                    type: "POST",
+                    url: '/survey',
+                    data: JSON.stringify({
+                        user: user,
+                        age: ageDropDown,
+                        gender: genderDropDown,
+                        country: countryDropDown,
+                        state: stateDropDown,
+                        city: cityDropDown,
+                        education: educationDropDown,
+                        occupation: occupationDropDown,
+                        knowledge: knowledge,
+                        experience: experience,
+                        feedback: feedbackText
+                    }),
+                    success: function (e) {
+                        cardContent = e;
+                        document.getElementById("code").innerHTML = e;
+                        // $('#submitButton').css('margin-top', '200px')
+
+                        // cardContent = e;
+                        // $("#mainCard").addClass('card');
+                        // console.log(e);
+                        // cardShimmer();
+                        // setTimeout(()=>cardShimmer(), 2000);
+                        //set it to whatever the server sends back
+                    },
+                    // dataType: dataType
+                });
+            }
+           
+            function flipCard() {
+                $('#submitButton').on('click', function (e) {
+                    if(!checkInput()){
+                        return;
+                    }
+
+
+                    $('#mainCard').css('transform', 'rotateY(180deg)');
+                    $('#cardBody').hide(300);
+                    $('.heading').text("Thank You!");
+                    $('.para').text("You have successfully completed the survey. You may now close the page.");
+                    $('.card-list').css("margin-bottom",'0');
+                    makeRequest();
+                })
+            }
+
+            function cardShimmer() {
+                const $card = document.querySelector('.card');
+                let bounds;
+
+                function rotateToMouse(e) {
+                    const mouseX = e.clientX;
+                    const mouseY = e.clientY;
+                    const leftX = mouseX - bounds.x;
+                    const topY = mouseY - bounds.y;
+                    const center = {
+                        x: leftX - bounds.width / 2,
+                        y: topY - bounds.height / 2
+                    }
+                    const distance = Math.sqrt(center.x * 2 + center.y * 2);
+
+                    $card.style.transform = `
+                        scale3d(1.07, 1.07, 1.07)
+                        rotate3d(
+                        ${center.y / 100},
+                        ${-center.x / 100},
+                        0,
+                        ${Math.log(distance) * 2}deg
+                        )
+                    `;
+
+                    $card.querySelector('.glow').style.backgroundImage = `
+    radial-gradient(
+      circle at
+      ${center.x * 2 + bounds.width / 2}px
+      ${center.y * 2 + bounds.height / 2}px,
+      #ffffff55,
+      #0000000f
+    )
+  `;
+                }
+
+                $card.addEventListener('mouseenter', () => {
+                    bounds = $card.getBoundingClientRect();
+                    document.addEventListener('mousemove', rotateToMouse);
+                });
+
+                $card.addEventListener('mouseleave', () => {
+                    document.removeEventListener('mousemove', rotateToMouse);
+                    $card.style.transform = '';
+                    $card.style.background = '';
+                });
+            }
+
+            generateYear();
+            populateCountryDropDown()
+            loadCardBackground();
+            flipCard();
+        }
+
+  </script>
+</html>

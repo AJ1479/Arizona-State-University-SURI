@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="html" style="height: 140%">
+<html class="html">
   <head>
     <meta charset="utf-8" />
     <title>ASU SURI</title>
@@ -10,6 +10,7 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <script
       src="https://code.jquery.com/jquery-3.4.1.js"
       integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
@@ -39,16 +40,16 @@
     />
   </head>
 
-  <body style="height: 140%" class="html">
-    <h1 class="heading">Exercise 2</h1>
-    <div class="main-body" style="height: 82%">
+  <body class="html">
+    <h1 class="heading">Exercise 2 of 10</h1>
+    <div class="main-body">
       <p>
-        You have been given 4 boxes, each denoting a company. Each box will
-        contain some information about the company. Can you predict by how much
+        Consider the following 4 boxes, each denoting a company. Each box
+        contains some information about the company. Can you predict by how much
         the stock price of the company will grow or fall in the
-        <b>next 1 year</b>? Choose the appropriate color from the chart.
+        <b>next 3 months </b> (<b>Sept 2022 - Nov 2022</b>)</b>? Choose the appropriate color from the chart.
       </p>
-      <p>
+      <p style="margin-bottom: 2rem">
         <b>NOTE:</b> <span style="color: #ff0000">Red</span> indicates a
         fall<span style="color: #ff0000">↓</span> and
         <span style="color: #008000">Green</span> indicates a rise<span
@@ -56,64 +57,60 @@
           >↑</span
         >. The darker the color, the higher the jump/drop.
       </p>
-      <br />
+      <div class="tip">
+        <div><i style="color: #0033cc;"class="bi bi-info-circle-fill"></i></div>
+      <p style="margin-left: 10px;">In this question, you will <u>not</u> be given the graph and the name of the company. Instead, you will be given some information about each company along with the historical price information.</p></div>
+      <br>
+      
+
+
       <div class="flex1">
         <div class="card">
-          <div class="text">Apple Inc.</div>
-          <img
-            class="graph"
-            id="apple"
-            src="../public/img/APPLE.png"
-            alt="alternatetext"
-          />
-          <div class="flex2">
-            <div class="color percentage card-start">&lt;25%&nbsp;&nbsp;</div>
-            <div class="color card1"></div>
-            <div class="color card2"></div>
-            <div class="color card3"></div>
-            <div class="color card4"></div>
-            <div class="color card5"></div>
-            <div class="color card6"></div>
-            <div class="color card7"></div>
-            <div class="color card8"></div>
-            <div class="color card9"></div>
-            <div class="color card10"></div>
-            <div class="color card11"></div>
-            <div class="color percentage card-end">&nbsp;&nbsp;>25%</div>
-          </div>
-          <div style="margin-left: 13%; margin-top: 1%; font-size: smaller">
-            The ML model predicts a growth percentage of <b>x%</b> with some
-            accuracy.
-          </div>
-        </div>
-        <div class="card">
-          <div class="text">Company X</div>
-          <div class="info" id="companyx">
-            This company was founded in <b>1993</b>.<br />
-            52 week High / Low prices: <b>$346.47 / $140.55</b>
+          <div class="text">Company 1</div>
+          <div class="info">
+            This company was founded in <b>1996</b>.<br />
+            52 week High / Low prices: <b>$211.98 / $114.52</b>
             <br />
             Sector(s): <b>Technology</b><br />
             Industry: <b>Semiconductors</b><br />
-            Stock Price: <b>$180.50</b><br />
+            Stock Price: <b>$148.74</b><br />
           </div>
           <div class="flex2">
-            <div class="color percentage card-start">&lt;25%&nbsp;&nbsp;</div>
-            <div class="color card1"></div>
+            <div data-toggle="tooltip" data-placement="bottom" title="-25%" class="color card1"></div>
             <div class="color card2"></div>
             <div class="color card3"></div>
             <div class="color card4"></div>
             <div class="color card5"></div>
-            <div class="color card6"></div>
+            <div data-toggle="tooltip" data-placement="bottom" title="0%" class="color card6"></div>
             <div class="color card7"></div>
             <div class="color card8"></div>
             <div class="color card9"></div>
             <div class="color card10"></div>
-            <div class="color card11"></div>
-            <div class="color percentage card-end">&nbsp;&nbsp;>25%</div>
+            <div data-toggle="tooltip" data-placement="bottom" title="+25%" class="color card11"></div>
           </div>
-          <div style="margin-left: 13%; margin-top: 1%; font-size: smaller">
-            The ML model predicts a growth percentage of <b>x%</b> with some
-            accuracy.
+        </div>
+        <div class="card">
+          <div class="text">Company 2</div>
+          <div class="info">
+            This company was founded in <b>1988</b>.<br />
+            52 week High / Low prices: <b>$275.94 / $79.86</b>
+            <br />
+            Sector(s): <b>Healthcare</b><br />
+            Industry: <b>Medical Devices</b><br />
+            Stock Price: <b>$87.56</b><br />
+          </div>
+          <div class="flex2">
+            <div data-toggle="tooltip" data-placement="bottom" title="-25%" class="color card1"></div>
+            <div class="color card2"></div>
+            <div class="color card3"></div>
+            <div class="color card4"></div>
+            <div class="color card5"></div>
+            <div data-toggle="tooltip" data-placement="bottom" title="0%" class="color card6"></div>
+            <div class="color card7"></div>
+            <div class="color card8"></div>
+            <div class="color card9"></div>
+            <div class="color card10"></div>
+            <div data-toggle="tooltip" data-placement="bottom" title="+25%" class="color card11"></div>
           </div>
         </div>
       </div>
@@ -121,61 +118,51 @@
       <br />
       <div class="flex1">
         <div class="card">
-          <div class="text">Company Y</div>
-          <div class="info" id="companyy">
-            This company was founded in <b>1901</b>.<br />
-            52 week High / Low prices: <b>$39.25 / $16.41</b>
+          <div class="text">Company 3</div>
+          <div class="info">
+            This company was founded in <b>1976</b>.<br />
+            52 week High / Low prices: <b>$182.94 / $129.04</b>
             <br />
-            Sector(s): <b>Basic Materials</b><br />
-            Industry: <b>Steel</b><br />
-            Stock Price: <b>$20.36</b><br />
+            Sector(s): <b>Technology</b><br />
+            Industry: <b>Consumer Electronics</b><br />
+            Stock Price: <b>$161.51</b><br />
           </div>
           <div class="flex2">
-            <div class="color percentage card-start">&lt;25%&nbsp;&nbsp;</div>
-            <div class="color card1"></div>
+            <div data-toggle="tooltip" data-placement="bottom" title="-25%" class="color card1"></div>
             <div class="color card2"></div>
             <div class="color card3"></div>
             <div class="color card4"></div>
             <div class="color card5"></div>
-            <div class="color card6"></div>
+            <div data-toggle="tooltip" data-placement="bottom" title="0%" class="color card6"></div>
             <div class="color card7"></div>
             <div class="color card8"></div>
             <div class="color card9"></div>
             <div class="color card10"></div>
-            <div class="color card11"></div>
-            <div class="color percentage card-end">&nbsp;&nbsp;>25%</div>
-          </div>
-          <div style="margin-left: 13%; margin-top: 1%; font-size: smaller">
-            The ML model predicts a growth percentage of <b>x%</b> with some
-            accuracy.
+            <div data-toggle="tooltip" data-placement="bottom" title="+25%" class="color card11"></div>
           </div>
         </div>
         <div class="card">
-          <div class="text">VISA</div>
-          <img
-            class="graph"
-            id="VISA"
-            src="../public/img/VISA.png"
-            alt="alternatetext"
-          />
+          <div class="text">Company 4</div>
+          <div class="info">
+            This company was founded in <b>1892</b>.<br />
+            52 week High / Low prices: <b>$67.20 / $52.28</b>
+            <br />
+            Sector(s): <b>Consumer Defensive</b><br />
+            Industry: <b>Beverages—Non-Alcoholic</b><br />
+            Stock Price: <b>$64.52</b><br />
+          </div>
           <div class="flex2">
-            <div class="color percentage card-start">&lt;25%&nbsp;&nbsp;</div>
-            <div class="color card1"></div>
+            <div data-toggle="tooltip" data-placement="bottom" title="-25%" class="color card1"></div>
             <div class="color card2"></div>
             <div class="color card3"></div>
             <div class="color card4"></div>
             <div class="color card5"></div>
-            <div class="color card6"></div>
+            <div data-toggle="tooltip" data-placement="bottom" title="0%" class="color card6"></div>
             <div class="color card7"></div>
             <div class="color card8"></div>
             <div class="color card9"></div>
             <div class="color card10"></div>
-            <div class="color card11"></div>
-            <div class="color percentage card-end">&nbsp;&nbsp;>25%</div>
-          </div>
-          <div style="margin-left: 13%; margin-top: 1%; font-size: smaller">
-            The ML model predicts a growth percentage of <b>x%</b> with some
-            accuracy.
+            <div data-toggle="tooltip" data-placement="bottom" title="+25%" class="color card11"></div>
           </div>
         </div>
       </div>
@@ -203,6 +190,14 @@
     </div>
 
     <script>
+
+$(function () {   
+  $('[data-toggle="tooltip"]').tooltip() 
+})
+
+$('.card1').tooltip({placement: 'bottom', trigger: 'manual'}).tooltip('hide');
+$('.card6').tooltip({placement: 'bottom', trigger: 'manual'}).tooltip('hide');
+$('.card11').tooltip({placement: 'bottom', trigger: 'manual'}).tooltip('hide');
       stage1 = false;
 
       function submit() {
@@ -218,8 +213,10 @@
             "You can have a look at the hidden company names before pressing continue."
           );
           let companies = document.getElementsByClassName("text");
-          companies[1].innerHTML = "NVIDIA";
-          companies[2].innerHTML = "United States Steel Corp.";
+          companies[0].innerHTML = "Silicon Laboratories";
+          companies[1].innerHTML = "Heska";
+          companies[2].innerHTML = "Apple Inc.";
+          companies[3].innerHTML = "Coca Cola";
 
           document.getElementById("submitButton").innerHTML = "Continue";
 
@@ -250,6 +247,15 @@
         let colorButtons = cards[i].querySelector(".flex2");
         for (let j = 1; j < 12; j++) {
           let colors = colorButtons.querySelector(`.card${j}`);
+          $(colorButtons).hover(function(){  
+      $(colorButtons).find(".card1").tooltip({placement: 'bottom'}).tooltip('show');
+            $(colorButtons).find(".card6").tooltip({placement: 'bottom'}).tooltip('show');
+            $(colorButtons).find(".card11").tooltip({placement: 'bottom'}).tooltip('show');  
+        }, function(){  
+          $(colorButtons).find(".card1").tooltip({placement: 'bottom'}).tooltip('hide');
+            $(colorButtons).find(".card6").tooltip({placement: 'bottom'}).tooltip('hide');
+            $(colorButtons).find(".card11").tooltip({placement: 'bottom'}).tooltip('hide');  
+    });  
           colors.onclick = function color() {
             cards[i].style.borderColor = colorArr[j - 1];
             cards[i].style.borderWidth = "medium";
@@ -264,35 +270,6 @@
           };
         }
       }
-
-      window.onload = function () {
-        document.getElementById("companyx").style.height = `${
-          document.getElementById("apple").offsetHeight
-        }px`;
-        document.getElementById("companyy").style.height = `${
-          document.getElementById("VISA").offsetHeight
-        }px`;
-      };
-
-      var $element = $("#apple");
-      var lastHeight = $("#apple").css("height");
-      function checkForChanges() {
-        if ($element.css("height") != lastHeight) {
-          console.log("hi")
-          lastHeight = $element.css("height");
-          document.getElementById("companyx").style.height = `${
-          document.getElementById("apple").offsetHeight
-        }px`;
-        document.getElementById("companyy").style.height = `${
-          document.getElementById("VISA").offsetHeight
-        }px`;
-        }
-        
-        setTimeout(checkForChanges, 100);
-      }
-
-      
-      setTimeout(checkForChanges, 100);
     </script>
   </body>
 </html>

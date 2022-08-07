@@ -86,7 +86,7 @@
 </head>
 
 <body>
-  <h1 class="heading">Exercise 9 of 10</h1>
+  <h1 class="heading">Exercise 10 of 10</h1>
   <div class="main-body">
     <p>
       You have been given <b>100k $</b>. Allocate it to the companies
@@ -104,7 +104,7 @@
     </div>
 
     <div id="buttons"></div>
-    <form method="POST" id="form" action="/9">
+    <form method="POST" id="form" action="/10">
       <input type="text" class="hidden" name="UserID" id="UserID" />
       <input type="text" value="0" class="hidden" name="input1" id="value1" />
       <input type="text" value="0" class="hidden" name="input2" id="value2" />
@@ -136,11 +136,36 @@
           50,
           20
         );
-        ctx.fillText("Coinbase stock price: $62.7", 50, 40);
-        ctx.fillText("Microsoft stock price: $278.01   ", 50, 55);
-        ctx.fillText("Coca Cola stock price: $64.52  ", 50, 70);
-        ctx.fillText("Heska stock price: $87.56   ", 50, 85);
-        ctx.fillText("Gap Inc. stock price: $9.7   ", 50, 100);
+        ctx.fillText("PayPal stock price: $88.57   ", 50, 40);
+          ctx.fillText(
+            "The ML model predicts PayPal stock to grow by x%",
+            50,
+            55
+          );
+          ctx.fillText("Pfizer stock price: $50.61 ", 50, 75);
+          ctx.fillText(
+            "The ML model predicts Pfizer stock to grow by x%",
+            50,
+            90
+          );
+          ctx.fillText("Bank of America stock price: $33.71   ", 50, 110);
+          ctx.fillText(
+            "The ML model predicts PayPal stock to grow by x%",
+            50,
+            125
+          );
+          ctx.fillText("ExxonMobil stock price: $94.48", 50, 145);
+          ctx.fillText(
+            "The ML model predicts PayPal stock to grow by x%",
+            50,
+            160
+          );
+          ctx.fillText("Google stock price: $115.48   ", 50, 180);
+          ctx.fillText(
+            "The ML model predicts PayPal stock to grow by x%",
+            50,
+            195
+          );
         ctx.font = "22px Serif";
         ctx.fillText(`Money Left: $${numeral(
             (MAX_VALUE - getSum())
@@ -168,12 +193,12 @@
         data.push({ y: value, indexLabel: label });
       }
 
-      addData(0, "Coinbase");
-      addData(0, "Heska");
-      addData(0, "Microsoft");
-      addData(0, "Gap Inc.");
-      addData(0, "Coca Cola");
-      addData(0, "Don't Invest");
+        addData(0, "PayPal");
+        addData(0, "Pfizer");
+        addData(0, "BofA");
+        addData(0, "ExxonMobil");
+        addData(0, "Google");
+        addData(0, "Don't Invest");
 
       function getSum() {
         let sum = 0;

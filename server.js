@@ -25,6 +25,37 @@ app.get("/", (req, res) => {
   res.sendFile(__dirname + "/views/login.html");
 });
 
+
+function makeid(length) {
+  var result           = '';
+  var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+  var charactersLength = characters.length;
+  for ( var i = 0; i < length; i++ ) {
+    result += characters.charAt(Math.floor(Math.random() * 
+charactersLength));
+ }
+ return result;
+}
+
+app.post("/survey", async (req, res) => {
+  object = JSON.parse(Object.keys(req.body)[0]);
+  var user = await User.findOne({ ID: object.user });
+  await user.update({ 
+    age: object.age,
+    gender: object.gender,
+    country: object.country,
+    state: object.state,
+    city: object.city,
+    education: object.education,
+    occupation: object.occupation,
+    knowledge: object.knowledge,
+    experience: object.experience,
+    feedback: object.feedback, });
+
+    res.send(user.code);
+  
+  });
+
 app.post("/login", async (req, res) => {
   let userID = req.body.userID;
 
@@ -36,7 +67,8 @@ app.post("/login", async (req, res) => {
     var userResponses = await Input.findOne({ UserID: userID });
     if (userResponses) {
       let responses = userResponses.Response;
-      let currentQuestion = responses[responses.length - 1].questionNumber;
+      if(responses.length != 0){
+        currentQuestion = responses[responses.length - 1].questionNumber
       if (currentQuestion == 8) {
         res.sendFile(__dirname + "/views/thank_you.html");
       } else {
@@ -44,9 +76,16 @@ app.post("/login", async (req, res) => {
           __dirname + `/views/question${currentQuestion + 1}.html`
         );
       }
-    } else {
+   }
+  else{
+    res.sendFile(
+      __dirname + `/views/question0.html`
+    );
+  } } else {
+      let code = makeid(5);
       const user = new User({
         ID: req.body.userID,
+        code: code,
       });
 
       await User.create(user);
@@ -86,8 +125,8 @@ app.post("/:questionNumber", async (req, res) => {
 
     await userResponses.update({ Response: a });
 
-    if (nextQuestionNumber == 9) {
-      res.sendFile(__dirname + `/views/thank_you.html`);
+    if (nextQuestionNumber == 10) {
+      res.sendFile(__dirname + `/views/survey.html`);
     } else {
       res.sendFile(__dirname + `/views/question${nextQuestionNumber}.html`);
     }
@@ -95,6 +134,9 @@ app.post("/:questionNumber", async (req, res) => {
     return res.status(422).send("Error in request");
   }
 });
+
+
+
 
 async function buildNodeApp() {
   const child = spawn(

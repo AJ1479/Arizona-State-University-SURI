@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>ASU SURI</title>
+
+    <script
+      type="text/javascript"
+      src="https://canvasjs.com/assets/script/canvasjs.min.js"
+    ></script>
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Lora:400,400italic"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
+
+    <link rel="stylesheet" href="../public/css/index2.css" />
+  </head>
+
+  <body>
+    <h1 class="heading">Exercise 10 of 10</h1>
+    <div class="main-body">
+      <p>
+        You have been given <b>$100k</b>. Allocate it to the companies
+        given below based on how much of this money you would invest in
+        each company.
+      </p>
+      <div id="chartContainer" class="chartContainer"></div>
+      <div class="blank"></div>
+      <br />
+      <div class="container">
+        <div class="row">
+          <div id="col1" class="col-sm"></div>
+          <div id="col2" class="col-sm"></div>
+        </div>
+      </div>
+
+      <div id="buttons"></div>
+      <form method="POST" id="form" action="/10">
+        <input type="text" class="hidden" name="UserID" id="UserID" />
+        <input type="text" value="0" class="hidden" name="input1" id="value1" />
+        <input type="text" value="0" class="hidden" name="input2" id="value2" />
+        <input type="text" value="0" class="hidden" name="input3" id="value3" />
+        <input type="text" value="0" class="hidden" name="input4" id="value4" />
+        <input type="text" value="0" class="hidden" name="input5" id="value4" />
+        <input type="text" value="0" class="hidden" name="input6" id="value4" />
+        <input
+          type="submit"
+          class="btn btn-outline-success hidden"
+          id="submitButton"
+          value="Submit"
+          onclick="submit()"
+        />
+      </form>
+      <button
+        type="submit"
+        class="btn btn-outline-success"
+        id="submitButton1"
+        value="Submit"
+      >
+        Submit
+      </button>
+    </div>
+
+    <script type="text/javascript">
+      document.getElementById(`UserID`).value = localStorage.getItem("UserID");
+
+      window.onload = () => {
+        function drawTips() {
+          var canvas = document.querySelector("canvas");
+
+          let ctx = canvas.getContext("2d");
+          ctx.font = "20px";
+          ctx.globalCompositeOperation = "source-over";
+          ctx.fillText(
+            "Here is some information about these companies:",
+            50,
+            20
+          );
+          ctx.fillText("PayPal stock price: $88.57   ", 50, 40);
+          ctx.fillText(
+            "The ML model predicts PayPal stock to grow by x%",
+            50,
+            55
+          );
+          ctx.fillText("Pfizer stock price: $50.61 ", 50, 75);
+          ctx.fillText(
+            "The ML model predicts Pfizer stock to grow by x%",
+            50,
+            90
+          );
+          ctx.fillText("Bank of America stock price: $33.71   ", 50, 110);
+          ctx.fillText(
+            "The ML model predicts PayPal stock to grow by x%",
+            50,
+            125
+          );
+          ctx.fillText("ExxonMobil stock price: $94.48", 50, 145);
+          ctx.fillText(
+            "The ML model predicts PayPal stock to grow by x%",
+            50,
+            160
+          );
+          ctx.fillText("Google stock price: $115.48   ", 50, 180);
+          ctx.fillText(
+            "The ML model predicts PayPal stock to grow by x%",
+            50,
+            195
+          );
+        }
+
+        CanvasJS.addColorSet("pieChartTheme", [
+          "#EC5657",
+          "#1BCDD1",
+          "#8FAABB",
+          "#B08BEB",
+          "#3EA0DD",
+          "#F5A52A",
+          "#fff",
+          "#FAA586",
+          "#EB8CC6",
+        ]);
+
+        let data = [
+          // { y: 0, indexLabel: "PlayStation 3" },
+        ];
+        let addDataCount = 0;
+        function addData(value, label) {
+          addDataCount++;
+          data.push({ y: value, indexLabel: label });
+        }
+
+        addData(0, "PayPal");
+        addData(0, "Pfizer");
+        addData(0, "BofA");
+        addData(0, "ExxonMobil");
+        addData(0, "Google");
+        addData(0, "Don't Invest");
+
+        function getSum() {
+          let sum = 0;
+          for (let i = 0; i < addDataCount; i++) {
+            sum += data[i].y;
+          }
+          return sum;
+        }
+
+        function renderChart() {
+          let sum = getSum();
+          let additionalData = false;
+
+          if (sum < 100) {
+            additionalData = true;
+          }
+
+          var chart = new CanvasJS.Chart("chartContainer", {
+            colorSet: "pieChartTheme",
+            title: {
+              text: "Portfolio Allocation",
+            },
+            legend: {
+              maxWidth: 350,
+              itemWidth: 120,
+            },
+            data: [
+              {
+                type: "pie",
+                explodeOnClick: false,
+                showInLegend: true,
+                legendText: "{indexLabel}",
+                dataPoints: additionalData
+                  ? [...data, { y: 100 - sum, indexLabel: "" }]
+                  : data,
+              },
+            ],
+          });
+          chart.render();
+        }
+
+        let oldData = [];
+        for (let i = 0; i < addDataCount; i++) {
+          oldData.push(0);
+        }
+
+        data.forEach((dataPoint, index) => {
+          let mySpan = document.createElement("span");
+          let inputBox = document.createElement("input");
+          let label = document.createElement("label");
+          let percentage = document.createElement("span");
+
+          inputBox.type = "range";
+          inputBox.id = `input${index}`;
+          inputBox.min = 0;
+          inputBox.max = 100;
+          inputBox.value = data[index].y;
+
+          label.for = "input" + index;
+          label.innerText = data[index].indexLabel;
+          label.style.width = "100px";
+
+          percentage.style.float = "right";
+          percentage.innerHTML = "$0";
+
+          mySpan.style.width = "700px";
+
+          inputBox.oninput = function (event) {
+            let sum = getSum();
+            let newValue = parseInt(event.target.value);
+            if (sum >= 100) {
+              if (newValue < oldData[index]) {
+                oldData[index] = data[index].y;
+                data[index].y = newValue;
+                renderChart();
+                return;
+              }
+              alert("sum is already 100");
+              inputBox.value = oldData[index];
+
+              return;
+            }
+            if (newValue <= 100) {
+              oldData[index] = data[index].y;
+              data[index].y = newValue;
+            } else {
+              inputBox.value = oldData[index];
+            }
+
+            renderChart();
+            drawTips();
+            // percentage.innerHTML = data[index].y + "%";
+            percentage.innerText = `$${numeral(
+              (data[index].y * 100000) / 100
+            ).format("0,0")}`;
+            document.getElementById(`value${index + 1}`).value = data[index].y;
+          };
+          mySpan.append(inputBox, percentage);
+          // document.getElementById("buttons").append(inputBox, document.createElement("br"), label)
+
+          if (index % 2 == 0) {
+            document.getElementById("col1").append(label, mySpan);
+          } else {
+            document.getElementById("col2").append(label, mySpan);
+          }
+
+          renderChart();
+          drawTips();
+        });
+
+        document
+          .getElementById("submitButton1")
+          .addEventListener("click", function () {
+            if (getSum() == 100) {
+              document.getElementById("form").submit();
+            } else {
+              alert("All the money needs to be allocated!");
+            }
+          });
+      };
+    </script>
+  </body>
+</html>

@@ -63,22 +63,23 @@
     }
   </style>
   <body>
-    <h1 class="heading">Exercise 4</h1>
+    <h1 class="heading">Exercise 4 of 10</h1>
     <div class="main-body">
       <p>
         You have been given historical data from the past 1 year from
-        <b>August 2022</b> to <b>July 2023</b> of the stock prices of
+        <b>September 2021</b> to <b>August 2022</b> of the stock prices of
         <b>Coinbase</b>. Can you predict the stock price for
-        <b>August 2023</b> by dragging that point <b>X</b> on the graph along
+        <b>September 2022</b> by dragging that point on the graph along
         the Y-axis?
       </p>
       <p>
-        <b>NOTE:</b> The value for point <b>X</b> is by default set to same
+        <b>NOTE:</b> The value for September 2022 is by default set to same
         value as the previous month. Please move it above or below as per your
         future estimate.
       </p>
+      <br>
       <div id="main-body-container">
-        <div class="graph" style="width: 753px; padding: 3%">
+        <div class="graph" style="margin-top:0; width: 753px; padding: 3%">
           <div class="overlay"></div>
           <canvas id="cvs" width="700" height="350">[No canvas support]</canvas>
         </div>
@@ -107,8 +108,10 @@
     <script>
       let myCanvas = document.getElementById("cvs");
       let ctx = myCanvas.getContext("2d");
-      ctx.font = "bold 15px Arial";
-      ctx.fillText("X", 660, 332);
+      ctx.fillStyle = "#0052ff";
+      ctx.font = "bold 16px Sans-serif";
+      ctx.fillText("Sept", 650, 333);
+      ctx.fillText("2022", 651, 350);
       document.getElementById(`UserID`).value = localStorage.getItem("UserID");
 
       let value = 75.269997;
@@ -116,16 +119,15 @@
         id: "cvs",
         data: [
           [
-            259, 227.479996, 319.420013, 315, 252.369995, 190.149994,
-            190.770004, 189.860001, 112.709999, 78.099998, 47.02, 75.269997,
-            75.269997,
+            227.479996, 319.420013, 315, 252.369995, 190.149994,
+            190.770004, 189.860001, 112.709999, 78.099998, 47.02, 62.96,
+            80.81, 80.81,
           ],
         ],
         options: {
           textAccessible: false,
           xaxisLabels: [
-            "Aug",
-            "Sep",
+            "Sept",
             "Oct",
             "Nov",
             "Dec",
@@ -136,6 +138,7 @@
             "May",
             "Jun",
             "Jul",
+            "Aug",
             " ",
           ],
           marginBottom: 35,
@@ -150,12 +153,15 @@
           yaxisScaleRound: false,
           titleBold: true,
           titleSize: 14,
+          colors: ["#0052ff"]
         },
       }).draw();
 
       line.on("draw", function (e) {
-        ctx.font = "bold 15px Arial";
-        ctx.fillText("X", 660, 332);
+        ctx.fillStyle = "#0052ff";
+        ctx.font = "bold 16px Arial";
+        ctx.fillText("Sept", 649.5, 332);
+        ctx.fillText("2022", 650.5, 349);
       });
 
       line.on("adjust", function (e) {

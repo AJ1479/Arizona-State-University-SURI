@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <title>ASU SURI</title>
-    <script src="https://www.rgraph.net/libraries/RGraph.common.key.js"></script>
+
     <link
       rel="canonical"
       href="https://www.rgraph.net/canvas/adjusting-line.html"
@@ -58,27 +58,28 @@
       z-index: 99999999999999999;
       position: absolute;
       width: 625px;
-      height: 300px;
+      height: 275px;
       /* background-color: red; */
     }
   </style>
   <body>
-    <h1 class="heading">Exercise 7</h1>
+    <h1 class="heading">Exercise 7 of 10</h1>
     <div class="main-body">
       <p>
         You have been given historical data from the past 1 year from
-        <b>August 2022</b> to <b>July 2023</b> of the stock prices of
-        <b>Netflix</b> and <b>Disney</b>. Can you predict the stock price for
-        <b>August 2023</b> for <b>both the companies</b> by dragging the points
-        on the graph along the Y-axis?
+        <b>September 2021</b> to <b>August 2022</b> of the stock prices of
+        <b>American Airlines</b>. Can you predict the stock price for
+        <b>September 2022</b> by dragging that point on the graph along
+        the Y-axis?
       </p>
       <p>
-        <b>NOTE:</b> The values for <b>X</b> are by default set to those
-        predicted by the ML model. Please move them above or below as per your
+        <b>NOTE:</b> The value for September 2022 is by default set to the value
+        predicted by the ML model. Please move it above or below as per your
         future estimate.
       </p>
+      <br>
       <div id="main-body-container">
-        <div class="graph" style="width: 753px; padding: 3%">
+        <div class="graph" style="margin-top:0; width: 753px; padding: 3%">
           <div class="overlay"></div>
           <canvas id="cvs" width="700" height="350">[No canvas support]</canvas>
         </div>
@@ -98,15 +99,8 @@
             type="text"
             class="hidden"
             name="input1"
-            value="176.559998"
+            value="1.57"
             id="input1"
-          />
-          <input
-            type="text"
-            class="hidden"
-            name="input2"
-            value="103.349998"
-            id="input2"
           />
           <button type="submit" class="hidden" id="submit"></button>
         </form>
@@ -120,31 +114,25 @@
     <script>
       let myCanvas = document.getElementById("cvs");
       let ctx = myCanvas.getContext("2d");
-      ctx.font = "bold 15px Arial";
-      ctx.fillText("X", 660, 332);
+      ctx.fillStyle = "#d51626";
+      ctx.font = "bold 16px Arial";
+      ctx.fillText("Sept", 650, 333);
+      ctx.fillText("2022", 651, 350);
       document.getElementById(`UserID`).value = localStorage.getItem("UserID");
 
-      let value = 176.559998;
-      let value1 = 103.349998;
+      let value = 1.57;
       line = new RGraph.Line({
         id: "cvs",
         data: [
           [
-            569.190002, 610.340027, 690.309998, 641.900024, 602.440002,
-            427.140015, 394.519989, 374.589996, 190.360001, 197.440002,
-            174.869995, 176.559998, 176.559998,
-          ],
-          [
-            181.300003, 169.169998, 169.070007, 144.899994, 154.889999,
-            142.970001, 148.460007, 137.160004, 111.629997, 110.44, 94.400002,
-            103.349998, 103.349998,
+          20.52, 19.20, 17.69, 17.96, 16.47, 17.25, 18.25, 18.77, 17.87, 12.68, 13.71,
+          14.63, 14.63
           ],
         ],
         options: {
           textAccessible: false,
           xaxisLabels: [
-            "Aug",
-            "Sep",
+            "Sept",
             "Oct",
             "Nov",
             "Dec",
@@ -155,42 +143,41 @@
             "May",
             "Jun",
             "Jul",
+            "Aug",
             " ",
           ],
           marginBottom: 35,
           linewidth: 2,
           shadow: true,
           adjustable: true,
-          title: "Netflix vs Disney",
+          title: "American Airlines",
           titleVpos: 0.4,
           tickmarksStyle: "circle",
           tickmarksSize: 5,
-          yaxisScaleMax: 860,
+          yaxisScaleMax: 26,
           yaxisScaleRound: false,
           titleBold: true,
           titleSize: 14,
-          key: ["Netflix", "Disney"],
-          colors: ["red", "blue"],
+          colors: ["#d51626"]
         },
       }).draw();
 
       line.on("draw", function (e) {
-        ctx.font = "bold 15px Arial";
-        ctx.fillText("X", 660, 332);
+        ctx.fillStyle = "#d51626";
+        ctx.font = "bold 16px Arial";
+        ctx.fillText("Sept", 649.5, 332);
+        ctx.fillText("2022", 650.5, 349);
       });
 
       line.on("adjust", function (e) {
         let index = e.__mouseover_shape__.index;
         let dataset = e.__mouseover_shape__.dataset;
-        let newValue = e.data[dataset][0];
-        let newValue1 = e.data[dataset][1];
+        let newValue = e.data[dataset][index];
         value = newValue;
-        value1 = newValue1;
       });
 
       function submit() {
         document.getElementById("input1").value = value;
-        document.getElementById("input2").value = value1;
         document.getElementById("submit").click();
       }
     </script>

@@ -8,7 +8,7 @@
       rel="canonical"
       href="https://www.rgraph.net/canvas/adjusting-line.html"
     />
-    <!-- <base href="https://www.rgraph.net/canvas" target="_blank"> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <meta
       name="description"
       content="Information about adjusting the Line chart interactively. They can be useful if you're doing a presentation and need to illustrate changes."
@@ -63,21 +63,25 @@
     }
   </style>
   <body>
-    <h1 class="heading">Exercise 5</h1>
+    <h1 class="heading">Exercise 5 of 10</h1>
     <div class="main-body">
       <p>
         You have been given historical data from the past 1 year from
-        <b>August 2022</b> to <b>July 2023</b> of the stock prices of
-        <b>VISA</b>. Can you predict the stock price for <b>August 2023</b> by
-        dragging that point <b>X</b> on the graph along the Y-axis?
+        <b>September 2021</b> to <b>August 2022</b> of the stock prices of a company. Can you predict the stock price for
+        <b>September 2022</b> by dragging that point on the graph along
+        the Y-axis?
       </p>
-      <p>
-        <b>NOTE:</b> The value for point <b>X</b> is by default set to same
+      <p style="margin-bottom: 1.75rem;">
+        <b>NOTE:</b> The value for September 2022 is by default set to same
         value as the previous month. Please move it above or below as per your
         future estimate.
       </p>
+      <div class="tip">
+        <div><i style="color: #0033cc;"class="bi bi-info-circle-fill"></i></div>
+      <p style="margin-left: 10px;">You will <u>not</u> be given the company name for this question.</p></div>
+      <br>
       <div id="main-body-container">
-        <div class="graph" style="width: 753px; padding: 3%">
+        <div class="graph" style="margin-top:0; width: 753px; padding: 3%">
           <div class="overlay"></div>
           <canvas id="cvs" width="700" height="350">[No canvas support]</canvas>
         </div>
@@ -106,8 +110,10 @@
     <script>
       let myCanvas = document.getElementById("cvs");
       let ctx = myCanvas.getContext("2d");
-      ctx.font = "bold 15px Arial";
-      ctx.fillText("X", 660, 332);
+      ctx.fillStyle = "#003ea9";
+      ctx.font = "bold 16px Arial";
+      ctx.fillText("Sept", 650, 333);
+      ctx.fillText("2022", 651, 350);
       document.getElementById(`UserID`).value = localStorage.getItem("UserID");
 
       let value = 213.369995;
@@ -115,16 +121,15 @@
         id: "cvs",
         data: [
           [
-            229.100006, 222.75, 211.770004, 193.770004, 216.710007, 226.169998,
+            222.75, 211.770004, 193.770004, 216.710007, 226.169998,
             216.119995, 221.770004, 213.130005, 212.169998, 196.889999,
-            213.369995, 213.369995,
+            212.11, 208.48, 208.48
           ],
         ],
         options: {
           textAccessible: false,
           xaxisLabels: [
-            "Aug",
-            "Sep",
+            "Sept",
             "Oct",
             "Nov",
             "Dec",
@@ -135,26 +140,30 @@
             "May",
             "Jun",
             "Jul",
+            "Aug",
             " ",
           ],
           marginBottom: 35,
           linewidth: 2,
           shadow: true,
           adjustable: true,
-          title: "VISA",
           titleVpos: 0.4,
+          title: "Company X",
           tickmarksStyle: "circle",
           tickmarksSize: 5,
           yaxisScaleMax: 290,
           yaxisScaleRound: false,
           titleBold: true,
           titleSize: 14,
+          colors: ["#003ea9"]
         },
       }).draw();
 
       line.on("draw", function (e) {
-        ctx.font = "bold 15px Arial";
-        ctx.fillText("X", 660, 332);
+        ctx.fillStyle = "#003ea9";
+        ctx.font = "bold 16px Arial";
+        ctx.fillText("Sept", 649.5, 332);
+        ctx.fillText("2022", 650.5, 349);
       });
 
       line.on("adjust", function (e) {

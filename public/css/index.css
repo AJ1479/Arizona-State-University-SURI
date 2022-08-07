@@ -1,3 +1,5 @@
+
+
 html,
 body {
   height: fit-content;
@@ -6,7 +8,6 @@ body {
 }
 
 .heading {
-  width: 100%;
   margin: 3% 0;
   text-align: center;
   font-size: 2.5rem;
@@ -15,8 +16,9 @@ body {
 .main-body {
   background-color: #f5f5f5;
   border-radius: 1.25rem;
-  margin: 0 5% 5% 5%;
+  margin: 0 5% 3rem 5%;
   padding: 3%;
+  padding-bottom: 0.75rem;
   height: fit-content !important;
   width: 90%;
 }
@@ -33,6 +35,7 @@ body {
   width: 45%;
   padding-bottom: 1%;
   background-color: white;
+  box-shadow: 0 30px 60px 0 rgb(90 116 148 / 40%);
 }
 
 .flex2 {
@@ -71,6 +74,12 @@ body {
 
 .card6 {
   background-color: #fefdb9;
+  color: black;
+  font-size: small;
+  display: flex;
+  z-index: 0;
+  align-items: center;
+  justify-content: center;
 }
 
 .card7 {
@@ -108,10 +117,17 @@ body {
 .btn {
   margin-top: 3.5%;
   margin-left: 47%;
+  margin-bottom: 16px;
 }
 
 .focus {
-  box-shadow: 1px 1px 3px 3px #888888;
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.5) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+    z-index: 2;
+}
+
+.focus1 {
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+    z-index: 2;
 }
 
 .hidden {
@@ -146,4 +162,9 @@ body {
 }
 #VISA {
   min-height: 260px;
+}
+
+.tip{
+  display: flex;
+  flex-direction: row;
 }

@@ -37,16 +37,16 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
+   
   </head>
 
   <body class="html">
-    <h1 class="heading">Exercise 1 of 9</h1>
+    <h1 class="heading">Exercise 1 of 10</h1>
     <div class="main-body">
       <p>
-        You have been given 4 boxes, each denoting a company. Each box will
-        contain some information about the company. Can you predict by how much
+        Consider the following 4 boxes, each denoting a company. Each box contains some information about the company. Can you predict by how much
         the stock price of the company will grow or fall in the
-        <b>next 1 year</b>? Choose the appropriate color from the chart.
+        <b>next 1 year </b> (<b>Sept 2022 - Sept 2023</b>)</b>? Choose the appropriate color from the chart.
       </p>
       <p>
         <b>NOTE:</b> <span style="color: #ff0000">Red</span> indicates a
@@ -62,23 +62,22 @@
           <div class="text">Meta</div>
           <img
             class="graph"
-            src="../public/img/META1.png"
+            src="../public/img/META2.png"
             alt="alternatetext"
           />
           <div class="flex2">
-            <div class="color percentage card-start">&lt;25%&nbsp;&nbsp;</div>
-            <div class="color card1"></div>
+
+            <div data-toggle="tooltip" data-placement="bottom" title="-25%" class="color card1"></div>
             <div class="color card2"></div>
             <div class="color card3"></div>
             <div class="color card4"></div>
             <div class="color card5"></div>
-            <div class="color card6"></div>
+            <div data-toggle="tooltip" data-placement="bottom" title="0%" class="color card6"></div>
             <div class="color card7"></div>
             <div class="color card8"></div>
             <div class="color card9"></div>
             <div class="color card10"></div>
-            <div class="color card11"></div>
-            <div class="color percentage card-end">&nbsp;&nbsp;>25%</div>
+            <div data-toggle="tooltip" data-placement="bottom" title="+25%" class="color card11"></div>
           </div>
           <div style="margin-left: 5%; margin-top: 3%" class="manage hidden">
             <div>
@@ -115,23 +114,21 @@
           <div class="text">Tesla</div>
           <img
             class="graph"
-            src="../public/img/TESLA1.png"
+            src="../public/img/TESLA2.png"
             alt="alternatetext"
           />
           <div class="flex2">
-            <div class="color percentage card-start">&lt;25%&nbsp;&nbsp;</div>
-            <div class="color card1"></div>
+            <div data-toggle="tooltip" data-placement="bottom" title="-25%" class="color card1"></div>
             <div class="color card2"></div>
             <div class="color card3"></div>
             <div class="color card4"></div>
             <div class="color card5"></div>
-            <div class="color card6"></div>
+            <div data-toggle="tooltip" data-placement="bottom" title="0%" class="color card6"></div>
             <div class="color card7"></div>
             <div class="color card8"></div>
             <div class="color card9"></div>
             <div class="color card10"></div>
-            <div class="color card11"></div>
-            <div class="color percentage card-end">&nbsp;&nbsp;>25%</div>
+            <div data-toggle="tooltip" data-placement="bottom" title="+25%" class="color card11"></div>
           </div>
           <div style="margin-left: 5%; margin-top: 3%" class="manage hidden">
             <div>
@@ -170,21 +167,19 @@
       <div class="flex1">
         <div class="card">
           <div class="text">United States Steel Corp.</div>
-          <img class="graph" src="../public/img/US.png" alt="alternatetext" />
+          <img class="graph" src="../public/img/US2.png" alt="alternatetext" />
           <div class="flex2">
-            <div class="color percentage card-start">&lt;25%&nbsp;&nbsp;</div>
-            <div class="color card1"></div>
+            <div data-toggle="tooltip" data-placement="bottom" title="-25%" class="color card1"></div>
             <div class="color card2"></div>
             <div class="color card3"></div>
             <div class="color card4"></div>
             <div class="color card5"></div>
-            <div class="color card6"></div>
+            <div data-toggle="tooltip" data-placement="bottom" title="0%" class="color card6"></div>
             <div class="color card7"></div>
             <div class="color card8"></div>
             <div class="color card9"></div>
             <div class="color card10"></div>
-            <div class="color card11"></div>
-            <div class="color percentage card-end">&nbsp;&nbsp;>25%</div>
+            <div data-toggle="tooltip" data-placement="bottom" title="+25%" class="color card11"></div>
           </div>
           <div style="margin-left: 5%; margin-top: 3%" class="manage hidden">
             <div>
@@ -219,21 +214,19 @@
         </div>
         <div class="card">
           <div class="text">Sarepta Therapeutics Inc.</div>
-          <img class="graph" src="../public/img/SRTP.png" alt="alternatetext" />
+          <img class="graph" src="../public/img/SRTP2.png" alt="alternatetext" />
           <div class="flex2">
-            <div class="color percentage card-start">&lt;25%&nbsp;&nbsp;</div>
-            <div class="color card1"></div>
+            <div data-toggle="tooltip" data-placement="bottom" title="-25%" class="color card1"></div>
             <div class="color card2"></div>
             <div class="color card3"></div>
             <div class="color card4"></div>
             <div class="color card5"></div>
-            <div class="color card6"></div>
+            <div data-toggle="tooltip" data-placement="bottom" title="0%" class="color card6"></div>
             <div class="color card7"></div>
             <div class="color card8"></div>
             <div class="color card9"></div>
             <div class="color card10"></div>
-            <div class="color card11"></div>
-            <div class="color percentage card-end">&nbsp;&nbsp;>25%</div>
+            <div data-toggle="tooltip" data-placement="bottom" title="+25%" class="color card11"></div>
           </div>
           <div style="margin-left: 5%; margin-top: 3%" class="manage hidden">
             <div>
@@ -287,8 +280,18 @@
         onclick="submit()"
       />
     </div>
+    
 
     <script>
+
+$(function () {   
+  $('[data-toggle="tooltip"]').tooltip() 
+})
+
+$('.card1').tooltip({placement: 'bottom', trigger: 'manual'}).tooltip('hide');
+$('.card6').tooltip({placement: 'bottom', trigger: 'manual'}).tooltip('hide');
+$('.card11').tooltip({placement: 'bottom', trigger: 'manual'}).tooltip('hide');
+
       var stage1 = true;
 
       function submit() {
@@ -304,9 +307,6 @@
           for (let i = 0; i < manage.length; i++) {
             manage[i].classList.remove("hidden");
           }
-          document.getElementsByClassName("main-body")[0].style.height = "91%";
-          document.getElementsByClassName("html")[0].style.height = "143%";
-          document.getElementsByClassName("html")[1].style.height = "140%";
         } else {
           let offset = 5;
           for (let i = 1; i < 9; i++) {
@@ -352,6 +352,17 @@
         let colorButtons = cards[i].querySelector(".flex2");
         for (let j = 1; j < 12; j++) {
           let colors = colorButtons.querySelector(`.card${j}`);
+          $(document).ready(function(){  
+    $(colorButtons).hover(function(){  
+      $(colorButtons).find(".card1").tooltip({placement: 'bottom'}).tooltip('show');
+            $(colorButtons).find(".card6").tooltip({placement: 'bottom'}).tooltip('show');
+            $(colorButtons).find(".card11").tooltip({placement: 'bottom'}).tooltip('show');  
+        }, function(){  
+          $(colorButtons).find(".card1").tooltip({placement: 'bottom'}).tooltip('hide');
+            $(colorButtons).find(".card6").tooltip({placement: 'bottom'}).tooltip('hide');
+            $(colorButtons).find(".card11").tooltip({placement: 'bottom'}).tooltip('hide');  
+    });  
+});  
           colors.onclick = function color() {
             if (stage1 == false) {
               return;

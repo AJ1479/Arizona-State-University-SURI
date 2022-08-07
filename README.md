@@ -50,6 +50,5 @@ The EJS page is deployed normally using express routers.
 The React page is deployed at `http://localhost:3000/react_deploy` 
 ## Authors
 
-- [@Arushi](link to Arushi's Github)
-- [@Jyotika](link to Jyotika's Github)
+- [@Arushi](https://github.com/AJ1479)
 
