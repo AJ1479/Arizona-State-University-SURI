@@ -68,7 +68,6 @@
                                 <div class="card-item__cvvBand" onclick="copy()">
                                     <span id="code" style="margin: 0 auto;
                                     margin-left: 150px;">
-                                        VXwri
                                     </span>
                                     <div style="float: right; font-size: 25px; margin-left: auto; text-shadow: none;"><i class="fa-regular fa-clipboard before-click"></i></div>
                                     
@@ -353,6 +352,9 @@
   </body>
 
   <script>
+
+    var cardContent; 
+
      jQuery("form").submit(function(e){
   e.preventDefault();  
 });
@@ -366,7 +368,8 @@ function checkInput(){
 
 
     function copy(){
-        navigator.clipboard.writeText('xyz');
+        text = document.getElementById("code").innerHTML;
+        navigator.clipboard.writeText(text);
         let element = document.getElementsByClassName("before-click")[0];
         element.classList.remove("fa-clipboard");
         element.classList.remove("fa-regular");
