@@ -26,6 +26,14 @@ app.get("/", (req, res) => {
 });
 
 
+app.post("/code", async (req, res) => {
+  object = JSON.parse(Object.keys(req.body));
+  var user = await User.findOne({ ID: object.user });
+  res.send(user.code);
+})
+
+
+
 function makeid(length) {
   var result           = '';
   var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
@@ -70,6 +78,10 @@ app.post("/login", async (req, res) => {
       if(responses.length != 0){
         currentQuestion = responses[responses.length - 1].questionNumber
       if (currentQuestion == 9) {
+        var user_db = await User.findOne({ ID: userID });
+        if(!user_db.age){
+          return res.sendFile(__dirname + "/views/survey.html");
+        }
         res.sendFile(__dirname + "/views/thank_you.html");
       } else {
         res.sendFile(
@@ -104,6 +116,7 @@ app.post("/login", async (req, res) => {
 });
 
 app.post("/:questionNumber", async (req, res) => {
+  console.log(req.body);
   let nextQuestionNumber = req.params.questionNumber;
   let userID = req.body.UserID;
 

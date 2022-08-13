@@ -37,9 +37,71 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
+
+    <style>
+
+      svg{
+        scale: 1
+      }
+      nav {
+        position: sticky;
+        top: 0;
+        left: 0;
+        width: 100%;
+        max-height: 20px;
+      }
+  
+      .item {
+        display: flex;
+        /* justify-content: center; */
+        align-items: center;
+        position: relative;
+      }
+  
+      .item-heading {
+        width: 140px;
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+      }
+  
+      svg {
+        transform: rotate(-90deg);
+      }
+  
+      .circle_animation {
+        stroke-dasharray: calc((2*22*40)/7);
+        /* this value is the pixel circumference of the circle */
+        stroke-dashoffset: 0;
+        transition: all 1.2s linear;
+      }
+
+      .blink {
+  animation: blinker 1.2s step-start infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+
+    </style>
+
   </head>
 
   <body class="html">
+    <nav>
+      <div class="item">
+        <h2 class="item-heading">time</h2>
+        <svg width="140" height="140" xmlns="http://www.w3.org/2000/svg">
+          <circle id="circle" class="circle_animation" r="40" cy="71" cx="71" stroke-width="8" stroke="#6fdb6f"
+            fill="none" />
+        </svg>
+      </div>
+    </nav>
     <h1 class="heading">Exercise 3 of 10</h1>
     <div class="main-body" style="height: 82%">
       <p>
@@ -61,7 +123,7 @@
       </p>
       <br />
       <div class="flex1">
-        <div class="card">
+        <div class="card" style="position: inherit">
           <div class="text">Apple Inc.</div>
           <img
             class="graph"
@@ -119,7 +181,7 @@
       <br />
       <br />
       <div class="flex1">
-        <div class="card">
+        <div class="card" style="position: inherit">
           <div class="text">Company Y</div>
           <div class="info" id="companyy">
             This company was founded in <b>1901</b>.<br />
@@ -199,7 +261,43 @@
     </div>
 
     <script>
+let time = 120;//seconds
+    let i = 0;
+    let finalOffset = (2*22*40)/7;// the length of strokedasharray ( pixel circumference of the circle -> css )
+    let step = finalOffset / time;
+    let timeCaption = document.querySelector('h2');
+    let circle = document.querySelector('.circle_animation').style;
 
+    circle.strokeDashoffset = 0;
+    timeCaption.innerText = "Time";
+
+    var interval = setInterval(() => {
+      timeCaption.innerText = new Date(time * 1000).toISOString().substring(14, 19);
+      // let colorstep = ++i/len;
+      // document.getElementById("circle").style.stroke = getColor(colorstep);
+      if(time == 60){
+        document.getElementById("circle").style.stroke = "#FF8C00";
+      }
+
+      if(time == 30){
+        document.getElementById("circle").style.stroke = "#FF2400";
+        console.log(document.querySelector('h2'))
+        document.querySelector('h2').classList.add("blink")
+      }
+
+
+      if(time-- == 0){
+        clearInterval(interval);
+      }
+      else{
+        circle.strokeDashoffset = step * (i++);
+      }
+      // time--;
+    }, 1000);
+
+    setTimeout(()=>{
+      document.getElementById("form").submit();
+    }, (time+1)*1000)
     
 $(function () {   
   $('[data-toggle="tooltip"]').tooltip() 

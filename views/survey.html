@@ -401,7 +401,7 @@ function checkInput(){
 
             function loadCardBackground() {
                 // document.getElementById('cardbg').src = `https://raw.githubusercontent.com/muhammederdem/credit-card-form/master/src/assets/images/${generateRandom(1,25)}.jpeg`
-                let src = `https://raw.githubusercontent.com/muhammederdem/credit-card-form/master/src/assets/images/${generateRandom(1, 25)}.jpeg`
+                let src = `../public/images/card-bg-${generateRandom(1, 25)}.jpeg`
                 $('#cardBg').attr('src', src);
                 $('#cardBg1').attr('src', src);
             }
@@ -440,6 +440,7 @@ function checkInput(){
                 $('#stateDropDown').on('change', function (e) {
                     let currentCountry = $('#countryDropDown').val();
                     let currentState = $('#stateDropDown').val();
+                    $('#cityDropDown').find('option').remove().end()
 
                     var raw = JSON.stringify({
                         "country": currentCountry,

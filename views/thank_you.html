@@ -15,12 +15,170 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://cdn.rawgit.com/nnattawat/flip/master/dist/jquery.flip.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+    <script>
+        function generateRandom(min = 0, max = 100) {
+            let difference = max - min;
+            let rand = Math.random();
+            rand = Math.floor(rand * difference);
+            rand = rand + min;
+            return rand;
+        }
+    </script>
 
-    <link rel="stylesheet" href="../public/css/index2.css" />
+    <link rel="stylesheet" href="../public/css/survey.css" />
   </head>
 
   <body>
-    <h1 class="heading">Thank you!</h1>
+    <h1 class="heading">Post Study Demographic Survery</h1>
+    <p class="para" style="text-align: center; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,'Noto Sans',sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol','Noto Color Emoji'; margin-bottom: 3% ;">
+        Please answer the following to the best of your ability.  
+                    All answers will be kept confidential and will only be reported 
+                    statistically (grouped with others’ responses).  
+    </p>
+    <div class="main-body">
+        <div class="wrapper" id="app">
+            <div class="card-form">
+                <div class="card-list">
+                    <div class="card-item" id="mainCard">
+                        <div class="glow"></div>
+                        <div class="card-item__side -front">
+                            <div class="card-item__focus"></div>
+                            <div class="card-item__cover">
+                                <img class="card-item__bg" id="cardBg">
+                            </div>
+    
+                            <div class="card-item__wrapper whiteText" style="font-size: 20px;">
+                                <div style="text-align: center; margin-top: 9%;">You're one step away!</div>
+                                <br>
+                                <div style="float: bottom; margin: 0 7%;">Please complete the demographic form to get your redeem code. </div> 
+                            </div>
+                        </div>
+                        <div class="card-item__side -back">
+                            <div class="card-item__cover">
+                                <img class="card-item__bg" id="cardBg1">
+                            </div>
+
+                            <div class="card-item__cvv">
+                                <div style="font-size: 18px;margin: 1% 3%;" class="card-item__cvvTitle">Here is your redeem code. You can click anywhere in the box to copy it.</div>
+                                <div class="card-item__cvvBand" onclick="copy()">
+                                    <span id="code" style="margin: 0 auto;
+                                    margin-left: 150px;">
+                                    </span>
+                                    <div style="float: right; font-size: 25px; margin-left: auto; text-shadow: none;"><i class="fa-regular fa-clipboard before-click"></i></div>
+                                    
+    
+                                </div>
+                                <div class="card-item__type">
+                                    <img class="card-item__typeImg">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+
+    
+                
+            </div>
+        </div>
+        </div>
+    </div>
+
   </body>
+
+  <script>
+
+    var cardContent; 
+
+
+
+
+    function copy(){
+        text = document.getElementById("code").innerHTML;
+        navigator.clipboard.writeText(text);
+        let element = document.getElementsByClassName("before-click")[0];
+        element.classList.remove("fa-clipboard");
+        element.classList.remove("fa-regular");
+        element.classList.add("fa-solid");
+        element.classList.add("fa-check");
+    }
+
+    const startYear = 1900;
+        const endYear = 2022;
+
+        function generateRandom(min = 0, max = 100) {
+            let difference = max - min;
+            let rand = Math.random();
+            rand = Math.floor(rand * difference);
+            rand = rand + min;
+            return rand;
+        }
+
+        let geoInfo;
+
+        window.onload = function () {
+
+
+            function loadCardBackground() {
+                // document.getElementById('cardbg').src = `https://raw.githubusercontent.com/muhammederdem/credit-card-form/master/src/assets/images/${generateRandom(1,25)}.jpeg`
+                let src = `../public/images/card-bg-${generateRandom(1, 25)}.jpeg`
+                $('#cardBg').attr('src', src);
+                $('#cardBg1').attr('src', src);
+            }
+
+            function makeRequest() {
+                let cardContent;
+
+                let user = localStorage.getItem("UserID");
+
+
+                // console.log(ageDropDown)
+
+                // send post request here
+                $.ajax({
+                    type: "POST",
+                    url: '/code',
+                    data: JSON.stringify({
+                        user: user
+                    }),
+                    success: function (e) {
+                        cardContent = e;
+                        document.getElementById("code").innerHTML = e;
+                        // $('#submitButton').css('margin-top', '200px')
+
+                        // cardContent = e;
+                        // $("#mainCard").addClass('card');
+                        // console.log(e);
+                        // cardShimmer();
+                        // setTimeout(()=>cardShimmer(), 2000);
+                        //set it to whatever the server sends back
+                    },
+                    // dataType: dataType
+                });
+            }
+
+
+            function flipCard() {
+
+
+                    $('#mainCard').css('transform', 'rotateY(180deg)');
+                    $('#cardBody').hide(300);
+                    $('.heading').text("Thank You!");
+                    $('.para').text("You have successfully completed the survey. You may now close the page.");
+                    $('.card-list').css("margin-bottom",'0');
+                    makeRequest();
+      
+            }
+
+
+            loadCardBackground();
+            flipCard();
+        }
+
+  </script>
 </html>

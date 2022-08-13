@@ -31,6 +31,7 @@ body {
 }
 
 .card {
+  position: inherit;
   height: fit-content;
   width: 45%;
   padding-bottom: 1%;
