@@ -54,9 +54,8 @@
     />
 
     <style>
-
-      svg{
-        scale: 1
+      svg {
+        scale: 1;
       }
       nav {
         position: sticky;
@@ -65,14 +64,15 @@
         width: 100%;
         max-height: 20px;
       }
-  
+
       .item {
         display: flex;
         /* justify-content: center; */
         align-items: center;
         position: relative;
+        width: fit-content;
       }
-  
+
       .item-heading {
         width: 140px;
         position: absolute;
@@ -81,37 +81,35 @@
         justify-content: center;
         font-size: 20px;
       }
-  
+
       svg {
         transform: rotate(-90deg);
       }
-  
+
       .circle_animation {
-        stroke-dasharray: calc((2*22*40)/7);
+        stroke-dasharray: calc((2 * 22 * 40) / 7);
         /* this value is the pixel circumference of the circle */
         stroke-dashoffset: 0;
         transition: all 1.2s linear;
       }
 
       .blink {
-  animation: blinker 1.2s step-start infinite;
-}
+        animation: blinker 1.2s step-start infinite;
+      }
 
-@keyframes blinker {
-  50% {
-    opacity: 0;
-  }
-}
-
+      @keyframes blinker {
+        50% {
+          opacity: 0;
+        }
+      }
     </style>
-
   </head>
   <style>
     .overlay {
       z-index: 99999999999999999;
       position: absolute;
       width: 625px;
-      height: 275px;
+      height: 290px;
       /* background-color: red; */
     }
   </style>
@@ -120,8 +118,16 @@
       <div class="item">
         <h2 class="item-heading">time</h2>
         <svg width="140" height="140" xmlns="http://www.w3.org/2000/svg">
-          <circle id="circle" class="circle_animation" r="40" cy="71" cx="71" stroke-width="8" stroke="#6fdb6f"
-            fill="none" />
+          <circle
+            id="circle"
+            class="circle_animation"
+            r="40"
+            cy="71"
+            cx="71"
+            stroke-width="8"
+            stroke="#6fdb6f"
+            fill="none"
+          />
         </svg>
       </div>
     </nav>
@@ -131,17 +137,17 @@
         You have been given historical data from the past 1 year from
         <b>September 2021</b> to <b>August 2022</b> of the stock prices of
         <b>Coinbase</b>. Can you predict the stock price for
-        <b>September 2022</b> by dragging that point on the graph along
-        the Y-axis?
+        <b>September 2022</b> by dragging that point on the graph along the
+        Y-axis?
       </p>
       <p>
         <b>NOTE:</b> The value for September 2022 is by default set to same
         value as the previous month. Please move it above or below as per your
         future estimate.
       </p>
-      <br>
+      <br />
       <div id="main-body-container">
-        <div class="graph" style="margin-top:0; width: 753px; padding: 3%">
+        <div class="graph" style="margin-top: 0; width: 753px; padding: 3%">
           <div class="overlay"></div>
           <canvas id="cvs" width="700" height="350">[No canvas support]</canvas>
         </div>
@@ -168,45 +174,43 @@
     <script src="https://www.rgraph.net/libraries/RGraph.common.dynamic.js"></script>
 
     <script>
+      let time = 90; //seconds
+      let i = 0;
+      let finalOffset = (2 * 22 * 40) / 7; // the length of strokedasharray ( pixel circumference of the circle -> css )
+      let step = finalOffset / time;
+      let timeCaption = document.querySelector("h2");
+      let circle = document.querySelector(".circle_animation").style;
 
-let time = 90;//seconds
-    let i = 0;
-    let finalOffset = (2*22*40)/7;// the length of strokedasharray ( pixel circumference of the circle -> css )
-    let step = finalOffset / time;
-    let timeCaption = document.querySelector('h2');
-    let circle = document.querySelector('.circle_animation').style;
+      circle.strokeDashoffset = 0;
+      timeCaption.innerText = "Time";
 
-    circle.strokeDashoffset = 0;
-    timeCaption.innerText = "Time";
+      var interval = setInterval(() => {
+        timeCaption.innerText = new Date(time * 1000)
+          .toISOString()
+          .substring(14, 19);
+        // let colorstep = ++i/len;
+        // document.getElementById("circle").style.stroke = getColor(colorstep);
+        if (time == 30) {
+          document.getElementById("circle").style.stroke = "#FF8C00";
+        }
 
-    var interval = setInterval(() => {
-      timeCaption.innerText = new Date(time * 1000).toISOString().substring(14, 19);
-      // let colorstep = ++i/len;
-      // document.getElementById("circle").style.stroke = getColor(colorstep);
-      if(time == 30){
-        document.getElementById("circle").style.stroke = "#FF8C00";
-      }
+        if (time == 15) {
+          document.getElementById("circle").style.stroke = "#FF2400";
+          document.querySelector("h2").classList.add("blink");
+        }
 
-      if(time == 15){
-        document.getElementById("circle").style.stroke = "#FF2400";
-        console.log(document.querySelector('h2'))
-        document.querySelector('h2').classList.add("blink")
-      }
+        if (time-- == 0) {
+          clearInterval(interval);
+        } else {
+          circle.strokeDashoffset = step * i++;
+        }
+        // time--;
+      }, 1000);
 
-
-      if(time-- == 0){
-        clearInterval(interval);
-      }
-      else{
-        circle.strokeDashoffset = step * (i++);
-      }
-      // time--;
-    }, 1000);
-
-    setTimeout(()=>{
-      document.getElementById("input1").value = null;
+      setTimeout(() => {
+        document.getElementById("input1").value = null;
         document.getElementById("submit").click();
-    }, (time+1)*1000)
+      }, (time + 1) * 1000);
 
       let myCanvas = document.getElementById("cvs");
       let ctx = myCanvas.getContext("2d");
@@ -221,9 +225,8 @@ let time = 90;//seconds
         id: "cvs",
         data: [
           [
-            227.479996, 319.420013, 315, 252.369995, 190.149994,
-            190.770004, 189.860001, 112.709999, 78.099998, 47.02, 62.96,
-            80.81, 80.81,
+            227.479996, 319.420013, 315, 252.369995, 190.149994, 190.770004,
+            189.860001, 112.709999, 78.099998, 47.02, 62.96, 80.81, 80.81,
           ],
         ],
         options: {
@@ -255,7 +258,7 @@ let time = 90;//seconds
           yaxisScaleRound: false,
           titleBold: true,
           titleSize: 14,
-          colors: ["#0052ff"]
+          colors: ["#0052ff"],
         },
       }).draw();
 

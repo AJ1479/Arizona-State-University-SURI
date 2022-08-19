@@ -56,6 +56,7 @@
         /* justify-content: center; */
         align-items: center;
         position: relative;
+        width: fit-content;
       }
   
       .item-heading {
@@ -374,7 +375,6 @@
 
       if(time == 30){
         document.getElementById("circle").style.stroke = "#FF2400";
-        console.log(document.querySelector('h2'))
         document.querySelector('h2').classList.add("blink")
       }
 
@@ -389,6 +389,7 @@
     }, 1000);
 
     setTimeout(()=>{
+      document.getElementById("input1").value = null;
       document.getElementById("form").submit();
     }, (time+1)*1000)
 

@@ -1,302 +1,330 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="utf-8" />
+    <title>ASU SURI</title>
 
-<head>
-  <meta charset="utf-8" />
-  <title>ASU SURI</title>
+    <script
+      type="text/javascript"
+      src="https://canvasjs.com/assets/script/canvasjs.min.js"
+    ></script>
 
-  <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css?family=Lora:400,400italic"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
 
-  <link href="https://fonts.googleapis.com/css?family=Lora:400,400italic" rel="stylesheet" type="text/css" />
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
+    <style>
+      svg {
+        scale: 1;
+      }
+      nav {
+        position: sticky;
+        top: 0;
+        left: 0;
+        width: 100%;
+        max-height: 20px;
+        z-index: 99999999;
+      }
 
-  <style>
+      .item {
+        display: flex;
+        /* justify-content: center; */
+        align-items: center;
+        position: relative;
+        width: fit-content;
+      }
 
-    svg{
-      scale: 1
-    }
-    nav {
-      position: sticky;
-      top: 0;
-      left: 0;
-      width: 100%;
-      max-height: 20px;
-      z-index: 99999999;
-    }
+      .item-heading {
+        width: 140px;
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+      }
 
-    .item {
-      display: flex;
-      /* justify-content: center; */
-      align-items: center;
-      position: relative;
-    }
+      svg {
+        transform: rotate(-90deg);
+      }
 
-    .item-heading {
-      width: 140px;
-      position: absolute;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 20px;
-    }
+      .circle_animation {
+        stroke-dasharray: calc((2 * 22 * 40) / 7);
+        /* this value is the pixel circumference of the circle */
+        stroke-dashoffset: 0;
+        transition: all 1.2s linear;
+      }
 
-    svg {
-      transform: rotate(-90deg);
-    }
+      .blink {
+        animation: blinker 1.2s step-start infinite;
+      }
 
-    .circle_animation {
-      stroke-dasharray: calc((2*22*40)/7);
-      /* this value is the pixel circumference of the circle */
-      stroke-dashoffset: 0;
-      transition: all 1.2s linear;
-    }
+      @keyframes blinker {
+        50% {
+          opacity: 0;
+        }
+      }
+    </style>
 
-    .blink {
-animation: blinker 1.2s step-start infinite;
-}
+    <style>
+      html,
+      body {
+        position: absolute;
+        height: fit-content;
+        width: 100%;
+        margin: 0;
+        padding: auto;
+      }
 
-@keyframes blinker {
-50% {
-  opacity: 0;
-}
-}
+      .heading {
+        margin: 3%;
+        text-align: center;
+        font-size: 2.5rem;
+      }
 
-  </style>
+      .main-body {
+        background-color: #f5f5f5;
+        border-radius: 1.25rem;
+        margin: 0 auto 3rem auto;
+        padding: 3%;
+        padding-bottom: 0.75rem;
+        height: fit-content;
+        width: fit-content;
+      }
 
-  <style>
-    html,
-    body {
-      position: absolute;
-      height: fit-content;
-      width: 100%;
-      margin: 0;
-      padding: auto
-    }
+      label {
+        float: left;
+        margin-bottom: 0;
+      }
 
-    .heading {
-      margin: 3%;
-      text-align: center;
-      font-size: 2.5rem;
-    }
+      span {
+        overflow: hidden;
+        padding: 0px 4px 0px 6px;
+      }
 
-    .main-body {
-      background-color: #f5f5f5;
-      border-radius: 1.25rem;
-      margin: 0 auto 3rem auto;
-      padding: 3%;
-      padding-bottom: 0.75rem;
-      height: fit-content;
-      width: fit-content;
-    }
+      .btn {
+        margin-top: 3.5%;
+        margin-left: 47%;
+        margin-bottom: 16px;
+      }
 
-    label {
-      float: left;
-      margin-bottom: 0;
-    }
+      input[type="range"] {
+        width: 63%;
+      }
 
-    span {
-      overflow: hidden;
-      padding: 0px 4px 0px 6px;
-    }
+      .hidden {
+        display: none;
+      }
 
-    .btn {
-      margin-top: 3.5%;
-      margin-left: 47%;
-      margin-bottom: 16px;
-    }
+      .chartContainer {
+        width: 100%;
+        height: 400px;
+        padding-top: 2%;
+        padding-bottom: 3%;
+        background-color: white;
+        box-shadow: 0 30px 60px 0 rgb(90 116 148 / 40%);
+        border-radius: 0.25rem;
+      }
 
-    input[type="range"] {
-      width: 63%;
-    }
+      .blank {
+        background-color: white;
+        width: 100%;
+        height: 50px;
+        border-radius: 0.25rem;
+      }
 
-    .hidden {
-      display: none;
-    }
+      #col2 {
+        margin-left: 100px;
+      }
+    </style>
+  </head>
 
-    .chartContainer {
-      width: 100%;
-      height: 400px;
-      padding-top: 2%;
-      padding-bottom: 3%;
-      background-color: white;
-      box-shadow: 0 30px 60px 0 rgb(90 116 148 / 40%);
-      border-radius: .25rem;
-    }
-
-    .blank {
-      background-color: white;
-      width: 100%;
-      height: 50px;
-      border-radius: .25rem;
-    }
-
-    #col2 {
-      margin-left: 100px;
-    }
-  </style>
-</head>
-
-<body>
-  <nav>
-    <div class="item">
-      <h2 class="item-heading">time</h2>
-      <svg width="140" height="140" xmlns="http://www.w3.org/2000/svg">
-        <circle id="circle" class="circle_animation" r="40" cy="71" cx="71" stroke-width="8" stroke="#6fdb6f"
-          fill="none" />
-      </svg>
-    </div>
-  </nav>
-  <h1 class="heading">Exercise 10 of 10</h1>
-  <div class="main-body">
-    <p>
-      You have been given <b>100k $</b>. Allocate it to the companies
-      given below based on how much of this money you would invest in
-      each company.
-    </p>
-    <p>
-      <b>NOTE:</b> You can use the sliders or enable textboxes for each company by clicking on the corresponding amount.
-    </p>
-    <br>
-    <div id="chartContainer" class="chartContainer"></div>
-    <div class="blank"></div>
-    <br />
-    <br>
-    <div class="c1">
-      <div class="r1" style="display: flex">
-        <div id="col1" class="col-sm"></div>
-        <div id="col2" class="col-sm"></div>
+  <body>
+    <nav>
+      <div class="item">
+        <h2 class="item-heading">time</h2>
+        <svg width="140" height="140" xmlns="http://www.w3.org/2000/svg">
+          <circle
+            id="circle"
+            class="circle_animation"
+            r="40"
+            cy="71"
+            cx="71"
+            stroke-width="8"
+            stroke="#6fdb6f"
+            fill="none"
+          />
+        </svg>
       </div>
+    </nav>
+    <h1 class="heading">Exercise 10 of 10</h1>
+    <div class="main-body">
+      <p>
+        You have been given <b>100k $</b>. Allocate it to the companies given
+        below based on how much of this money you would invest in each company.
+      </p>
+      <p>
+        <b>NOTE:</b> You can use the sliders or enable textboxes for each
+        company by clicking on the corresponding amount.
+      </p>
+      <br />
+      <div id="chartContainer" class="chartContainer"></div>
+      <div class="blank"></div>
+      <br />
+      <br />
+      <div class="c1">
+        <div class="r1" style="display: flex">
+          <div id="col1" class="col-sm"></div>
+          <div id="col2" class="col-sm"></div>
+        </div>
+      </div>
+
+      <div id="buttons"></div>
+      <form method="POST" id="form" action="/10">
+        <input type="text" class="hidden" name="UserID" id="UserID" />
+        <input type="text" value="0" class="hidden" name="input1" id="value1" />
+        <input type="text" value="0" class="hidden" name="input2" id="value2" />
+        <input type="text" value="0" class="hidden" name="input3" id="value3" />
+        <input type="text" value="0" class="hidden" name="input4" id="value4" />
+        <input type="text" value="0" class="hidden" name="input5" id="value5" />
+        <input type="text" value="0" class="hidden" name="input6" id="value6" />
+        <input
+          type="submit"
+          class="btn btn-outline-success hidden"
+          id="submitButton"
+          value="Submit"
+          onclick="submit()"
+        />
+      </form>
+      <button
+        type="submit"
+        class="btn btn-outline-success"
+        id="submitButton1"
+        value="Submit"
+      >
+        Submit
+      </button>
     </div>
 
-    <div id="buttons"></div>
-    <form method="POST" id="form" action="/10">
-      <input type="text" class="hidden" name="UserID" id="UserID" />
-      <input type="text" value="0" class="hidden" name="input1" id="value1" />
-      <input type="text" value="0" class="hidden" name="input2" id="value2" />
-      <input type="text" value="0" class="hidden" name="input3" id="value3" />
-      <input type="text" value="0" class="hidden" name="input4" id="value4" />
-      <input type="text" value="0" class="hidden" name="input5" id="value5" />
-      <input type="text" value="0" class="hidden" name="input6" id="value6" />
-      <input type="submit" class="btn btn-outline-success hidden" id="submitButton" value="Submit" onclick="submit()" />
-    </form>
-    <button type="submit" class="btn btn-outline-success" id="submitButton1" value="Submit">
-      Submit
-    </button>
-  </div>
+    <script type="text/javascript">
+      let time = 120; //seconds
+      let i = 0;
+      let finalOffset = (2 * 22 * 40) / 7; // the length of strokedasharray ( pixel circumference of the circle -> css )
+      let step = finalOffset / time;
+      let timeCaption = document.querySelector("h2");
+      let circle = document.querySelector(".circle_animation").style;
 
-  <script type="text/javascript">
+      circle.strokeDashoffset = 0;
+      timeCaption.innerText = "Time";
 
-let time = 120;//seconds
-    let i = 0;
-    let finalOffset = (2*22*40)/7;// the length of strokedasharray ( pixel circumference of the circle -> css )
-    let step = finalOffset / time;
-    let timeCaption = document.querySelector('h2');
-    let circle = document.querySelector('.circle_animation').style;
+      var interval = setInterval(() => {
+        timeCaption.innerText = new Date(time * 1000)
+          .toISOString()
+          .substring(14, 19);
+        if (time == 60) {
+          document.getElementById("circle").style.stroke = "#FF8C00";
+        }
 
-    circle.strokeDashoffset = 0;
-    timeCaption.innerText = "Time";
+        if (time == 30) {
+          document.getElementById("circle").style.stroke = "#FF2400";
+          document.querySelector("h2").classList.add("blink");
+        }
 
-    var interval = setInterval(() => {
-      timeCaption.innerText = new Date(time * 1000).toISOString().substring(14, 19);
-      if(time == 60){
-        document.getElementById("circle").style.stroke = "#FF8C00";
-      }
+        if (time-- == 0) {
+          clearInterval(interval);
+        } else {
+          circle.strokeDashoffset = step * i++;
+        }
+        // time--;
+      }, 1000);
 
-      if(time == 30){
-        document.getElementById("circle").style.stroke = "#FF2400";
-        console.log(document.querySelector('h2'))
-        document.querySelector('h2').classList.add("blink")
-      }
-
-
-      if(time-- == 0){
-        clearInterval(interval);
-      }
-      else{
-        circle.strokeDashoffset = step * (i++);
-      }
-      // time--;
-    }, 1000);
-
-    setTimeout(()=>{
-      document.getElementById("value1").value = null;
+      setTimeout(() => {
+        document.getElementById("value1").value = null;
         document.getElementById("form").submit();
-    }, (time+1)*1000)
+      }, (time + 1) * 1000);
 
-    document.getElementById(`UserID`).value = localStorage.getItem("UserID");
+      document.getElementById(`UserID`).value = localStorage.getItem("UserID");
 
-    window.onload = () => {
-      const MONEY_LEFT = 100000;
-      const MAX_VALUE = 100000;
-      function drawTips() {
-        let canvas = document.querySelector("canvas");
+      window.onload = () => {
+        const MONEY_LEFT = 100000;
+        const MAX_VALUE = 100000;
+        function drawTips() {
+          let canvas = document.querySelector("canvas");
 
-        let ctx = canvas.getContext("2d");
-        ctx.font = "20px";
-        ctx.globalCompositeOperation = "source-over";
-        ctx.fillText(
-          "Here is some information about these companies:",
-          50,
-          20
-        );
-        ctx.fillText("PayPal stock price: $88.57   ", 50, 40);
+          let ctx = canvas.getContext("2d");
+          ctx.font = "20px";
+          ctx.globalCompositeOperation = "source-over";
           ctx.fillText(
-            "The ML model predicts PayPal stock to grow by x%",
+            "Here is some information about these companies:",
+            50,
+            20
+          );
+          ctx.fillText("PayPal stock price: $88.57   ", 50, 40);
+          ctx.fillText(
+            "The ML model predicts PayPal stock to fall by 1.2% in 1 month",
             50,
             55
           );
           ctx.fillText("Pfizer stock price: $50.61 ", 50, 75);
           ctx.fillText(
-            "The ML model predicts Pfizer stock to grow by x%",
+            "The ML model predicts Pfizer stock to fall by 1% in 1 month",
             50,
             90
           );
           ctx.fillText("Bank of America stock price: $33.71   ", 50, 110);
           ctx.fillText(
-            "The ML model predicts PayPal stock to grow by x%",
+            "The ML model predicts PayPal stock to grow by 2.6% in 1 month",
             50,
             125
           );
           ctx.fillText("ExxonMobil stock price: $94.48", 50, 145);
           ctx.fillText(
-            "The ML model predicts PayPal stock to grow by x%",
+            "The ML model predicts PayPal stock to fall by 5.7% in 1 month",
             50,
             160
           );
           ctx.fillText("Google stock price: $115.48   ", 50, 180);
           ctx.fillText(
-            "The ML model predicts PayPal stock to grow by x%",
+            "The ML model predicts PayPal stock to fall by 1.9% in 1 month",
             50,
             195
           );
-        ctx.font = "22px Serif";
-        ctx.fillText(`Money Left: $${numeral(
-            (MAX_VALUE - getSum())
-          ).format("0,0")}`, 850, 25);
-      }
+          ctx.font = "22px Serif";
+          ctx.fillText(
+            `Money Left: $${numeral(MAX_VALUE - getSum()).format("0,0")}`,
+            850,
+            25
+          );
+        }
 
-      CanvasJS.addColorSet("pieChartTheme", [
-        "#EC5657",
-        "#1BCDD1",
-        "#8FAABB",
-        "#B08BEB",
-        "#3EA0DD",
-        "#F5A52A",
-        "#fff",
-        "#FAA586",
-        "#EB8CC6",
-      ]);
+        CanvasJS.addColorSet("pieChartTheme", [
+          "#EC5657",
+          "#1BCDD1",
+          "#8FAABB",
+          "#B08BEB",
+          "#3EA0DD",
+          "#F5A52A",
+          "#fff",
+          "#FAA586",
+          "#EB8CC6",
+        ]);
 
-      var data = [
-        // { y: 0, indexLabel: "PlayStation 3" },
-      ];
-      let addDataCount = 0;
-      function addData(value, label) {
-        addDataCount++;
-        data.push({ y: value, indexLabel: label });
-      }
+        var data = [
+          // { y: 0, indexLabel: "PlayStation 3" },
+        ];
+        let addDataCount = 0;
+        function addData(value, label) {
+          addDataCount++;
+          data.push({ y: value, indexLabel: label });
+        }
 
         addData(0, "PayPal");
         addData(0, "Pfizer");
@@ -305,200 +333,183 @@ let time = 120;//seconds
         addData(0, "Google");
         addData(0, "Don't Invest");
 
-      function getSum() {
-        let sum = 0;
-        for (let i = 0; i < addDataCount; i++) {
-          sum += data[i].y;
-        }
-        return sum;
-      }
-
-      function renderChart() {
-        let sum = getSum();
-        console.log(`sum is ${sum}`)
-        let additionalData = false;
-
-        if (sum < MAX_VALUE) {
-          additionalData = true;
+        function getSum() {
+          let sum = 0;
+          for (let i = 0; i < addDataCount; i++) {
+            sum += data[i].y;
+          }
+          return sum;
         }
 
-        var chart = new CanvasJS.Chart("chartContainer", {
-          colorSet: "pieChartTheme",
-          title: {
-            text: "Portfolio Allocation",
-          },
-          legend: {
-            maxWidth: 350,
-            itemWidth: 120,
-          },
-          data: [
-            {
-              type: "pie",
-              explodeOnClick: false,
-              showInLegend: true,
-              legendText: "{indexLabel}",
-              dataPoints: additionalData
-                ? [...data, { y: MAX_VALUE - sum, indexLabel: "" }]
-                : data,
+        function renderChart() {
+          let sum = getSum();
+          let additionalData = false;
+
+          if (sum < MAX_VALUE) {
+            additionalData = true;
+          }
+
+          var chart = new CanvasJS.Chart("chartContainer", {
+            colorSet: "pieChartTheme",
+            title: {
+              text: "Portfolio Allocation",
             },
-          ],
-        });
-        chart.render();
-        drawTips();
-      }
+            legend: {
+              maxWidth: 350,
+              itemWidth: 120,
+            },
+            data: [
+              {
+                type: "pie",
+                explodeOnClick: false,
+                showInLegend: true,
+                legendText: "{indexLabel}",
+                dataPoints: additionalData
+                  ? [...data, { y: MAX_VALUE - sum, indexLabel: "" }]
+                  : data,
+              },
+            ],
+          });
+          chart.render();
+          drawTips();
+        }
 
-      let oldData = [];
-      for (let i = 0; i < addDataCount; i++) {
-        oldData.push(0);
-      }
+        let oldData = [];
+        for (let i = 0; i < addDataCount; i++) {
+          oldData.push(0);
+        }
 
-      data.forEach((dataPoint, index) => {
-        let mySpan = document.createElement("div");
-        let inputBox = document.createElement("input");
-        let label = document.createElement("label");
-        let percentage = document.createElement("span");
-        let percentageInput = document.createElement("input");
-        let oldData = data.slice();
+        data.forEach((dataPoint, index) => {
+          let mySpan = document.createElement("div");
+          let inputBox = document.createElement("input");
+          let label = document.createElement("label");
+          let percentage = document.createElement("span");
+          let percentageInput = document.createElement("input");
+          let oldData = data.slice();
 
-        inputBox.type = "range";
-        inputBox.id = `input${index}`;
-        inputBox.min = 0;
-        inputBox.max = 100000;
-        inputBox.step = 100
-        inputBox.value = data[index].y;
-        inputBox.style.maxWidth = '300px'
+          inputBox.type = "range";
+          inputBox.id = `input${index}`;
+          inputBox.min = 0;
+          inputBox.max = 100000;
+          inputBox.step = 100;
+          inputBox.value = data[index].y;
+          inputBox.style.maxWidth = "300px";
 
-        label.for = "input" + index;
-        label.innerText = data[index].indexLabel;
-        label.style.width = "100px";
+          label.for = "input" + index;
+          label.innerText = data[index].indexLabel;
+          label.style.width = "100px";
 
-        percentageInput.style.maxWidth = '60px';
-        percentageInput.style.display = 'none'
-        percentageInput.style.marginLeft = '20px'
-        percentageInput.style.maxWidth = '75px'
-        percentageInput.type = "number"
-        percentageInput.min = "0"
+          percentageInput.style.maxWidth = "60px";
+          percentageInput.style.display = "none";
+          percentageInput.style.marginLeft = "20px";
+          percentageInput.style.maxWidth = "75px";
+          percentageInput.type = "number";
+          percentageInput.min = "0";
 
-        percentage.addEventListener('click', function (e) {
-          percentage.style.display = 'none';
-          percentageInput.style.display = 'inline';
-          percentageInput.value = data[index].y;
-          percentageInput.focus();
-        })
+          percentage.addEventListener("click", function (e) {
+            percentage.style.display = "none";
+            percentageInput.style.display = "inline";
+            percentageInput.value = data[index].y;
+            percentageInput.focus();
+          });
 
-        percentageInput.addEventListener('focusout', function (e) {
+          percentageInput.addEventListener("focusout", function (e) {
+            let newVal = parseInt(percentageInput.value);
 
-          let newVal = parseInt(percentageInput.value);
-          console.log(newVal)
+            let sum = getSum();
 
-          let sum = getSum();
+            if (sum + newVal - data[index].y > MAX_VALUE) {
+              return alert("Sum cannot be greater than $100,000");
+            }
 
-          if( sum + newVal - data[index].y > MAX_VALUE){
-            return alert('Sum cannot be greater than $100,000')
-          }
+            data[index].y = newVal;
 
-          data[index].y = newVal;
-
-          sum = getSum();
-          console.log(sum)
-          if (sum > MAX_VALUE) {
-            if (oldData)
-              data = oldData.slice();
-            alert('Sum cannot be greater than $100,000')
-            return;
-          }
-          else {
-
-            oldData = data.slice();
-            inputBox.value = newVal;
-            renderChart();
-          }
-          percentage.innerText = `$${numeral(
-            (newVal)
-          ).format("0,0")}`;
-          percentageInput.style.display = 'none';
-          percentage.style.display = 'inline';
-        })
-
-        percentage.style.float = "right";
-        percentage.innerHTML = "$0";
-
-
-        mySpan.style.width = "500px";
-
-        inputBox.oninput = function (event) {
-          let sum = getSum();
-          let newValue = parseInt(event.target.value);
-          if (sum > MAX_VALUE) {
-            if (newValue < oldData[index]) {
-              oldData[index] = data[index].y;
+            sum = getSum();
+            if (sum > MAX_VALUE) {
+              if (oldData) data = oldData.slice();
+              alert("Sum cannot be greater than $100,000");
+              return;
+            } else {
+              oldData = data.slice();
+              inputBox.value = newVal;
               renderChart();
+            }
+            percentage.innerText = `$${numeral(newVal).format("0,0")}`;
+            percentageInput.style.display = "none";
+            percentage.style.display = "inline";
+          });
+
+          percentage.style.float = "right";
+          percentage.innerHTML = "$0";
+
+          mySpan.style.width = "500px";
+
+          inputBox.oninput = function (event) {
+            let sum = getSum();
+            let newValue = parseInt(event.target.value);
+            if (sum > MAX_VALUE) {
+              if (newValue < oldData[index]) {
+                oldData[index] = data[index].y;
+                renderChart();
+                return;
+              }
+              alert("You cannot allocate more than $10,000!");
+
+              function getSumWithoutCurrent() {
+                let sum = 0;
+                for (let i = 0; i < addDataCount; i++) {
+                  if (i !== index) {
+                    sum = sum + data[i].y;
+                  }
+                }
+
+                return sum;
+              }
+              inputBox.value = 100000 - getSumWithoutCurrent();
+              data[index].y = 100000 - getSumWithoutCurrent();
+              percentage.innerText = `$${numeral(data[index].y).format("0,0")}`;
+              renderChart();
+
               return;
             }
-            alert("You cannot allocate more than $10,000!");
-
-            function getSumWithoutCurrent() {
-              let sum = 0;
-              for (let i = 0; i < addDataCount; i++) {
-                if (i !== index) {
-                  console.log(`adding ${data[index].y} to ${sum}`)
-                  sum = sum + data[i].y;
-                }
-              }
-
-              return sum;
+            if (newValue <= MAX_VALUE) {
+              oldData[index].y = data[index].y;
+              data[index].y = newValue;
+            } else {
+              inputBox.value = oldData[index].y;
             }
-            inputBox.value = 100000 - getSumWithoutCurrent();
-            data[index].y = 100000 - getSumWithoutCurrent();
-            percentage.innerText = `$${numeral(
-            (data[index].y)
-          ).format("0,0")}`;
-            renderChart();
 
-            return;
-          }
-          if (newValue <= MAX_VALUE) {
-            console.log(oldData)
-            oldData[index].y = data[index].y;
-            data[index].y = newValue;
+            renderChart();
+            // drawTips();
+            //   percentage.innerHTML = data[index].y + "%";
+            // percentage.innerText = `$${data[index].y}`
+            percentage.innerText = `$${numeral(data[index].y).format("0,0")}`;
+
+            document.getElementById(`value${index + 1}`).value = data[index].y;
+          };
+          mySpan.append(inputBox, percentage, percentageInput);
+          // document.getElementById("buttons").append(inputBox, document.createElement("br"), label)
+
+          if (index % 2 == 0) {
+            document.getElementById("col1").append(label, mySpan);
           } else {
-            inputBox.value = oldData[index].y;
+            document.getElementById("col2").append(label, mySpan);
           }
 
           renderChart();
           // drawTips();
-          //   percentage.innerHTML = data[index].y + "%";
-          // percentage.innerText = `$${data[index].y}`
-          percentage.innerText = `$${numeral(
-            (data[index].y)
-          ).format("0,0")}`;
-
-          document.getElementById(`value${index + 1}`).value = data[index].y;
-        };
-        mySpan.append(inputBox, percentage, percentageInput);
-        // document.getElementById("buttons").append(inputBox, document.createElement("br"), label)
-
-        if (index % 2 == 0) {
-          document.getElementById("col1").append(label, mySpan);
-        } else {
-          document.getElementById("col2").append(label, mySpan);
-        }
-
-        renderChart();
-        // drawTips();
-      });
-
-      document
-        .getElementById("submitButton1")
-        .addEventListener("click", function () {
-          if (getSum() == MAX_VALUE) {
-            document.getElementById("form").submit();
-          } else {
-            alert("All the money needs to be allocated!");
-          }
         });
-    };
-  </script>
-</body>
 
+        document
+          .getElementById("submitButton1")
+          .addEventListener("click", function () {
+            if (getSum() == MAX_VALUE) {
+              document.getElementById("form").submit();
+            } else {
+              alert("All the money needs to be allocated!");
+            }
+          });
+      };
+    </script>
+  </body>
 </html>

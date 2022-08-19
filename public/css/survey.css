@@ -11,7 +11,9 @@ body {
   margin-bottom: 0.5rem;
   text-align: center;
   font-size: 2.5rem;
-  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
 .main-body {
@@ -335,7 +337,6 @@ body {
   }
 }
 .card-item__cvv {
-
   position: relative;
   z-index: 2;
   color: white;
@@ -354,7 +355,7 @@ body {
   }
 }
 .card-item__cvvTitle {
- text-align: center;
+  text-align: center;
 }
 .card-item__cvvBand {
   height: fit-content;
@@ -511,8 +512,8 @@ body {
   width: 100%;
   top: 4px;
 }
-#mainCard{
-    transition: transform 0.8s;
+#mainCard {
+  transition: transform 0.8s;
   transform-style: preserve-3d;
 }
 
@@ -521,15 +522,15 @@ body {
   padding: 1em;
   text-align: right;
   color: #181a1a;
-  
+
   box-shadow: 0 1px 5px #00000099;
-  
+
   border-radius: 10px;
   /* background-image: url(https://images.unsplash.com/photo-1557672199-6e8c8b2b8fff?ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80); */
   background-size: cover;
-  
+
   position: relative;
-  
+
   transition-duration: 300ms;
   transition-property: transform, box-shadow;
   transition-timing-function: ease-out;
@@ -547,26 +548,25 @@ body {
   height: 100%;
   left: 0;
   top: 0;
-  
+
   background-image: radial-gradient(circle at 50% -20%, #ffffff22, #0000000f);
 }
 
-.item-fit{
-    font-size: 12px;
+.item-fit {
+  font-size: 12px;
 }
 
-.residence{
-    margin-right: 10px;
-    width: calc((100% - 20px)/3);
+.residence {
+  margin-right: 10px;
+  width: calc((100% - 20px) / 3);
 }
 
-.residence-last{
-    margin-right: 0px;
-    width: calc((100% - 20px)/3);
+.residence-last {
+  margin-right: 0px;
+  width: calc((100% - 20px) / 3);
 }
 
 .btn {
-    margin-top: 3%;
-    margin-left: 45%;
-  }
-  
+  margin-top: 3%;
+  margin-left: 45%;
+}
