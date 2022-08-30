@@ -52,6 +52,57 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
+
+    <style>
+      svg {
+        scale: 1;
+      }
+      nav {
+        position: sticky;
+        top: 0;
+        left: 0;
+        width: 100%;
+        max-height: 20px;
+      }
+
+      .item {
+        display: flex;
+        /* justify-content: center; */
+        align-items: center;
+        position: relative;
+        width: fit-content;
+      }
+
+      .item-heading {
+        width: 140px;
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+      }
+
+      svg {
+        transform: rotate(-90deg);
+      }
+
+      .circle_animation {
+        stroke-dasharray: calc((2 * 22 * 40) / 7);
+        /* this value is the pixel circumference of the circle */
+        stroke-dashoffset: 0;
+        transition: all 1.2s linear;
+      }
+
+      .blink {
+        animation: blinker 1.2s step-start infinite;
+      }
+
+      @keyframes blinker {
+        50% {
+          opacity: 0;
+        }
+      }
+    </style>
   </head>
   <style>
     .overlay {
@@ -63,22 +114,40 @@
     }
   </style>
   <body>
-    <h1 class="heading">Exercise 6</h1>
+    <nav>
+      <div class="item">
+        <h2 class="item-heading">time</h2>
+        <svg width="140" height="140" xmlns="http://www.w3.org/2000/svg">
+          <circle
+            id="circle"
+            class="circle_animation"
+            r="40"
+            cy="71"
+            cx="71"
+            stroke-width="8"
+            stroke="#6fdb6f"
+            fill="none"
+          />
+        </svg>
+      </div>
+    </nav>
+    <h1 class="heading">Exercise 6 of 10</h1>
     <div class="main-body">
       <p>
         You have been given historical data from the past 1 year from
-        <b>August 2022</b> to <b>July 2023</b> of the stock prices of
+        <b>September 2021</b> to <b>August 2022</b> of the stock prices of
         <b>Trivago</b>. Can you predict the stock price for
-        <b>August 2023</b> by dragging that point <b>X</b> on the graph along
-        the Y-axis?
+        <b>September 2022</b> by dragging that point on the graph along the
+        Y-axis?
       </p>
       <p>
-        <b>NOTE:</b> The value for point <b>X</b> is by default set to the value
+        <b>NOTE:</b> The value for September 2022 is by default set to the value
         predicted by the ML model. Please move it above or below as per your
         future estimate.
       </p>
+      <br />
       <div id="main-body-container">
-        <div class="graph" style="width: 753px; padding: 3%">
+        <div class="graph" style="margin-top: 0; width: 753px; padding: 3%">
           <div class="overlay"></div>
           <canvas id="cvs" width="700" height="350">[No canvas support]</canvas>
         </div>
@@ -111,10 +180,50 @@
     <script src="https://www.rgraph.net/libraries/RGraph.common.dynamic.js"></script>
 
     <script>
+      let time = 90; //seconds
+      let i = 0;
+      let finalOffset = (2 * 22 * 40) / 7; // the length of strokedasharray ( pixel circumference of the circle -> css )
+      let step = finalOffset / time;
+      let timeCaption = document.querySelector("h2");
+      let circle = document.querySelector(".circle_animation").style;
+
+      circle.strokeDashoffset = 0;
+      timeCaption.innerText = "Time";
+
+      var interval = setInterval(() => {
+        timeCaption.innerText = new Date(time * 1000)
+          .toISOString()
+          .substring(14, 19);
+        // let colorstep = ++i/len;
+        // document.getElementById("circle").style.stroke = getColor(colorstep);
+        if (time == 30) {
+          document.getElementById("circle").style.stroke = "#FF8C00";
+        }
+
+        if (time == 15) {
+          document.getElementById("circle").style.stroke = "#FF2400";
+          document.querySelector("h2").classList.add("blink");
+        }
+
+        if (time-- == 0) {
+          clearInterval(interval);
+        } else {
+          circle.strokeDashoffset = step * i++;
+        }
+        // time--;
+      }, 1000);
+
+      setTimeout(() => {
+        document.getElementById("input1").value = null;
+        document.getElementById("submit").click();
+      }, (time + 1) * 1000);
+
       let myCanvas = document.getElementById("cvs");
       let ctx = myCanvas.getContext("2d");
-      ctx.font = "bold 15px Arial";
-      ctx.fillText("X", 660, 332);
+      ctx.fillStyle = "#fc9e15";
+      ctx.font = "bold 16px Arial";
+      ctx.fillText("Sept", 650, 333);
+      ctx.fillText("2022", 651, 350);
       document.getElementById(`UserID`).value = localStorage.getItem("UserID");
 
       let value = 1.57;
@@ -122,15 +231,14 @@
         id: "cvs",
         data: [
           [
-            2.83, 2.47, 2.64, 2.14, 2.18, 2.21, 2.25, 2.36, 2.11, 1.7, 1.49,
-            1.57, 1.57,
+            2.47, 2.64, 2.14, 2.18, 2.21, 2.25, 2.36, 2.11, 1.7, 1.49, 1.48,
+            1.54, 1.23,
           ],
         ],
         options: {
           textAccessible: false,
           xaxisLabels: [
-            "Aug",
-            "Sep",
+            "Sept",
             "Oct",
             "Nov",
             "Dec",
@@ -141,6 +249,7 @@
             "May",
             "Jun",
             "Jul",
+            "Aug",
             " ",
           ],
           marginBottom: 35,
@@ -151,16 +260,19 @@
           titleVpos: 0.4,
           tickmarksStyle: "circle",
           tickmarksSize: 5,
-          yaxisScaleMax: 4,
+          yaxisScaleMax: 5,
           yaxisScaleRound: false,
           titleBold: true,
           titleSize: 14,
+          colors: ["#fc9e15"],
         },
       }).draw();
 
       line.on("draw", function (e) {
-        ctx.font = "bold 15px Arial";
-        ctx.fillText("X", 660, 332);
+        ctx.fillStyle = "#fc9e15";
+        ctx.font = "bold 16px Arial";
+        ctx.fillText("Sept", 649.5, 332);
+        ctx.fillText("2022", 650.5, 349);
       });
 
       line.on("adjust", function (e) {
