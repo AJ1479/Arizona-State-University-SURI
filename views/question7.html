@@ -135,13 +135,13 @@
     <div class="main-body">
       <p>
         You have been given historical data from the past 1 year from
-        <b>October 2021</b> to <b>September 2022</b> of the stock prices of
+        <b>September 2021</b> to <b>August 2022</b> of the stock prices of
         <b>Netflix</b> and <b>Disney</b>. Can you predict the stock price for
-        <b>October 2022</b> for <b>both the companies</b> by dragging the
+        <b>September 2022</b> for <b>both the companies</b> by dragging the
         points on the graph along the Y-axis?
       </p>
       <p>
-        <b>NOTE:</b> The values for October 2022 are by default set to those
+        <b>NOTE:</b> The values for September 2022 are by default set to those
         predicted by the ML model. Please move them above or below as per your
         future estimate.
       </p>
@@ -229,7 +229,7 @@
       let ctx = myCanvas.getContext("2d");
       ctx.fillStyle = "black";
       ctx.font = "bold 16px Arial";
-      ctx.fillText("Oct", 655, 333);
+      ctx.fillText("Sept", 650, 333);
       ctx.fillText("2022", 651, 350);
       document.getElementById(`UserID`).value = localStorage.getItem("UserID");
 
@@ -239,19 +239,20 @@
         id: "cvs",
         data: [
           [
-            690.309998, 641.900024, 602.440002, 427.140015,
+            610.340027, 690.309998, 641.900024, 602.440002, 427.140015,
             394.519989, 374.589996, 190.360001, 197.440002, 174.869995, 224.9,
-            223.56, 230.04,	223.1,
+            226.73, 223.1,
           ],
           [
-            169.070007, 144.899994, 154.889999, 142.970001,
+            169.169998, 169.070007, 144.899994, 154.889999, 142.970001,
             148.460007, 137.160004, 111.629997, 110.44, 94.400002, 106.1,
-            112.08, 112.53, 106.3,
+            109.02, 106.3,
           ],
         ],
         options: {
           textAccessible: false,
           xaxisLabels: [
+            "Sept",
             "Oct",
             "Nov",
             "Dec",
@@ -263,7 +264,6 @@
             "Jun",
             "Jul",
             "Aug",
-            "Sept",
             " ",
           ],
           marginBottom: 35,
@@ -286,7 +286,7 @@
       line.on("draw", function (e) {
         ctx.fillStyle = "black";
         ctx.font = "bold 16px Arial";
-        ctx.fillText("Oct", 654.5, 332);
+        ctx.fillText("Sept", 649.5, 332);
         ctx.fillText("2022", 650.5, 349);
       });
 
