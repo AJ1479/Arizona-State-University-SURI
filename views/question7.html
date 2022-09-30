@@ -229,7 +229,7 @@
       let ctx = myCanvas.getContext("2d");
       ctx.fillStyle = "black";
       ctx.font = "bold 16px Arial";
-      ctx.fillText("Sept", 650, 333);
+      ctx.fillText("Oct", 650, 333);
       ctx.fillText("2022", 651, 350);
       document.getElementById(`UserID`).value = localStorage.getItem("UserID");
 
@@ -241,18 +241,17 @@
           [
             690.309998, 641.900024, 602.440002, 427.140015,
             394.519989, 374.589996, 190.360001, 197.440002, 174.869995, 224.9,
-            X, Y
+            223.56, 239.71, X
           ],
           [
             169.070007, 144.899994, 154.889999, 142.970001,
             148.460007, 137.160004, 111.629997, 110.44, 94.400002, 106.1,
-            X, Y
+            112.08, 97.45, X
           ],
         ],
         options: {
           textAccessible: false,
           xaxisLabels: [
-            "Sept",
             "Oct",
             "Nov",
             "Dec",
@@ -264,6 +263,7 @@
             "Jun",
             "Jul",
             "Aug",
+            "Sep",
             " ",
           ],
           marginBottom: 35,
@@ -286,7 +286,7 @@
       line.on("draw", function (e) {
         ctx.fillStyle = "black";
         ctx.font = "bold 16px Arial";
-        ctx.fillText("Sept", 649.5, 332);
+        ctx.fillText("Oct", 649.5, 332);
         ctx.fillText("2022", 650.5, 349);
       });
 
