@@ -135,13 +135,13 @@
     <div class="main-body">
       <p>
         You have been given historical data from the past 1 year from
-        <b>September 2021</b> to <b>August 2022</b> of the stock prices of
+        <b>October 2021</b> to <b>September 2022</b> of the stock prices of
         <b>American Airlines</b>. Can you predict the stock price for
-        <b>September 2022</b> by dragging that point on the graph along the
+        <b>October 2022</b> by dragging that point on the graph along the
         Y-axis?
       </p>
       <p>
-        <b>NOTE:</b> The value for September 2022 is by default set to the value
+        <b>NOTE:</b> The value for October 2022 is by default set to the value
         predicted by the ML model. Please move it above or below as per your
         future estimate.
       </p>
@@ -222,7 +222,7 @@
       let ctx = myCanvas.getContext("2d");
       ctx.fillStyle = "#d51626";
       ctx.font = "bold 16px Arial";
-      ctx.fillText("Sept", 650, 333);
+      ctx.fillText("Oct", 650, 333);
       ctx.fillText("2022", 651, 350);
       document.getElementById(`UserID`).value = localStorage.getItem("UserID");
 
@@ -231,14 +231,13 @@
         id: "cvs",
         data: [
           [
-            20.52, 19.2, 17.69, 17.96, 16.47, 17.25, 18.25, 18.77, 17.87, 12.68,
-            13.71, 12.99, 11.27,
+            19.2, 17.69, 17.96, 16.47, 17.25, 18.25, 18.77, 17.87, 12.68,
+            13.71, 12.99, 12.04, 14.71
           ],
         ],
         options: {
           textAccessible: false,
           xaxisLabels: [
-            "Sept",
             "Oct",
             "Nov",
             "Dec",
@@ -250,7 +249,8 @@
             "Jun",
             "Jul",
             "Aug",
-            " ",
+            "Sep",
+            " "
           ],
           marginBottom: 35,
           linewidth: 2,
@@ -271,7 +271,7 @@
       line.on("draw", function (e) {
         ctx.fillStyle = "#d51626";
         ctx.font = "bold 16px Arial";
-        ctx.fillText("Sept", 649.5, 332);
+        ctx.fillText("Oct", 649.5, 332);
         ctx.fillText("2022", 650.5, 349);
       });
 
