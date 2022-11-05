@@ -216,23 +216,21 @@
       let ctx = myCanvas.getContext("2d");
       ctx.fillStyle = "#0052ff";
       ctx.font = "bold 16px Sans-serif";
-      ctx.fillText("Oct", 650, 333);
+      ctx.fillText("Nov", 650, 333);
       ctx.fillText("2022", 651, 350);
       document.getElementById(`UserID`).value = localStorage.getItem("UserID");
 
-      let value = 75.269997;
+      let value = 0;
       line = new RGraph.Line({
         id: "cvs",
         data: [
           [
-            319.420013, 315, 252.369995, 190.149994, 190.770004,
-            189.860001, 112.709999, 78.099998, 47.02, 62.96, 66.80, 64.49, 64.49
+            329.98, 324.46, 336.35, 313.26, 211.03	222.36	211.13	193.64, 161.25	159.93	162.93	135.68	93.16, 93.16
           ],
         ],
         options: {
           textAccessible: false,
           xaxisLabels: [
-            "Oct",
             "Nov",
             "Dec",
             "Jan",
@@ -244,6 +242,7 @@
             "Jul",
             "Aug",
             "Sep",
+            "Oct",
             " ",
           ],
           marginBottom: 35,
@@ -265,7 +264,7 @@
       line.on("draw", function (e) {
         ctx.fillStyle = "#0052ff";
         ctx.font = "bold 16px Arial";
-        ctx.fillText("Oct", 649.5, 332);
+        ctx.fillText("Nov", 649.5, 332);
         ctx.fillText("2022", 650.5, 349);
       });
 
