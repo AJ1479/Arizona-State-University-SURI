@@ -10,7 +10,6 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <script
       src="https://code.jquery.com/jquery-3.4.1.js"
       integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
@@ -38,7 +37,7 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
-
+   
     <style>
 
       svg{
@@ -104,15 +103,15 @@
         </svg>
       </div>
     </nav>
-    <h1 class="heading">Exercise 2 of 10</h1>
+    <h1 class="heading">Exercise 1 of 10</h1>
     <div class="main-body">
+
       <p>
-        Consider the following 4 boxes, each denoting a company. Each box
-        contains some information about the company. Can you predict by how much
+        Consider the following 4 boxes, each denoting a company. Each box contains some information about the company. Can you predict by how much
         the stock price of the company will grow or fall by the
         <b> end of November 2022</b>? Choose the appropriate color from the chart.
       </p>
-      <p style="margin-bottom: 2rem">
+      <p>
         <b>NOTE:</b> <span style="color: #ff0000">Red</span> indicates a
         fall<span style="color: #ff0000">↓</span> and
         <span style="color: #008000">Green</span> indicates a rise<span
@@ -120,25 +119,17 @@
           >↑</span
         >. The darker the color, the higher the jump/drop.
       </p>
-      <div class="tip">
-        <div><i style="color: #0033cc;"class="bi bi-info-circle-fill"></i></div>
-      <p style="margin-left: 10px;">In this question, you will <u>not</u> be given the graph and the name of the company. Instead, you will be given some information about each company along with the historical price information.</p></div>
-      <br>
-      
-
-
+      <br />
       <div class="flex1">
         <div class="card" style="position: inherit">
-          <div class="text">Company 1</div>
-          <div class="info">
-            This company was founded in <b>2003</b>.<br />
-            52 week High / Low prices: <b>$402.67 / $198.59</b>
-            <br />
-            Sector(s): <b>Consumer Discretionary</b><br />
-            Industry: <b>Auto Manufacturing</b><br />
-            Stock Price: <b>$207.47 </b><br />
-          </div>
+          <div class="text">Netflix</div>
+          <img
+            class="graph"
+            src="../public/img/META5.png"
+            alt="alternatetext"
+          />
           <div class="flex2">
+
             <div data-toggle="tooltip" data-placement="bottom" title="-25%" class="color card1"></div>
             <div class="color card2"></div>
             <div class="color card3"></div>
@@ -150,18 +141,45 @@
             <div class="color card9"></div>
             <div class="color card10"></div>
             <div data-toggle="tooltip" data-placement="bottom" title="+25%" class="color card11"></div>
+          </div>
+          <div style="margin-left: 5%; margin-top: 3%" class="manage hidden">
+            <div>
+              Would your answer change significantly considering there was a
+              different management?
+            </div>
+            <div
+              style="margin-left: 32%"
+              class="btn-group btn-group-toggle"
+              data-toggle="buttons"
+            >
+              <label class="btn btn-secondary" id="option1">
+                <input
+                  type="radio"
+                  name="option5"
+                  value="1"
+                  autocomplete="off"
+                />
+                Yes
+              </label>
+              <label class="btn btn-secondary" id="option2">
+                <input
+                  type="radio"
+                  name="option5"
+                  value="0"
+                  autocomplete="off"
+                />
+                No
+              </label>
+            </div>
           </div>
         </div>
         <div class="card">
-          <div class="text">Company 2</div>
-          <div class="info">
-            This company was founded in <b></b>.<br />
-            52 week High / Low prices: <b>$700.99 / $162.71</b>
-            <br />
-            Sector(s): <b>Technology Services</b><br />
-            Industry: <b>Internet/Software Services</b><br />
-            Stock Price: <b>$260.79</b><br />
-          </div>
+          <div class="text">Sarepta</div>
+          <img
+            class="graph"
+            src="../public/img/TESLA5.png"
+            alt="alternatetext"
+          />
           <div class="flex2">
             <div data-toggle="tooltip" data-placement="bottom" title="-25%" class="color card1"></div>
             <div class="color card2"></div>
@@ -174,6 +192,36 @@
             <div class="color card9"></div>
             <div class="color card10"></div>
             <div data-toggle="tooltip" data-placement="bottom" title="+25%" class="color card11"></div>
+          </div>
+          <div style="margin-left: 5%; margin-top: 3%" class="manage hidden">
+            <div>
+              Would your answer change significantly considering there was a
+              different management?
+            </div>
+            <div
+              style="margin-left: 32%"
+              class="btn-group btn-group-toggle"
+              data-toggle="buttons"
+            >
+              <label class="btn btn-secondary" id="option3">
+                <input
+                  type="radio"
+                  name="option"
+                  value="1"
+                  autocomplete="off"
+                />
+                Yes
+              </label>
+              <label class="btn btn-secondary" id="option4">
+                <input
+                  type="radio"
+                  name="option6"
+                  value="0"
+                  autocomplete="off"
+                />
+                No
+              </label>
+            </div>
           </div>
         </div>
       </div>
@@ -181,15 +229,8 @@
       <br />
       <div class="flex1">
         <div class="card" style="position: inherit">
-          <div class="text">Company 3</div>
-          <div class="info">
-            This company was founded in <b>1980</b>.<br />
-            52 week High / Low prices: <b>$120.23 / $61.28</b>
-            <br />
-            Sector(s): <b>Healthcare</b><br />
-            Industry: <b>Biotechnology</b><br />
-            Stock Price: <b>$103.63</b><br />
-          </div>
+          <div class="text">Tesla</div>
+          <img class="graph" src="../public/img/US5.png" alt="alternatetext" />
           <div class="flex2">
             <div data-toggle="tooltip" data-placement="bottom" title="-25%" class="color card1"></div>
             <div class="color card2"></div>
@@ -202,18 +243,41 @@
             <div class="color card9"></div>
             <div class="color card10"></div>
             <div data-toggle="tooltip" data-placement="bottom" title="+25%" class="color card11"></div>
+          </div>
+          <div style="margin-left: 5%; margin-top: 3%" class="manage hidden">
+            <div>
+              Would your answer change significantly considering there was a
+              different management?
+            </div>
+            <div
+              style="margin-left: 32%"
+              class="btn-group btn-group-toggle"
+              data-toggle="buttons"
+            >
+              <label class="btn btn-secondary" id="option5">
+                <input
+                  type="radio"
+                  name="option7"
+                  value="1"
+                  autocomplete="off"
+                />
+                Yes
+              </label>
+              <label class="btn btn-secondary" id="option6">
+                <input
+                  type="radio"
+                  name="option7"
+                  value="0"
+                  autocomplete="off"
+                />
+                No
+              </label>
+            </div>
           </div>
         </div>
         <div class="card">
-          <div class="text">Company 4</div>
-          <div class="info">
-            This company was founded in <b>1926</b>.<br />
-            52 week High / Low prices: <b>$22.35 / $11.65</b>
-            <br />
-            Sector(s): <b>Industrials</b><br />
-            Industry: <b>Airlines</b><br />
-            Stock Price: <b>$14.11</b><br />
-          </div>
+          <div class="text">American Airlines</div>
+          <img class="graph" src="../public/img/SRTP5.png" alt="alternatetext" />
           <div class="flex2">
             <div data-toggle="tooltip" data-placement="bottom" title="-25%" class="color card1"></div>
             <div class="color card2"></div>
@@ -227,9 +291,39 @@
             <div class="color card10"></div>
             <div data-toggle="tooltip" data-placement="bottom" title="+25%" class="color card11"></div>
           </div>
+          <div style="margin-left: 5%; margin-top: 3%" class="manage hidden">
+            <div>
+              Would your answer change significantly considering there was a
+              different management?
+            </div>
+            <div
+              style="margin-left: 32%"
+              class="btn-group btn-group-toggle"
+              data-toggle="buttons"
+            >
+              <label class="btn btn-secondary" id="option7">
+                <input
+                  type="radio"
+                  name="option8"
+                  value="1"
+                  autocomplete="off"
+                />
+                Yes
+              </label>
+              <label class="btn btn-secondary" id="option8">
+                <input
+                  type="radio"
+                  name="option8"
+                  value="0"
+                  autocomplete="off"
+                />
+                No
+              </label>
+            </div>
+          </div>
         </div>
       </div>
-      <form method="POST" id="form" action="/2">
+      <form method="POST" id="form" action="/1">
         <input type="text" class="hidden" name="UserID" id="UserID" />
         <input type="text" class="hidden" name="input1" id="input1" />
         <input type="text" class="hidden" name="input2" id="input2" />
@@ -241,20 +335,27 @@
         <input type="text" class="hidden" name="input8" id="input8" />
         <button type="submit" class="hidden" id="submit1"></button>
       </form>
-      <button
+      <input
         type="submit"
         class="btn btn-outline-success"
         id="submitButton"
         value="Submit"
         onclick="submit()"
-      >
-        Submit
-      </button>
+      />
     </div>
+    
 
     <script>
 
-let time = 120;//seconds
+// function getColor(value){
+//     //value from 0 to 1
+//     var hue=((1-value)*120).toString(10);
+//     return ["hsl(",hue,",100%,40%)"].join("");
+// }
+
+// var len=120;
+
+    let time = 120;//seconds
     let i = 0;
     let finalOffset = (2*22*40)/7;// the length of strokedasharray ( pixel circumference of the circle -> css )
     let step = finalOffset / time;
@@ -292,6 +393,7 @@ let time = 120;//seconds
       document.getElementById("form").submit();
     }, (time+1)*1000)
 
+
 $(function () {   
   $('[data-toggle="tooltip"]').tooltip() 
 })
@@ -299,7 +401,8 @@ $(function () {
 $('.card1').tooltip({placement: 'bottom', trigger: 'manual'}).tooltip('hide');
 $('.card6').tooltip({placement: 'bottom', trigger: 'manual'}).tooltip('hide');
 $('.card11').tooltip({placement: 'bottom', trigger: 'manual'}).tooltip('hide');
-      stage1 = true;
+
+      var stage1 = true;
 
       function submit() {
         if (stage1 == true) {
@@ -309,20 +412,31 @@ $('.card11').tooltip({placement: 'bottom', trigger: 'manual'}).tooltip('hide');
               return;
             }
           }
-
-          alert(
-            "You can have a look at the hidden company names before pressing continue."
-          );
-          let companies = document.getElementsByClassName("text");
-          companies[0].innerHTML = "Tesla";
-          companies[1].innerHTML = "Netflix";
-          companies[2].innerHTML = "Sarepta";
-          companies[3].innerHTML = "American Airlines;
-
-          document.getElementById("submitButton").innerHTML = "Continue";
-
           stage1 = false;
+          let manage = document.getElementsByClassName("manage");
+          for (let i = 0; i < manage.length; i++) {
+            manage[i].classList.remove("hidden");
+          }
         } else {
+          let offset = 5;
+          for (let i = 1; i < 9; i++) {
+            if ($(`#option${i}`).hasClass("active")) {
+              if (i % 2 == 0) {
+                document.getElementById(`input${offset}`).value = 0;
+                offset++;
+              } else {
+                document.getElementById(`input${offset}`).value = 1;
+                offset++;
+              }
+            }
+          }
+          for (let i = 5; i < 9; i++) {
+            if (document.getElementById(`input${i}`).value == "") {
+              alert("Please select all the required options.");
+              return;
+            }
+          }
+
           document.getElementById("form").submit();
         }
       }
@@ -348,7 +462,8 @@ $('.card11').tooltip({placement: 'bottom', trigger: 'manual'}).tooltip('hide');
         let colorButtons = cards[i].querySelector(".flex2");
         for (let j = 1; j < 12; j++) {
           let colors = colorButtons.querySelector(`.card${j}`);
-          $(colorButtons).hover(function(){  
+          $(document).ready(function(){  
+    $(colorButtons).hover(function(){  
       $(colorButtons).find(".card1").tooltip({placement: 'bottom'}).tooltip('show');
             $(colorButtons).find(".card6").tooltip({placement: 'bottom'}).tooltip('show');
             $(colorButtons).find(".card11").tooltip({placement: 'bottom'}).tooltip('show');  
@@ -357,6 +472,7 @@ $('.card11').tooltip({placement: 'bottom', trigger: 'manual'}).tooltip('hide');
             $(colorButtons).find(".card6").tooltip({placement: 'bottom'}).tooltip('hide');
             $(colorButtons).find(".card11").tooltip({placement: 'bottom'}).tooltip('hide');  
     });  
+});  
           colors.onclick = function color() {
             if (stage1 == false) {
               return;
