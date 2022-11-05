@@ -269,11 +269,11 @@
             50,
             20
           );
-          ctx.fillText("Coinbase stock price: $64.49", 50, 40);
-          ctx.fillText("Microsoft stock price: $232.90   ", 50, 55);
-          ctx.fillText("Coca Cola stock price: $56.02  ", 50, 70);
-          ctx.fillText("Heska stock price: $72.92   ", 50, 85);
-          ctx.fillText("Gap Inc. stock price: $8.21   ", 50, 100);
+          ctx.fillText("Meta stock price: $64.49", 50, 40);
+          ctx.fillText("Visa stock price: $232.90   ", 50, 55);
+          ctx.fillText("Apple stock price: $56.02  ", 50, 70);
+          ctx.fillText("United Steel stock price: $72.92   ", 50, 85);
+          ctx.fillText("Coca cola stock price: $8.21   ", 50, 100);
           ctx.font = "22px Serif";
           ctx.fillText(
             `Money Left: $${numeral(MAX_VALUE - getSum()).format("0,0")}`,
@@ -303,10 +303,10 @@
           data.push({ y: value, indexLabel: label });
         }
 
-        addData(0, "Coinbase");
-        addData(0, "Heska");
-        addData(0, "Microsoft");
-        addData(0, "Gap Inc.");
+        addData(0, "Meta");
+        addData(0, "Visa");
+        addData(0, "Apple");
+        addData(0, "United Steel");
         addData(0, "Coca Cola");
         addData(0, "Don't Invest");
 
