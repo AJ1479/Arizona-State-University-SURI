@@ -1,36 +1,51 @@
 <!DOCTYPE html>
-<html class="html">
+<html>
   <head>
     <meta charset="utf-8" />
     <title>ASU SURI</title>
 
     <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-      crossorigin="anonymous"
+      rel="canonical"
+      href="https://www.rgraph.net/canvas/adjusting-line.html"
     />
-    <script
-      src="https://code.jquery.com/jquery-3.4.1.js"
-      integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-      crossorigin="anonymous"
-    ></script>
+    <!-- <base href="https://www.rgraph.net/canvas" target="_blank"> -->
+    <meta
+      name="description"
+      content="Information about adjusting the Line chart interactively. They can be useful if you're doing a presentation and need to illustrate changes."
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="google-site-verification"
+      content="s8bvfR_0aMUePehdfWjaLDopT4oyoRO-XaOTfcjJhgY"
+    />
+    <link rel="stylesheet" href="/css/styles.css" type="text/css" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="https://www.rgraph.net/images/favicon.png"
+    />
+
+    <meta
+      property="og:image"
+      content="https://www.rgraph.net/images/logo-250x250.png"
+    />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content="https://www.rgraph.net/canvas/adjusting-line.html"
+    />
+
+    <script src="https://www.rgraph.net/libraries/RGraph.common.core.js"></script>
+    <!-- DO NOT DEFER -->
+    <script src="https://www.rgraph.net/js/jquery.min.351.js"></script>
+    <script src="https://www.rgraph.net/js/combined.html/menuhints.js"></script>
+
     <link
       href="https://fonts.googleapis.com/css?family=Lora:400,400italic"
       rel="stylesheet"
       type="text/css"
     />
-    <link rel="stylesheet" href="../public/css/index.css" />
+    <link rel="stylesheet" href="./public/css/index1.css" />
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -39,9 +54,8 @@
     />
 
     <style>
-
-      svg{
-        scale: 1
+      svg {
+        scale: 1;
       }
       nav {
         position: sticky;
@@ -50,7 +64,7 @@
         width: 100%;
         max-height: 20px;
       }
-  
+
       .item {
         display: flex;
         /* justify-content: center; */
@@ -58,7 +72,7 @@
         position: relative;
         width: fit-content;
       }
-  
+
       .item-heading {
         width: 140px;
         position: absolute;
@@ -67,347 +81,205 @@
         justify-content: center;
         font-size: 20px;
       }
-  
+
       svg {
         transform: rotate(-90deg);
       }
-  
+
       .circle_animation {
-        stroke-dasharray: calc((2*22*40)/7);
+        stroke-dasharray: calc((2 * 22 * 40) / 7);
         /* this value is the pixel circumference of the circle */
         stroke-dashoffset: 0;
         transition: all 1.2s linear;
       }
 
       .blink {
-  animation: blinker 1.2s step-start infinite;
-}
+        animation: blinker 1.2s step-start infinite;
+      }
 
-@keyframes blinker {
-  50% {
-    opacity: 0;
-  }
-}
-
+      @keyframes blinker {
+        50% {
+          opacity: 0;
+        }
+      }
     </style>
-
   </head>
-
-  <body class="html">
+  <style>
+    .overlay {
+      z-index: 99999999999999999;
+      position: absolute;
+      width: 625px;
+      height: 290px;
+      /* background-color: red; */
+    }
+  </style>
+  <body>
     <nav>
       <div class="item">
         <h2 class="item-heading">time</h2>
         <svg width="140" height="140" xmlns="http://www.w3.org/2000/svg">
-          <circle id="circle" class="circle_animation" r="40" cy="71" cx="71" stroke-width="8" stroke="#6fdb6f"
-            fill="none" />
+          <circle
+            id="circle"
+            class="circle_animation"
+            r="40"
+            cy="71"
+            cx="71"
+            stroke-width="8"
+            stroke="#6fdb6f"
+            fill="none"
+          />
         </svg>
       </div>
     </nav>
-    <h1 class="heading">Exercise 3 of 10</h1>
-    <div class="main-body" style="height: 82%">
+    <h1 class="heading">Exercise 4 of 10</h1>
+    <div class="main-body">
       <p>
-        Consider the following 4 boxes, each denoting a company. Each box contains some information about the company. Predict by how much
-        the stock price of the company will grow or fall by the:
-        <ol>
-        <li>end of<b> November 2023</b> for companies 1 and 4 (i.e. <b>Apple Inc.</b> and <b>VISA</b>)</li>
-        <li>end of<b> Jan 2023</b> for companies 2 and 3 (i.e. <b>Company X</b> and <b>Company Y</b>)</li>  
-        </ol>
-        Choose the appropriate color from the chart. Here, you are also given the prediction made by an ML model for each company.
+        You have been given historical data from the past 1 year from
+        <b>November 2021</b> to <b>October 2022</b> of the stock prices of
+        <b>Coinbase</b>. Can you predict the stock price for
+        <b>November 2022</b> by dragging that point on the graph along the
+        Y-axis?
       </p>
       <p>
-        <b>NOTE:</b> <span style="color: #ff0000">Red</span> indicates a
-        fall<span style="color: #ff0000">↓</span> and
-        <span style="color: #008000">Green</span> indicates a rise<span
-          style="color: #008000"
-          >↑</span
-        >. The darker the color, the higher the jump/drop.
+        <b>NOTE:</b> The value for November 2022 is by default set to same
+        value as the previous month. Please move it above or below as per your
+        future estimate.
       </p>
       <br />
-      <div class="flex1">
-        <div class="card" style="position: inherit">
-          <div class="text">Apple Inc.</div>
-          <img
-            class="graph"
-            id="apple"
-            src="../public/img/APPLE4.png"
-            alt="alternatetext"
-          />
-          <div class="flex2">
-            <div data-toggle="tooltip" data-placement="bottom" title="-25%" class="color card1"></div>
-            <div class="color card2"></div>
-            <div class="color card3"></div>
-            <div class="color card4"></div>
-            <div class="color card5"></div>
-            <div data-toggle="tooltip" data-placement="bottom" title="0%" class="color card6"></div>
-            <div class="color card7"></div>
-            <div class="color card8"></div>
-            <div class="color card9"></div>
-            <div class="color card10"></div>
-            <div data-toggle="tooltip" data-placement="bottom" title="+25%" class="color card11"></div>
-          </div>
-          <div style="margin: 1% auto 0 auto; font-size: smaller">
-            The ML model predicts a growth of <span style="color: green">10.96%</span> with some
-            accuracy.
-          </div>
+      <div id="main-body-container">
+        <div class="graph" style="margin-top: 0; width: 753px; padding: 3%">
+          <div class="overlay"></div>
+          <canvas id="cvs" width="700" height="350">[No canvas support]</canvas>
         </div>
-        <div class="card">
-          <div class="text">Company X</div>
-          <div class="info" id="companyx">
-            This company was founded in <b>1993</b>.<br />
-            52 week High / Low prices: <b>$346.47 / $119.46</b>
-            <br />
-            Sector(s): <b>Technology</b><br />
-            Industry: <b>Semiconductors</b><br />
-            Stock Price: <b>$121.39</b><br />
-          </div>
-          <div class="flex2">
-            <div data-toggle="tooltip" data-placement="bottom" title="-25%" class="color card1"></div>
-            <div class="color card2"></div>
-            <div class="color card3"></div>
-            <div class="color card4"></div>
-            <div class="color card5"></div>
-            <div data-toggle="tooltip" data-placement="bottom" title="0%" class="color card6"></div>
-            <div class="color card7"></div>
-            <div class="color card8"></div>
-            <div class="color card9"></div>
-            <div class="color card10"></div>
-            <div data-toggle="tooltip" data-placement="bottom" title="+25%" class="color card11"></div>
-          </div>
-          <div style="margin: 1% auto 0 auto; font-size: smaller">
-            The ML model predicts a growth of <span style="color: red">-48.42%</span> with some
-            accuracy.
-          </div>
-        </div>
+
+        <br />
+        <input
+          type="submit"
+          class="btn btn-outline-success"
+          id="submitButton"
+          value="Submit"
+          onclick="submit()"
+        />
+
+        <form method="POST" id="form" action="/4">
+          <input type="text" class="hidden" name="UserID" id="UserID" />
+          <input type="text" class="hidden" name="input1" id="input1" />
+          <button type="submit" class="hidden" id="submit"></button>
+        </form>
       </div>
-      <br />
-      <br />
-      <div class="flex1">
-        <div class="card" style="position: inherit">
-          <div class="text">Company Y</div>
-          <div class="info" id="companyy">
-            This company was founded in <b>1901</b>.<br />
-            52 week High / Low prices: <b>$39.25 / $16.41</b>
-            <br />
-            Sector(s): <b>Basic Materials</b><br />
-            Industry: <b>Steel</b><br />
-            Stock Price: <b>$18.12</b><br />
-          </div>
-          <div class="flex2">
-            <div data-toggle="tooltip" data-placement="bottom" title="-25%" class="color card1"></div>
-            <div class="color card2"></div>
-            <div class="color card3"></div>
-            <div class="color card4"></div>
-            <div class="color card5"></div>
-            <div data-toggle="tooltip" data-placement="bottom" title="0%" class="color card6"></div>
-            <div class="color card7"></div>
-            <div class="color card8"></div>
-            <div class="color card9"></div>
-            <div class="color card10"></div>
-            <div data-toggle="tooltip" data-placement="bottom" title="+25%" class="color card11"></div>
-          </div>
-          <div style="margin: 1% auto 0 auto; font-size: smaller">
-            The ML model predicts a growth of <span style="color: green">4.19%</span> with some
-            accuracy.
-          </div>
-        </div>
-        <div class="card">
-          <div class="text">VISA</div>
-          <img
-            class="graph"
-            id="VISA"
-            src="../public/img/VISA4.png"
-            alt="alternatetext"
-          />
-          <div class="flex2">
-            <div data-toggle="tooltip" data-placement="bottom" title="-25%" class="color card1"></div>
-            <div class="color card2"></div>
-            <div class="color card3"></div>
-            <div class="color card4"></div>
-            <div class="color card5"></div>
-            <div data-toggle="tooltip" data-placement="bottom" title="0%" class="color card6"></div>
-            <div class="color card7"></div>
-            <div class="color card8"></div>
-            <div class="color card9"></div>
-            <div class="color card10"></div>
-            <div data-toggle="tooltip" data-placement="bottom" title="+25%" class="color card11"></div>
-          </div>
-          <div style="width: fit-content;
-          margin: 1% auto; padding: 0 5%; font-size: smaller">
-            The ML model predicts a growth of <span style="color: green">14.22%</span> with some
-            accuracy.
-          </div>
-        </div>
-      </div>
-      <form method="POST" id="form" action="/3">
-        <input type="text" class="hidden" name="UserID" id="UserID" />
-        <input type="text" class="hidden" name="input1" id="input1" />
-        <input type="text" class="hidden" name="input2" id="input2" />
-        <input type="text" class="hidden" name="input3" id="input3" />
-        <input type="text" class="hidden" name="input4" id="input4" />
-        <input type="text" class="hidden" name="input5" id="input5" />
-        <input type="text" class="hidden" name="input6" id="input6" />
-        <input type="text" class="hidden" name="input7" id="input7" />
-        <input type="text" class="hidden" name="input8" id="input8" />
-        <button type="submit" class="hidden" id="submit1"></button>
-      </form>
-      <button
-        type="submit"
-        class="btn btn-outline-success"
-        id="submitButton"
-        value="Submit"
-        onclick="submit()"
-      >
-        Submit
-      </button>
+      <!-- End #main-body-container that was started in the header -->
     </div>
 
+    <script src="https://www.rgraph.net/libraries/RGraph.line.js"></script>
+    <script src="https://www.rgraph.net/libraries/RGraph.common.dynamic.js"></script>
+
     <script>
-let time = 120;//seconds
-    let i = 0;
-    let finalOffset = (2*22*40)/7;// the length of strokedasharray ( pixel circumference of the circle -> css )
-    let step = finalOffset / time;
-    let timeCaption = document.querySelector('h2');
-    let circle = document.querySelector('.circle_animation').style;
+      let time = 90; //seconds
+      let i = 0;
+      let finalOffset = (2 * 22 * 40) / 7; // the length of strokedasharray ( pixel circumference of the circle -> css )
+      let step = finalOffset / time;
+      let timeCaption = document.querySelector("h2");
+      let circle = document.querySelector(".circle_animation").style;
 
-    circle.strokeDashoffset = 0;
-    timeCaption.innerText = "Time";
+      circle.strokeDashoffset = 0;
+      timeCaption.innerText = "Time";
 
-    var interval = setInterval(() => {
-      timeCaption.innerText = new Date(time * 1000).toISOString().substring(14, 19);
-      // let colorstep = ++i/len;
-      // document.getElementById("circle").style.stroke = getColor(colorstep);
-      if(time == 60){
-        document.getElementById("circle").style.stroke = "#FF8C00";
-      }
-
-      if(time == 30){
-        document.getElementById("circle").style.stroke = "#FF2400";
-        document.querySelector('h2').classList.add("blink")
-      }
-
-
-      if(time-- == 0){
-        clearInterval(interval);
-      }
-      else{
-        circle.strokeDashoffset = step * (i++);
-      }
-      // time--;
-    }, 1000);
-
-    setTimeout(()=>{
-      document.getElementById("input1").value = null;
-      document.getElementById("form").submit();
-    }, (time+1)*1000)
-    
-$(function () {   
-  $('[data-toggle="tooltip"]').tooltip() 
-})
-
-$('.card1').tooltip({placement: 'bottom', trigger: 'manual'}).tooltip('hide');
-$('.card6').tooltip({placement: 'bottom', trigger: 'manual'}).tooltip('hide');
-$('.card11').tooltip({placement: 'bottom', trigger: 'manual'}).tooltip('hide');
-      stage1 = true;
-
-      function submit() {
-        if (stage1 == true) {
-          for (let i = 0; i < 4; i++) {
-            if (document.getElementById(`input${i + 1}`).value == "") {
-              alert("Please select all the required options.");
-              return;
-            }
-          }
-
-          alert(
-            "You can have a look at the hidden company names before pressing continue."
-          );
-          let companies = document.getElementsByClassName("text");
-          companies[1].innerHTML = "NVIDIA";
-          companies[2].innerHTML = "United States Steel Corp.";
-
-          document.getElementById("submitButton").innerHTML = "Continue";
-
-          stage1 = false;
-        } else {
-          document.getElementById("form").submit();
+      var interval = setInterval(() => {
+        timeCaption.innerText = new Date(time * 1000)
+          .toISOString()
+          .substring(14, 19);
+        // let colorstep = ++i/len;
+        // document.getElementById("circle").style.stroke = getColor(colorstep);
+        if (time == 30) {
+          document.getElementById("circle").style.stroke = "#FF8C00";
         }
-      }
 
+        if (time == 15) {
+          document.getElementById("circle").style.stroke = "#FF2400";
+          document.querySelector("h2").classList.add("blink");
+        }
+
+        if (time-- == 0) {
+          clearInterval(interval);
+        } else {
+          circle.strokeDashoffset = step * i++;
+        }
+        // time--;
+      }, 1000);
+
+      setTimeout(() => {
+        document.getElementById("input1").value = null;
+        document.getElementById("submit").click();
+      }, (time + 1) * 1000);
+
+      let myCanvas = document.getElementById("cvs");
+      let ctx = myCanvas.getContext("2d");
+      ctx.fillStyle = "#0052ff";
+      ctx.font = "bold 16px Sans-serif";
+      ctx.fillText("Oct", 650, 333);
+      ctx.fillText("2022", 651, 350);
       document.getElementById(`UserID`).value = localStorage.getItem("UserID");
 
-      let colorArr = [
-        "#970023",
-        "#ce2827",
-        "#ee5f3f",
-        "#fba25c",
-        "#fed785",
-        "#fefdb9",
-        "#d9e986",
-        "#a2cf67",
-        "#64b15c",
-        "#2d8b4b",
-        "#185d33",
-      ];
-      let cards = document.getElementsByClassName("card");
-      for (let i = 0; i < 4; i++) {
-        let companyName = cards[i].querySelector(".text").innerHTML;
-        let colorButtons = cards[i].querySelector(".flex2");
-        for (let j = 1; j < 12; j++) {
-          let colors = colorButtons.querySelector(`.card${j}`);
-          $(colorButtons).hover(function(){  
-      $(colorButtons).find(".card1").tooltip({placement: 'bottom'}).tooltip('show');
-            $(colorButtons).find(".card6").tooltip({placement: 'bottom'}).tooltip('show');
-            $(colorButtons).find(".card11").tooltip({placement: 'bottom'}).tooltip('show');  
-        }, function(){  
-          $(colorButtons).find(".card1").tooltip({placement: 'bottom'}).tooltip('hide');
-            $(colorButtons).find(".card6").tooltip({placement: 'bottom'}).tooltip('hide');
-            $(colorButtons).find(".card11").tooltip({placement: 'bottom'}).tooltip('hide');  
-    });  
-          colors.onclick = function color() {
-            if (stage1 == false) {
-              return;
-            }
-            cards[i].style.borderColor = colorArr[j - 1];
-            cards[i].style.borderWidth = "medium";
-            for (let k = 1; k < 12; k++) {
-              let colorButtons2 = cards[i].querySelector(".flex2");
-              colorButtons2
-                .querySelector(`.card${k}`)
-                .classList.remove("focus");
-            }
-            colors.classList.add("focus");
-            document.getElementById(`input${i + 1}`).value = j;
-          };
-        }
+      let value = 75.269997;
+      line = new RGraph.Line({
+        id: "cvs",
+        data: [
+          [
+            319.420013, 315, 252.369995, 190.149994, 190.770004,
+            189.860001, 112.709999, 78.099998, 47.02, 62.96, 66.80, 64.49, 64.49
+          ],
+        ],
+        options: {
+          textAccessible: false,
+          xaxisLabels: [
+            "Oct",
+            "Nov",
+            "Dec",
+            "Jan",
+            "Feb",
+            "Mar",
+            "Apr",
+            "May",
+            "Jun",
+            "Jul",
+            "Aug",
+            "Sep",
+            " ",
+          ],
+          marginBottom: 35,
+          linewidth: 2,
+          shadow: true,
+          adjustable: true,
+          title: "Coinbase",
+          titleVpos: 0.4,
+          tickmarksStyle: "circle",
+          tickmarksSize: 5,
+          yaxisScaleMax: 400,
+          yaxisScaleRound: false,
+          titleBold: true,
+          titleSize: 14,
+          colors: ["#0052ff"],
+        },
+      }).draw();
+
+      line.on("draw", function (e) {
+        ctx.fillStyle = "#0052ff";
+        ctx.font = "bold 16px Arial";
+        ctx.fillText("Oct", 649.5, 332);
+        ctx.fillText("2022", 650.5, 349);
+      });
+
+      line.on("adjust", function (e) {
+        let index = e.__mouseover_shape__.index;
+        let dataset = e.__mouseover_shape__.dataset;
+        let newValue = e.data[dataset][index];
+        value = newValue;
+      });
+
+      function submit() {
+        document.getElementById("input1").value = value;
+        document.getElementById("submit").click();
       }
-
-      window.onload = function () {
-        document.getElementById("companyx").style.height = `${
-          document.getElementById("apple").offsetHeight
-        }px`;
-        document.getElementById("companyy").style.height = `${
-          document.getElementById("VISA").offsetHeight
-        }px`;
-      };
-
-      var $element = $("#apple");
-      var lastHeight = $("#apple").css("height");
-      function checkForChanges() {
-        if ($element.css("height") != lastHeight) {
-          lastHeight = $element.css("height");
-          document.getElementById("companyx").style.height = `${
-          document.getElementById("apple").offsetHeight
-        }px`;
-        document.getElementById("companyy").style.height = `${
-          document.getElementById("VISA").offsetHeight
-        }px`;
-        }
-        
-        setTimeout(checkForChanges, 100);
-      }
-
-      
-      setTimeout(checkForChanges, 100);
     </script>
   </body>
 </html>
