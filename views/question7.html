@@ -229,7 +229,7 @@
       let ctx = myCanvas.getContext("2d");
       ctx.fillStyle = "black";
       ctx.font = "bold 16px Arial";
-      ctx.fillText("Oct", 650, 333);
+      ctx.fillText("Nov", 650, 333);
       ctx.fillText("2022", 651, 350);
       document.getElementById(`UserID`).value = localStorage.getItem("UserID");
 
@@ -239,20 +239,17 @@
         id: "cvs",
         data: [
           [
-            690.309998, 641.900024, 602.440002, 427.140015,
-            394.519989, 374.589996, 190.360001, 197.440002, 174.869995, 224.9,
-            223.56, 257.02, 247.00
+            681.17, 641.9, 602.44, 427.14, 394.52, 374.59, 199.46, 
+            197.44, 174.87, 226.21, 223.56, 235.44, 291.88, 291.88
           ],
           [
-            169.070007, 144.899994, 154.889999, 142.970001,
-            148.460007, 137.160004, 111.629997, 110.44, 94.400002, 106.1,
-            112.08, 136.07, 103.71
+            402.86, 381.59, 352.26, 312.24, 290.14, 359.2, 300.98, 
+            252.75, 224.47, 297.28, 275.61, 265.25, 227.54, 227.54
           ],
         ],
         options: {
           textAccessible: false,
           xaxisLabels: [
-            "Oct",
             "Nov",
             "Dec",
             "Jan",
@@ -264,13 +261,14 @@
             "Jul",
             "Aug",
             "Sep",
+            "Oct",
             " "
           ],
           marginBottom: 35,
           linewidth: 2,
           shadow: true,
           adjustable: true,
-          title: "Netflix vs Disney",
+          title: "Netflix vs Tesla",
           titleVpos: 0.4,
           tickmarksStyle: "circle",
           tickmarksSize: 5,
@@ -286,7 +284,7 @@
       line.on("draw", function (e) {
         ctx.fillStyle = "black";
         ctx.font = "bold 16px Arial";
-        ctx.fillText("Oct", 649.5, 332);
+        ctx.fillText("Nov", 649.5, 332);
         ctx.fillText("2022", 650.5, 349);
       });
 
