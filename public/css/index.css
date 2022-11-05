@@ -46,9 +46,19 @@ body {
   margin: 3% auto;
 }
 
+.flex3 {
+  display: flex;
+  height: 27.85px;
+  width: 80%;
+  justify-content: space-around;
+  background-color: white;
+  margin: 3% auto;
+}
+
 .color {
   height: 100%;
   width: calc(100% / 11);
+  font-size: 11px; text-align: center; line-height: 27.85px; 
 }
 
 .card1 {
@@ -170,4 +180,12 @@ body {
 .tip {
   display: flex;
   flex-direction: row;
+}
+
+.red{
+  color: red;
+}
+
+.green{
+  color: green;
 }
