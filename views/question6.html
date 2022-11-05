@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <title>ASU SURI</title>
-
+    <script src="https://www.rgraph.net/libraries/RGraph.common.key.js"></script>
     <link
       rel="canonical"
       href="https://www.rgraph.net/canvas/adjusting-line.html"
@@ -109,7 +109,7 @@
       z-index: 99999999999999999;
       position: absolute;
       width: 625px;
-      height: 275px;
+      height: 300px;
       /* background-color: red; */
     }
   </style>
@@ -131,18 +131,18 @@
         </svg>
       </div>
     </nav>
-    <h1 class="heading">Exercise 7 of 10</h1>
+    <h1 class="heading">Exercise 8 of 10</h1>
     <div class="main-body">
       <p>
         You have been given historical data from the past 1 year from
         <b>November 2021</b> to <b>October 2022</b> of the stock prices of
-        <b>American Airlines</b>. Can you predict the stock price for
-        <b>November 2022</b> by dragging that point on the graph along the
-        Y-axis?
+        <b>Netflix</b> and <b>Disney</b>. Can you predict the stock price for
+        <b>November 2022</b> for <b>both the companies</b> by dragging the
+        points on the graph along the Y-axis?
       </p>
       <p>
-        <b>NOTE:</b> The value for November 2022 is by default set to the value
-        predicted by the ML model. Please move it above or below as per your
+        <b>NOTE:</b> The values for November 2022 are by default set to those
+        predicted by the ML model. Please move them above or below as per your
         future estimate.
       </p>
       <br />
@@ -161,14 +161,21 @@
           onclick="submit()"
         />
 
-        <form method="POST" action="/7">
+        <form method="POST" action="/8">
           <input type="text" class="hidden" name="UserID" id="UserID" />
           <input
             type="text"
             class="hidden"
             name="input1"
-            value="1.57"
+            value="176.559998"
             id="input1"
+          />
+          <input
+            type="text"
+            class="hidden"
+            name="input2"
+            value="103.349998"
+            id="input2"
           />
           <button type="submit" class="hidden" id="submit"></button>
         </form>
@@ -220,19 +227,26 @@
 
       let myCanvas = document.getElementById("cvs");
       let ctx = myCanvas.getContext("2d");
-      ctx.fillStyle = "#d51626";
+      ctx.fillStyle = "black";
       ctx.font = "bold 16px Arial";
       ctx.fillText("Oct", 650, 333);
       ctx.fillText("2022", 651, 350);
       document.getElementById(`UserID`).value = localStorage.getItem("UserID");
 
-      let value = 1.57;
+      let value = 176.559998;
+      let value1 = 103.349998;
       line = new RGraph.Line({
         id: "cvs",
         data: [
           [
-            19.2, 17.69, 17.96, 16.47, 17.25, 18.25, 18.77, 17.87, 12.68,
-            13.71, 12.99, 12.04, 14.71
+            690.309998, 641.900024, 602.440002, 427.140015,
+            394.519989, 374.589996, 190.360001, 197.440002, 174.869995, 224.9,
+            223.56, 257.02, 247.00
+          ],
+          [
+            169.070007, 144.899994, 154.889999, 142.970001,
+            148.460007, 137.160004, 111.629997, 110.44, 94.400002, 106.1,
+            112.08, 136.07, 103.71
           ],
         ],
         options: {
@@ -256,20 +270,21 @@
           linewidth: 2,
           shadow: true,
           adjustable: true,
-          title: "American Airlines",
+          title: "Netflix vs Disney",
           titleVpos: 0.4,
           tickmarksStyle: "circle",
           tickmarksSize: 5,
-          yaxisScaleMax: 26,
+          yaxisScaleMax: 860,
           yaxisScaleRound: false,
           titleBold: true,
           titleSize: 14,
-          colors: ["#d51626"],
+          colors: ["#E50914", "#113CCF"],
+          key: ["Netflix", "Disney"],
         },
       }).draw();
 
       line.on("draw", function (e) {
-        ctx.fillStyle = "#d51626";
+        ctx.fillStyle = "black";
         ctx.font = "bold 16px Arial";
         ctx.fillText("Oct", 649.5, 332);
         ctx.fillText("2022", 650.5, 349);
@@ -278,12 +293,15 @@
       line.on("adjust", function (e) {
         let index = e.__mouseover_shape__.index;
         let dataset = e.__mouseover_shape__.dataset;
-        let newValue = e.data[dataset][index];
+        let newValue = e.data[dataset][0];
+        let newValue1 = e.data[dataset][1];
         value = newValue;
+        value1 = newValue1;
       });
 
       function submit() {
         document.getElementById("input1").value = value;
+        document.getElementById("input2").value = value1;
         document.getElementById("submit").click();
       }
     </script>
