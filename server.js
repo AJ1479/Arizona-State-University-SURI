@@ -44,7 +44,7 @@ function makeid(length) {
 app.post("/survey", async (req, res) => {
   object = JSON.parse(Object.keys(req.body)[0]);
   var user = await User.findOne({ ID: object.user });
-  await user.update({
+  await user.updateOne({
     age: object.age,
     gender: object.gender,
     country: object.country,
@@ -62,14 +62,18 @@ app.post("/survey", async (req, res) => {
 
 app.post("/login", async (req, res) => {
   let userID = req.body.userID;
-
+  console.log("Login");
+  console.log(userID);
   if (!userID) {
     return res.status(422).send("Error in request");
   }
 
   try {
     var userResponses = await Input.findOne({ UserID: userID });
+
     if (userResponses) {
+      console.log("entered if");
+      console.log(userResponses);
       let responses = userResponses.Response;
       if (responses.length != 0) {
         currentQuestion = responses[responses.length - 1].questionNumber;
@@ -87,24 +91,28 @@ app.post("/login", async (req, res) => {
       } else {
         res.sendFile(__dirname + `/views/question0.html`);
       }
-    } else {
+    }
+    else {
+      console.log("entered else for user creation");
       let code = makeid(5);
       const user = new User({
         ID: req.body.userID,
         code: code,
       });
-
-      await User.create(user);
+      console.log("User creation:");
+      console.log(req.body.userID);
+      User.create(user);
 
       const response = new Input({
         UserID: req.body.userID,
         Response: [],
       });
-      await Input.create(response);
+      Input.create(response);
 
       res.sendFile(__dirname + "/views/question0.html");
     }
-  } catch (e) {
+  }
+  catch (e) {
     return res.status(422).send("A error occurred");
   }
 });
@@ -112,9 +120,12 @@ app.post("/login", async (req, res) => {
 app.post("/:questionNumber", async (req, res) => {
   let nextQuestionNumber = req.params.questionNumber;
   let userID = req.body.UserID;
-
+  console.log("New question user ID:");
+  console.log(userID);
+  console.log("New question user ID:");
+  console.log(nextQuestionNumber);
   if (!nextQuestionNumber || !userID) {
-    return res.status(422).send("Error in request");
+    return res.status(422).send(userID + ": Error in request");
   }
 
   try {
@@ -129,7 +140,7 @@ app.post("/:questionNumber", async (req, res) => {
     let a = userResponses.Response;
     a.push(questionResponse);
 
-    await userResponses.update({ Response: a });
+    await userResponses.updateOne({ Response: a });
 
     if (nextQuestionNumber == 10) {
       res.sendFile(__dirname + `/views/survey.html`);
