@@ -122,7 +122,7 @@ app.post("/:questionNumber", async (req, res) => {
   let userID = req.body.UserID;
   console.log("New question user ID:");
   console.log(userID);
-  console.log("New question user ID:");
+  console.log("New question qno:");
   console.log(nextQuestionNumber);
   if (!nextQuestionNumber || !userID) {
     return res.status(422).send(userID + ": Error in request");
