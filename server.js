@@ -131,6 +131,8 @@ app.post("/:questionNumber", async (req, res) => {
 
   try {
     //delete req.body.UserID;
+    console.log("UID:");
+    console.log(userID);
     var userResponses = await Input.findOne({ UserID: userID });
 
     const questionResponse = new Question({
