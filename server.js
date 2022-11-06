@@ -130,7 +130,7 @@ app.post("/:questionNumber", async (req, res) => {
   }
 
   try {
-    delete req.body.UserID;
+    //delete req.body.UserID;
     var userResponses = await Input.findOne({ UserID: userID });
 
     const questionResponse = new Question({
