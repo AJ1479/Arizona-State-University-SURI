@@ -124,6 +124,7 @@ app.post("/:questionNumber", async (req, res) => {
   console.log(userID);
   console.log("New question qno:");
   console.log(nextQuestionNumber);
+
   if (!nextQuestionNumber || !userID) {
     return res.status(422).send(userID + ": Error in request");
   }
@@ -145,6 +146,8 @@ app.post("/:questionNumber", async (req, res) => {
     if (nextQuestionNumber == 10) {
       res.sendFile(__dirname + `/views/survey.html`);
     } else {
+      console.log("Next qno");
+      console.log(nextQuestionNumber);
       res.sendFile(__dirname + `/views/question${nextQuestionNumber}.html`);
     }
   } catch (e) {
