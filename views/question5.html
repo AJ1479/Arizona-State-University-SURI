@@ -141,8 +141,8 @@
         Y-axis?
       </p>
       <p>
-        <b>NOTE:</b> The value for November 2022 is by default set to the value
-        predicted by the ML model. Please move it above or below as per your
+        <b>NOTE:</b> The value for November 2022 is by default set to the same value
+        as the previous month. Please move it above or below as per your
         future estimate.
       </p>
       <br />
@@ -222,7 +222,7 @@
       let ctx = myCanvas.getContext("2d");
       ctx.fillStyle = "#fc9e15";
       ctx.font = "bold 16px Arial";
-      ctx.fillText("Oct", 650, 333);
+      ctx.fillText("Nov", 650, 333);
       ctx.fillText("2022", 651, 350);
       document.getElementById(`UserID`).value = localStorage.getItem("UserID");
 
@@ -231,7 +231,7 @@
         id: "cvs",
         data: [
           [
-            19.77, 17.69, 17.96, 16.47, 17.25, 18.25, 
+            19.77, 17.69, 17.96, 16.47, 17.25, 18.25,
             18.56, 17.87, 12.68, 14.28, 12.99, 12.04, 14.18, 14.18
           ],
         ],

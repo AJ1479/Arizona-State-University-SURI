@@ -132,7 +132,7 @@
             fill="none"
           />
         </svg>
-      </div>  
+      </div>
     </nav>
     <h1 class="heading">Exercise 5 of 10</h1>
     <div class="main-body">
@@ -143,8 +143,8 @@
         dragging that point on the graph along the Y-axis?
       </p>
       <p style="margin-bottom: 1.75rem">
-        <b>NOTE:</b> The value for November 2022 is by default set to same
-        value as the ML model's predicted price. Please move it above or below as per your
+        <b>NOTE:</b> The values for November 2022 are by default set to those
+        predicted by the ML model. Please move it above or below as per your
         future estimate.
       </p>
       <div class="tip">
@@ -224,7 +224,7 @@
       let ctx = myCanvas.getContext("2d");
       ctx.fillStyle = "#003ea9";
       ctx.font = "bold 16px Arial";
-      ctx.fillText("Oct", 650, 333);
+      ctx.fillText("Nov", 650, 333);
       ctx.fillText("2022", 651, 350);
       document.getElementById(`UserID`).value = localStorage.getItem("UserID");
 
@@ -233,8 +233,8 @@
         id: "cvs",
         data: [
           [
-            25.67, 22.61, 23.81, 20.72, 27.21, 
-            37.74, 29.81, 25.07, 17.91, 23.8, 22.87, 18.12, 20.36, 0
+            25.67, 22.61, 23.81, 20.72, 27.21,
+            37.74, 29.81, 25.07, 17.91, 23.8, 22.87, 18.12, 20.36, 20.19
           ],
         ],
         options: {
