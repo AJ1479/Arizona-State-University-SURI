@@ -1,7 +1,7 @@
 
-# ASU - Wisdom Of The Crowds
+# Arizona State University - Wisdom Of The Crowds
 
-Single codebase for the EJS Express and React apps
+Single codebase for the EJS, Express.js and React web applications, used for data collection towards stock market predictions.
 
 
 ## Environment Variables
@@ -47,8 +47,9 @@ To start the dev server, run
 ```
 
 The EJS page is deployed normally using express routers.
-The React page is deployed at `http://localhost:3000/react_deploy` 
+The React page is deployed at `http://localhost:3000/react_deploy`.
 ## Authors
 
 - [@Arushi](https://github.com/AJ1479)
+- [@Harika](https://github.com/HarikaBhogaraju)
 
